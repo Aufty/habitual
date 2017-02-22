@@ -2,18 +2,20 @@
 using Android.Widget;
 using Android.OS;
 using System;
-using Habitual.Android.Presenters;
-using Habitual.Android.Presenters.Impl;
+using Habitual.Droid.Presenters;
+using Habitual.Droid.Presenters.Impl;
 using Habitual.Core.Executors.Impl;
 using Habitual.Core.Executors;
-using Habitual.Android.Threading;
+using Habitual.Droid.Threading;
 using Habitual.Storage;
-using Android.Support.V4.App;
+using Android.Support.V7.App;
+using Android.Views;
+using Habitual.Droid.Util;
 
-namespace Habitual.Android.UI
+namespace Habitual.Droid.UI
 {
-    [Activity(Label = "Habitual.Android", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : FragmentActivity, MainView
+    [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    public class MainActivity : AppCompatActivity, MainView
     {
         private MainPresenter mainPresenter;
         private MainThread mainThread;
@@ -28,8 +30,21 @@ namespace Habitual.Android.UI
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SetupTabs();
             Init();
+        }
+
+        private void SetupTabs()
+        {
+            
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.mainMenu, menu);
+            return true;
         }
 
         private void Init()
@@ -44,9 +59,11 @@ namespace Habitual.Android.UI
             testButton.Click += OnSubmitButtonClicked;
         }
 
+
         private void OnSubmitButtonClicked(object sender, EventArgs e)
         {
-            mainPresenter.CreateUser(username.Text, password.Text);
+            PasswordHasher hasher = new PasswordHasher();
+            mainPresenter.CreateUser(username.Text, hasher.HashPassword(password.Text));
         }
 
         public void HideProgress()

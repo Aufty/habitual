@@ -14,9 +14,9 @@ using Habitual.Core.Repositories;
 using Habitual.Core.UseCases;
 using Habitual.Core.UseCases.Impl;
 
-namespace Habitual.Android.Presenters.Impl
+namespace Habitual.Droid.Presenters.Impl
 {
-    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallBack
+    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback
     {
         private MainView view;
         private UserRepository userRepository;
@@ -62,6 +62,11 @@ namespace Habitual.Android.Presenters.Impl
         public void OnUserCreated()
         {
             view.OnUserCreated();
+        }
+
+        public void OnInteractorError(string message)
+        {
+            OnError(message);
         }
     }
 }

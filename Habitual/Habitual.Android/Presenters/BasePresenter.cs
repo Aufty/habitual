@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Habitual.Android.Presenters
+namespace Habitual.Droid.Presenters
 {
     public interface BasePresenter
     {

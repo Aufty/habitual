@@ -1,5 +1,4 @@
-﻿using Habitual.Core.Entities;
-using Habitual.Core.Executors;
+﻿using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
 using Habitual.Core.UseCases.Base;
 using System;
@@ -10,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases.Impl
 {
-    public class CreateUserInteractorImpl : AbstractInteractor, CreateUserInteractor
+    public class GetPointsInteractorImpl : AbstractInteractor, GetPointsInteractor
     {
-        private CreateUserInteractorCallback callback;
+        private GetPointsInteractorCallback callback;
         private UserRepository userRepository;
 
-        private string username;
-        private string password;
+        string username;
+        string password;
 
-        public CreateUserInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        CreateUserInteractorCallback callback, UserRepository userRepository,
+        public GetPointsInteractorImpl(Executor taskExecutor, MainThread mainThread,
+                                        GetPointsInteractorCallback callback, UserRepository userRepository,
                                         string username, string password) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
@@ -30,10 +29,9 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            User user = new User(username, password);
-            userRepository.Create(user);
+            var points = userRepository.GetPoints(username);
 
-            mainThread.Post(callback.OnUserCreated);
+            callback.OnPointsRetrieved(points);
         }
     }
 }

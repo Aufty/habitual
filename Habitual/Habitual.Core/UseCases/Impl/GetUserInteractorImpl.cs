@@ -1,4 +1,4 @@
-﻿using Habitual.Core.Entities;
+﻿
 using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
 using Habitual.Core.UseCases.Base;
@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases.Impl
 {
-    public class CreateUserInteractorImpl : AbstractInteractor, CreateUserInteractor
+    public class GetUserInteractorImpl : AbstractInteractor, GetUserInteractor
     {
-        private CreateUserInteractorCallback callback;
+        private GetUserInteractorCallback callback;
         private UserRepository userRepository;
 
-        private string username;
-        private string password;
+        string username;
+        string password;
 
-        public CreateUserInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        CreateUserInteractorCallback callback, UserRepository userRepository,
+        public GetUserInteractorImpl(Executor taskExecutor, MainThread mainThread,
+                                        GetUserInteractorCallback callback, UserRepository userRepository,
                                         string username, string password) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
@@ -30,10 +30,9 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            User user = new User(username, password);
-            userRepository.Create(user);
+            var user = userRepository.GetUser(username, password);
 
-            mainThread.Post(callback.OnUserCreated);
+            callback.OnUserRetrieved(user);
         }
     }
 }

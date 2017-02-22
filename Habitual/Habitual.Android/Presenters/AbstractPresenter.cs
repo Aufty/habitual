@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Habitual.Core.Executors;
 
-namespace Habitual.Android.Presenters
+namespace Habitual.Droid.Presenters
 {
     public abstract class AbstractPresenter
     {

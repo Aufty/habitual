@@ -9,10 +9,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Habitual.Android.UI;
+using Habitual.Droid.UI;
 using Habitual.Core.Entities;
 
-namespace Habitual.Android.Presenters
+namespace Habitual.Droid.Presenters
 {
     public interface MainView : BaseView
     {
@@ -21,6 +21,6 @@ namespace Habitual.Android.Presenters
 
     public interface MainPresenter : BasePresenter
     {
-        void CreateUser(string username, string password);
+        void CreateUser(string username, string hashedPassword);
     }
 }
