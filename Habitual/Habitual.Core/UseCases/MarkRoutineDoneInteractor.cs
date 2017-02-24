@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetUserInteractorCallback
+    public interface MarkRoutineDoneInteractorCallback
     {
-        void OnUserRetrieved(User user);
+        void OnRoutineMarkedDoneForToday(Routine routine);
     }
-
-    public interface GetUserInteractor : Interactor
+    public interface MarkRoutineDoneInteractor : Interactor
     {
-
     }
 }

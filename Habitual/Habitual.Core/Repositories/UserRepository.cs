@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.Repositories
 {
-    public interface UserRepository
+    public interface UserRepository : Repository<User>
     {
-        void Create(User user);
         byte[] GetAvatarById(int id);
-        void Delete(User user);
-        User GetUserById(int id);
         User GetUser(string username, string password);
         int GetPoints(string username);
         int IncrementPoints(int pointsToIncrement);

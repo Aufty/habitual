@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.Repositories
 {
-    public interface HabitRepository : Repository<Habit>
+    public interface RewardRepository : Repository<Reward>
     {
-        int IncrementHabit(int habitID); // returns new count
-        int GetPointValue(Difficulty difficulty);
     }
 }

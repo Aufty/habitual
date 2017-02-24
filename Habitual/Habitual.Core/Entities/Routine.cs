@@ -1,10 +1,9 @@
-﻿namespace Habitual.Core.Entities
+﻿using Habitual.Core.Entities.Base;
+
+namespace Habitual.Core.Entities
 {
-    public class Routine
+    public class Routine : BaseTask
     {
-        public int ID { get; set; }
-        public string Description { get; set; }
-        public Difficulty Difficulty { get; set; }
         public bool IsActiveSunday { get; set; }
         public bool IsActiveMonday { get; set; }
         public bool IsActiveTuesday { get; set; }

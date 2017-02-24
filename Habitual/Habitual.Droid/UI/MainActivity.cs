@@ -14,12 +14,11 @@ using Habitual.Droid.Util;
 
 namespace Habitual.Droid.UI
 {
-    [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity, MainView
     {
         private MainPresenter mainPresenter;
         private MainThread mainThread;
-
         private EditText username;
         private EditText password;
         private Button testButton;

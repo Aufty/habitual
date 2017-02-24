@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Habitual.Core.Entities
+namespace Habitual.Core.Entities.Base
 {
-    public class Reward
+    public abstract class BaseTask
     {
-        public int UserID { get; set; }
         public int ID { get; set; }
+        public int UserID { get; set; }
         public string Description { get; set; }
-        public int Cost { get; set; }
+        public Difficulty Difficulty { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Habitual.Core.UseCases
 {
     public interface GetAllHabitsInteractorCallback
     {
-        void OnAllHabitsRetrieved(List<Habit> habits);
+        void OnHabitsRetrieved(List<Habit> habits);
     }
     public interface GetAllHabitsInteractor : Interactor
     {

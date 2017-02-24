@@ -31,7 +31,7 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public User GetUserById(int id)
+        public User GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -50,6 +50,21 @@ namespace Habitual.Storage
         }
 
         public int IncrementPoints(int pointsToIncrement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(User entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetAllForUser(string username)
         {
             throw new NotImplementedException();
         }

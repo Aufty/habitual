@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface CreateHabitInteractorCallback : InteractorCallback
+    public interface CreateHabitInteractorCallback
     {
         void OnHabitCreated(Habit habit);
     }

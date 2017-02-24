@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.Repositories
 {
-    public interface HabitRepository : Repository<Habit>
+    public interface RoutineRepository : Repository<Routine>
     {
-        int IncrementHabit(int habitID); // returns new count
+        Routine MarkRoutineDone(int routineID); //TODO: should I pass UTC time?
         int GetPointValue(Difficulty difficulty);
     }
 }

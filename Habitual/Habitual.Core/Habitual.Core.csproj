@@ -35,8 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Base\BaseTask.cs" />
     <Compile Include="Entities\Difficulty.cs" />
     <Compile Include="Entities\Habit.cs" />
     <Compile Include="Entities\HabitLog.cs" />
@@ -50,25 +52,56 @@
     <Compile Include="Executors\MainThread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HabitRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RewardRepository.cs" />
+    <Compile Include="Repositories\RoutineRepository.cs" />
+    <Compile Include="Repositories\TodoRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UseCases\Base\AbstractInteractor.cs" />
+    <Compile Include="UseCases\BuyRewardInteractor.cs" />
+    <Compile Include="UseCases\CreateRewardInteractor.cs" />
+    <Compile Include="UseCases\CreateTodoInteractor.cs" />
+    <Compile Include="UseCases\DeleteRewardInteractor.cs" />
+    <Compile Include="UseCases\DeleteRoutineInteractor.cs" />
     <Compile Include="UseCases\CreateHabitInteractor.cs" />
+    <Compile Include="UseCases\CreateRoutineInteractor.cs" />
     <Compile Include="UseCases\DeleteHabitInteractor.cs" />
+    <Compile Include="UseCases\DeleteTodoInteractor.cs" />
     <Compile Include="UseCases\GetAllHabitsInteractor.cs" />
+    <Compile Include="UseCases\GetAllRewardsInteractor.cs" />
+    <Compile Include="UseCases\GetAllRoutinesInteractor.cs" />
+    <Compile Include="UseCases\GetAllTodosInteractor.cs" />
     <Compile Include="UseCases\GetPointsInteractor.cs" />
     <Compile Include="UseCases\Base\Interactor.cs" />
     <Compile Include="UseCases\CreateUserInteractor.cs" />
     <Compile Include="UseCases\GetUserInteractor.cs" />
     <Compile Include="UseCases\Impl\CreateHabitInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\CreateRewardInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\CreateRoutineInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\CreateTodoInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\CreateUserInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\DeleteHabitInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\DeleteRewardInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\DeleteRoutineInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\DeleteTodoInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetAllHabitsInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\GetAllRewardsInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\GetAllRoutinesInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\GetAllTodosInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetPointsInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetUserInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\IncrementHabitInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateHabitInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\UpdateRewardInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\UpdateRoutineInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\UpdateTodoInteractorImpl.cs" />
     <Compile Include="UseCases\IncrementHabitInteractor.cs" />
+    <Compile Include="UseCases\MarkRoutineDoneInteractor.cs" />
+    <Compile Include="UseCases\MarkTodoDoneInteractor.cs" />
     <Compile Include="UseCases\UpdateHabitInteractor.cs" />
+    <Compile Include="UseCases\UpdateRewardInteractor.cs" />
+    <Compile Include="UseCases\UpdateRoutineInteractor.cs" />
+    <Compile Include="UseCases\UpdateTodoInteractor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

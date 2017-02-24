@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Habitual.Core.Entities.Base.BaseTask" Collapsed="true">
+    <Position X="12.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggQAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Base\BaseTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.Habit" Collapsed="true">
+    <Position X="10.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Habit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.HabitLog" Collapsed="true">
+    <Position X="54.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\HabitLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.Reward" Collapsed="true">
+    <Position X="56.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAABgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Reward.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.Routine" Collapsed="true">
+    <Position X="12.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAgAAAAgAAAAAAAAgAAAQAAAACCAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Routine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.RoutineLog" Collapsed="true">
+    <Position X="58.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\RoutineLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.Todo" Collapsed="true">
+    <Position X="15" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Todo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Entities.User" Collapsed="true">
+    <Position X="61.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAQQAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Habitual.Core.Executors.Impl.TaskExecutor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Executors\Impl\TaskExecutor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Base.AbstractInteractor" Collapsed="true">
+    <Position X="23.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAARAAAAAQAAAEAAACAAAAAABAIAAAAI=</HashCode>
+      <FileName>UseCases\Base\AbstractInteractor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.CreateHabitInteractorImpl" Collapsed="true">
+    <Position X="33.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\CreateHabitInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.CreateRewardInteractorImpl" Collapsed="true">
+    <Position X="38.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAgIAAAAAAAAAAQAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\CreateRewardInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.CreateRoutineInteractorImpl" Collapsed="true">
+    <Position X="42.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEQI=</HashCode>
+      <FileName>UseCases\Impl\CreateRoutineInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.CreateTodoInteractorImpl" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAABAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\CreateTodoInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.CreateUserInteractorImpl" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAoAAAAI=</HashCode>
+      <FileName>UseCases\Impl\CreateUserInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.DeleteHabitInteractorImpl" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAI=</HashCode>
+      <FileName>UseCases\Impl\DeleteHabitInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.DeleteRewardInteractorImpl" Collapsed="true">
+    <Position X="15.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAI=</HashCode>
+      <FileName>UseCases\Impl\DeleteRewardInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.DeleteRoutineInteractorImpl" Collapsed="true">
+    <Position X="20.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEAI=</HashCode>
+      <FileName>UseCases\Impl\DeleteRoutineInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.DeleteTodoInteractorImpl" Collapsed="true">
+    <Position X="24.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>UseCases\Impl\DeleteTodoInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetAllHabitsInteractorImpl" Collapsed="true">
+    <Position X="29.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\GetAllHabitsInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetAllRewardsInteractorImpl" Collapsed="true">
+    <Position X="36" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\GetAllRewardsInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetAllRoutinesInteractorImpl" Collapsed="true">
+    <Position X="40.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQI=</HashCode>
+      <FileName>UseCases\Impl\GetAllRoutinesInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetAllTodosInteractorImpl" Collapsed="true">
+    <Position X="45" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAQI=</HashCode>
+      <FileName>UseCases\Impl\GetAllTodosInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetPointsInteractorImpl" Collapsed="true">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAoAAAAI=</HashCode>
+      <FileName>UseCases\Impl\GetPointsInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.GetUserInteractorImpl" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAoAAAAI=</HashCode>
+      <FileName>UseCases\Impl\GetUserInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.IncrementHabitInteractorImpl" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAEAI=</HashCode>
+      <FileName>UseCases\Impl\IncrementHabitInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.UpdateHabitInteractorImpl" Collapsed="true">
+    <Position X="18" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAI=</HashCode>
+      <FileName>UseCases\Impl\UpdateHabitInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.UpdateRewardInteractorImpl" Collapsed="true">
+    <Position X="22.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABBAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>UseCases\Impl\UpdateRewardInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.UpdateRoutineInteractorImpl" Collapsed="true">
+    <Position X="27" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAEAI=</HashCode>
+      <FileName>UseCases\Impl\UpdateRoutineInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Habitual.Core.UseCases.Impl.UpdateTodoInteractorImpl" Collapsed="true">
+    <Position X="31.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>UseCases\Impl\UpdateTodoInteractorImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Habitual.Core.Executors.Executor" Collapsed="true">
+    <Position X="60" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Executors\Executor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Executors.MainThread" Collapsed="true">
+    <Position X="61.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Executors\MainThread.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.HabitRepository" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\HabitRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.Repository&lt;T&gt;" Collapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAIA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.RewardRepository" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\RewardRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.RoutineRepository" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Repositories\RoutineRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.TodoRepository" Collapsed="true">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\TodoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.Repositories.UserRepository" Collapsed="true">
+    <Position X="9.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACQIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.Base.Interactor" Collapsed="true">
+    <Position X="27.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\Base\Interactor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.BuyRewardInteractorCallback" Collapsed="true">
+    <Position X="54.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\BuyRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.BuyRewardInteractor" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\BuyRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateHabitInteractorCallback" Collapsed="true">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateHabitInteractor" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateRewardInteractorCallback" Collapsed="true">
+    <Position X="56.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateRewardInteractor" Collapsed="true">
+    <Position X="34.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateRoutineInteractorCallback" Collapsed="true">
+    <Position X="58.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateRoutineInteractor" Collapsed="true">
+    <Position X="45.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateTodoInteractorCallback" Collapsed="true">
+    <Position X="60" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateTodoInteractor" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateUserInteractorCallback" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateUserInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.CreateUserInteractor" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\CreateUserInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteHabitInteractorCallback" Collapsed="true">
+    <Position X="61.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteHabitInteractor" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteRewardInteractorCallback" Collapsed="true">
+    <Position X="54.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteRewardInteractor" Collapsed="true">
+    <Position X="36.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteRoutineInteractorCallback" Collapsed="true">
+    <Position X="56.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteRoutineInteractor" Collapsed="true">
+    <Position X="47.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteTodoInteractorCallback" Collapsed="true">
+    <Position X="58.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.DeleteTodoInteractor" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\DeleteTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllHabitsInteractorCallback" Collapsed="true">
+    <Position X="61.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllHabitsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllHabitsInteractor" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllHabitsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllRewardsInteractorCallback" Collapsed="true">
+    <Position X="54.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllRewardsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllRewardsInteractor" Collapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllRewardsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllRoutinesInteractorCallback" Collapsed="true">
+    <Position X="56.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>UseCases\GetAllRoutinesInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllRoutinesInteractor" Collapsed="true">
+    <Position X="38.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllRoutinesInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllTodosInteractorCallback" Collapsed="true">
+    <Position X="58.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllTodosInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetAllTodosInteractor" Collapsed="true">
+    <Position X="50" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetAllTodosInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetPointsInteractorCallback" Collapsed="true">
+    <Position X="7.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetPointsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetPointsInteractor" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetPointsInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetUserInteractorCallback" Collapsed="true">
+    <Position X="2.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetUserInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.GetUserInteractor" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\GetUserInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.IncrementHabitInteractorCallback" Collapsed="true">
+    <Position X="60" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\IncrementHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.IncrementHabitInteractor" Collapsed="true">
+    <Position X="29.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\IncrementHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.MarkRoutineDoneInteractorCallback" Collapsed="true">
+    <Position X="54.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\MarkRoutineDoneInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.MarkRoutineDoneInteractor" Collapsed="true">
+    <Position X="41" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\MarkRoutineDoneInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.MarkTodoDoneInteractorCallback" Collapsed="true">
+    <Position X="56.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\MarkTodoDoneInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.MarkTodoDoneInteractor" Collapsed="true">
+    <Position X="52.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\MarkTodoDoneInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateHabitInteractorCallback" Collapsed="true">
+    <Position X="58.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateHabitInteractor" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateHabitInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateRewardInteractorCallback" Collapsed="true">
+    <Position X="60" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateRewardInteractor" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateRewardInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateRoutineInteractorCallback" Collapsed="true">
+    <Position X="61.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateRoutineInteractor" Collapsed="true">
+    <Position X="32" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateRoutineInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateTodoInteractorCallback" Collapsed="true">
+    <Position X="54.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Habitual.Core.UseCases.UpdateTodoInteractor" Collapsed="true">
+    <Position X="43.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UseCases\UpdateTodoInteractor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Habitual.Core.Entities.Difficulty" Collapsed="true">
+    <Position X="54.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAA=</HashCode>
+      <FileName>Entities\Difficulty.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

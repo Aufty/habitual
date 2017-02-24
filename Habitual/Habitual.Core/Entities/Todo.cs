@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Habitual.Core.Entities.Base;
+using System;
 
 namespace Habitual.Core.Entities
 {
-    public class Todo
+    public class Todo : BaseTask
     {
-        public int ID { get; set; }
-        public string Description { get; set; }
-        public Difficulty Difficulty { get; set; }
         public DateTime DueDate { get; set; }
         public bool IsDone { get; set; }
     }

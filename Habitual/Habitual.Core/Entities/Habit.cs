@@ -1,10 +1,8 @@
-﻿namespace Habitual.Core.Entities
+﻿using Habitual.Core.Entities.Base;
+
+namespace Habitual.Core.Entities
 {
-    public class Habit
+    public class Habit : BaseTask
     {
-        public int UserID { get; set; }
-        public int ID { get; set; }
-        public string Description { get; set; }
-        public Difficulty Difficulty { get; set; }
     }
 }

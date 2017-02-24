@@ -7,12 +7,12 @@ using Habitual.Core.UseCases.Base;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetPointsInteractorCallback
-    {
-        void OnPointsRetrieved(int points);
-    }
-
-    public interface GetPointsInteractor : Interactor
+	public interface DeleteTodoInteractorCallback
+	{
+        void OnTodoDeleted(int id);
+	}
+    public interface DeleteTodoInteractor : Interactor
     {
     }
 }
+
