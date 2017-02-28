@@ -10,7 +10,7 @@ namespace Habitual.Core.UseCases
 {
     public interface MarkRoutineDoneInteractorCallback : InteractorCallback
     {
-        void OnRoutineMarkedDoneForToday(Routine routine);
+        void OnRoutineMarkedDoneForToday(Routine routine, int newPoints);
     }
     public interface MarkRoutineDoneInteractor : Interactor
     {

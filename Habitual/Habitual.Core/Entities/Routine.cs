@@ -1,4 +1,5 @@
 ﻿using Habitual.Core.Entities.Base;
+using System.Collections.Generic;
 
 namespace Habitual.Core.Entities
 {
@@ -11,5 +12,6 @@ namespace Habitual.Core.Entities
         public bool IsActiveThursday { get; set; }
         public bool IsActiveFriday { get; set; }
         public bool IsActiveSaturday { get; set; }
+        public List<RoutineLog> Logs;
     }
 }

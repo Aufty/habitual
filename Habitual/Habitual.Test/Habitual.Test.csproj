@@ -67,6 +67,7 @@
     <Compile Include="Interactors\BuyRewardTest.cs" />
     <Compile Include="Interactors\CreateUserTest.cs" />
     <Compile Include="Interactors\IncrementHabitTest.cs" />
+    <Compile Include="Interactors\MarkRoutineDoneTest.cs" />
     <Compile Include="Interactors\MarkTodoDoneTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Threading\TestMainThread.cs" />

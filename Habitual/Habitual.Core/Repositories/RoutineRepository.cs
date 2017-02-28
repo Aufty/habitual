@@ -9,7 +9,7 @@ namespace Habitual.Core.Repositories
 {
     public interface RoutineRepository : Repository<Routine>
     {
-        Routine MarkRoutineDone(int routineID); //TODO: should I pass UTC time?
+        Routine MarkDone(Routine routine); //TODO: should I pass UTC time?
         int GetPointValue(Difficulty difficulty);
     }
 }

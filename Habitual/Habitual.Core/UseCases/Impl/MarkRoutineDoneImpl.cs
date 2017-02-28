@@ -29,8 +29,15 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
+            var updatedRoutine = routineRepository.MarkDone(routine);
+            if (updatedRoutine.Logs.Count <= routine.Logs.Count)
+            {
+                callback.OnError("Unable to mark routine done.");
+                return;
+            }
+            var newPoints = userRepository.GetPoints(routine.Username);
 
-            mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(doneTodo, newPoints));
+            mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(updatedRoutine, newPoints));
         }
     }
 }
