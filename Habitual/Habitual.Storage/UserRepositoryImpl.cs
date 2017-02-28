@@ -26,7 +26,7 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public byte[] GetAvatarById(int id)
+        public byte[] GetAvatar(string username)
         {
             throw new NotImplementedException();
         }

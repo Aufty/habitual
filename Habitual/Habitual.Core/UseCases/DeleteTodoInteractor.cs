@@ -7,7 +7,7 @@ using Habitual.Core.UseCases.Base;
 
 namespace Habitual.Core.UseCases
 {
-	public interface DeleteTodoInteractorCallback
+	public interface DeleteTodoInteractorCallback : InteractorCallback
 	{
         void OnTodoDeleted(int id);
 	}

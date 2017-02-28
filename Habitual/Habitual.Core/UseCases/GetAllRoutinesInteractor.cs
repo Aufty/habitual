@@ -8,7 +8,7 @@ using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetAllRoutinesInteractorCallback
+    public interface GetAllRoutinesInteractorCallback : InteractorCallback
     {
         void OnRoutinesRetrieved(List<Routine> routines);
     }

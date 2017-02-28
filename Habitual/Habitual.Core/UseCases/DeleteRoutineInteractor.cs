@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface DeleteRoutineInteractorCallback
+    public interface DeleteRoutineInteractorCallback : InteractorCallback
     {
         void OnRoutineDeleted(int routineID);
     }

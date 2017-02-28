@@ -35,7 +35,7 @@ namespace Habitual.Core.UseCases.Impl
             var routine = new Routine();
             routine.Description = description;
             routine.Difficulty = difficulty;
-            routine.UserID = user.ID;
+            routine.Username = user.Username;
             routineRepository.Create(routine);
 
             mainThread.Post(() => callback.OnRoutineCreated(routine));

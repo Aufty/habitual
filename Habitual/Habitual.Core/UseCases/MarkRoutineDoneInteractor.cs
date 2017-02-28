@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface MarkRoutineDoneInteractorCallback
+    public interface MarkRoutineDoneInteractorCallback : InteractorCallback
     {
         void OnRoutineMarkedDoneForToday(Routine routine);
     }

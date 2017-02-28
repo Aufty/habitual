@@ -7,7 +7,7 @@ using Habitual.Core.UseCases.Base;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetPointsInteractorCallback
+    public interface GetPointsInteractorCallback : InteractorCallback
     {
         void OnPointsRetrieved(int points);
     }

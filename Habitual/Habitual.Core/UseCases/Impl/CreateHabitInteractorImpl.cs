@@ -35,7 +35,7 @@ namespace Habitual.Core.UseCases.Impl
             var habit = new Habit();
             habit.Description = description;
             habit.Difficulty = difficulty;
-            habit.UserID = user.ID;
+            habit.Username = user.Username;
             habitRepository.Create(habit);
 
             mainThread.Post(() => callback.OnHabitCreated(habit));

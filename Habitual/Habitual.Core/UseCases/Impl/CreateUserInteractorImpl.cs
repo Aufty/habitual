@@ -30,6 +30,12 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
+            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
+            {
+                mainThread.Post(() => { callback.OnError("Password cannot be blank"); });
+                return;
+            }
+
             User user = new User(username, password);
             userRepository.Create(user);
 

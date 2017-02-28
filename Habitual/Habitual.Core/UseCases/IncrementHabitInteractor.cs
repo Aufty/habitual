@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface IncrementHabitInteractorCallback
+    public interface IncrementHabitInteractorCallback : InteractorCallback
     {
         void OnHabitIncremented(int newCount, int newUserPoints);
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetAllHabitsInteractorCallback
+    public interface GetAllHabitsInteractorCallback : InteractorCallback
     {
         void OnHabitsRetrieved(List<Habit> habits);
     }

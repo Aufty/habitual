@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface GetUserInteractorCallback
+    public interface GetUserInteractorCallback : InteractorCallback
     {
         void OnUserRetrieved(User user);
     }

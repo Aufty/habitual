@@ -9,7 +9,7 @@ namespace Habitual.Core.Repositories
 {
     public interface HabitRepository : Repository<Habit>
     {
-        int IncrementHabit(int habitID); // returns new count
+        int IncrementHabit(Habit habit); // returns new count
         int GetPointValue(Difficulty difficulty);
     }
 }

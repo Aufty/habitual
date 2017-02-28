@@ -8,9 +8,9 @@ using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases
 {
-	public interface BuyRewardInteractorCallback
+	public interface BuyRewardInteractorCallback : InteractorCallback
 	{
-        void OnRewardPurchased(Reward reward);
+        void OnRewardPurchased(Reward reward, int newPoints);
 	}
     public interface BuyRewardInteractor : Interactor
     {

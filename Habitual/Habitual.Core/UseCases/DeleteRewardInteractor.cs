@@ -7,7 +7,7 @@ using Habitual.Core.UseCases.Base;
 
 namespace Habitual.Core.UseCases
 {
-	public interface DeleteRewardInteractorCallback
+	public interface DeleteRewardInteractorCallback : InteractorCallback
 	{
         void OnRewardDeleted(int rewardID);
 	}

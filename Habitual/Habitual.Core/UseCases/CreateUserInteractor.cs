@@ -3,7 +3,7 @@ using Habitual.Core.UseCases.Base;
 
 namespace Habitual.Core.UseCases
 {
-    public interface CreateUserInteractorCallback
+    public interface CreateUserInteractorCallback : InteractorCallback
     {
         void OnUserCreated();
     }

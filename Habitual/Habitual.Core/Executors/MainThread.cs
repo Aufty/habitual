@@ -12,10 +12,6 @@ namespace Habitual.Core.Executors
         /// Post an action with one param to the main thread (used for UI updates)
         /// </summary>
         void Post(Action action);
-        /// <summary>
-        /// Post an action with one param to the main thread (used for UI updates)
-        /// </summary>
-        void Post<T>(Action<T> action);
 
     }
 }

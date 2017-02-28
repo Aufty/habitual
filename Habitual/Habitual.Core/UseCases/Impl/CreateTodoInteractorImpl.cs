@@ -35,7 +35,7 @@ namespace Habitual.Core.UseCases.Impl
             var todo = new Todo();
             todo.Description = description;
             todo.Difficulty = difficulty;
-            todo.UserID = user.ID;
+            todo.Username = user.Username;
             TodoRepository.Create(todo);
 
             mainThread.Post(() => callback.OnTodoCreated(todo));

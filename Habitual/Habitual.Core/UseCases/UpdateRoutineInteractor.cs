@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases
 {
-    public interface UpdateRoutineInteractorCallback
+    public interface UpdateRoutineInteractorCallback : InteractorCallback
     {
         void OnRoutineUpdated(Routine routine);
     }

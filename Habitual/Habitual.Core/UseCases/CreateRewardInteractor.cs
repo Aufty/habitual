@@ -8,7 +8,7 @@ using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases
 {
-	public interface CreateRewardInteractorCallback
+	public interface CreateRewardInteractorCallback : InteractorCallback
 	{
         void OnRewardCreated(Reward reward);
 	}

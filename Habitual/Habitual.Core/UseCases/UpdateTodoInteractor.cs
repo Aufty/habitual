@@ -8,7 +8,7 @@ using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases
 {
-	public interface UpdateTodoInteractorCallback
+	public interface UpdateTodoInteractorCallback : InteractorCallback
 	{
         void OnTodoUpdated(Todo todo);
 	}

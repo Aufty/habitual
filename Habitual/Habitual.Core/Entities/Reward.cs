@@ -8,7 +8,7 @@ namespace Habitual.Core.Entities
 {
     public class Reward
     {
-        public int UserID { get; set; }
+        public string Username { get; set; }
         public int ID { get; set; }
         public string Description { get; set; }
         public int Cost { get; set; }

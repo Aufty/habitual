@@ -29,9 +29,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            var newCount = habitRepository.IncrementHabit(habit.ID);
-            var pointValue = habitRepository.GetPointValue(habit.Difficulty);
-            var newPoints = userRepository.IncrementPoints(pointValue);
+            var newCount = habitRepository.IncrementHabit(habit);
+            var newPoints = userRepository.GetPoints(habit.Username);
 
             mainThread.Post(() => callback.OnHabitIncremented(newCount, newPoints));
         }

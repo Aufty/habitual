@@ -35,7 +35,7 @@ namespace Habitual.Core.UseCases.Impl
             var reward = new Reward();
             reward.Description = description;
             reward.Cost = cost;
-            reward.UserID = user.ID;
+            reward.Username = user.Username;
             rewardRepository.Create(reward);
 
             mainThread.Post(() => callback.OnRewardCreated(reward));
