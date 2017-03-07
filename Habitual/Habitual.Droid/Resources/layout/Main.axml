@@ -3,20 +3,31 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-  <include android:id="@+id/toolbar"
-           layout="@layout/toolbar">  </include>
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/editText1" />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/editText2" />
-<Button
-    android:text="Test"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/testButton" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <android.support.design.widget.TabLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="?attr/colorPrimary">
+        <android.support.design.widget.TabItem
+            android:text="Overview" />
+        <android.support.design.widget.TabItem
+            android:text="Manage" />
+        <android.support.design.widget.TabItem
+            android:text="Rewards" />
+    </android.support.design.widget.TabLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2" />
+    <Button
+        android:text="Test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/testButton" />
 </LinearLayout>
