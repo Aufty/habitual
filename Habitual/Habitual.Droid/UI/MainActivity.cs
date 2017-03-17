@@ -11,6 +11,8 @@ using Habitual.Storage;
 using Android.Support.V7.App;
 using Android.Views;
 using Habitual.Droid.Util;
+using Android.Support.V4.View;
+using Android.Support.Design.Widget;
 
 namespace Habitual.Droid.UI
 {
@@ -31,13 +33,17 @@ namespace Habitual.Droid.UI
             SetContentView(Resource.Layout.Main);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SetupTabs();
+            SetupTabControl();
             Init();
         }
 
-        private void SetupTabs()
+        private void SetupTabControl()
         {
-            
+            ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.currentFragmentViewPager);
+            viewPager.Adapter = new MainFragmentPagerAdapter(SupportFragmentManager, this);
+
+            TabLayout tabLayout = FindViewById<TabLayout>(Resource.Id.tabControl);
+            tabLayout.SetupWithViewPager(viewPager);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -52,10 +58,6 @@ namespace Habitual.Droid.UI
 
             mainPresenter = new MainPresenterImpl(TaskExecutor.GetInstance(), mainThread, this, new UserRepositoryImpl(this));
 
-            username = FindViewById<EditText>(Resource.Id.editText1);
-            password = FindViewById<EditText>(Resource.Id.editText2);
-            testButton = FindViewById<Button>(Resource.Id.testButton);
-            testButton.Click += OnSubmitButtonClicked;
         }
 
 

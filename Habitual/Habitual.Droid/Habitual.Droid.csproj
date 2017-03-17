@@ -98,6 +98,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\ManageFragment.cs" />
+    <Compile Include="UI\OverviewFragment.cs" />
     <Compile Include="Threading\MainThreadImpl.cs" />
     <Compile Include="UI\MainActivity.cs" />
     <Compile Include="Presenters\AbstractPresenter.cs" />
@@ -107,6 +109,8 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\BaseView.cs" />
+    <Compile Include="UI\RewardsFragment.cs" />
+    <Compile Include="Util\MainFragmentPagerAdapter.cs" />
     <Compile Include="Util\PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +122,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\mainMenu.axml" />
+    <AndroidResource Include="Resources\layout\Overview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Rewards.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Manage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -125,7 +138,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
