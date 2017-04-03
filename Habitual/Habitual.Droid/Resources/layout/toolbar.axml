@@ -7,22 +7,52 @@
     android:background="?attr/colorPrimary"
     android:theme="@style/MyTheme.Base"
     android:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
-    <LinearLayout
-        android:id="@+id/linearlayout"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/avatar_test"
-            android:padding="5dp" />
-        <TextView
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1">
+        <LinearLayout
+            android:id="@+id/userContainer"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/avatar_test"
+                android:padding="5dp"
+                android:id="@+id/avatar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Unknown"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/userNameText" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Unknown"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
+            android:id="@+id/pointsContainer"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/points"
+                android:padding="5dp"
+                android:id="@+id/pointsIcon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="0"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/pointsText" />
+        </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.Toolbar>

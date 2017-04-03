@@ -17,10 +17,12 @@ namespace Habitual.Droid.Presenters
     public interface MainView : BaseView
     {
         void OnUserCreated();
+        void OnUserRetrieved(User user);
     }
 
     public interface MainPresenter : BasePresenter
     {
         void CreateUser(string username, string hashedPassword);
+        void GetUser(string username, string password);
     }
 }

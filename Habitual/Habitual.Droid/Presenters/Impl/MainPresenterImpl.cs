@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Habitual.Core.Entities;
 using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
 using Habitual.Core.UseCases;
@@ -16,7 +17,7 @@ using Habitual.Core.UseCases.Impl;
 
 namespace Habitual.Droid.Presenters.Impl
 {
-    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback
+    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback, GetUserInteractorCallback
     {
         private MainView view;
         private UserRepository userRepository;
@@ -26,6 +27,12 @@ namespace Habitual.Droid.Presenters.Impl
         {
             this.view = view;
             this.userRepository = userRepository;
+        }
+
+        public void GetUser(string username, string password)
+        {
+            GetUserInteractor getUserInteractor = new GetUserInteractorImpl(executor, mainThread, this, userRepository, username, password);
+            getUserInteractor.Execute();
         }
 
         public void CreateUser(string username, string password)
@@ -67,6 +74,11 @@ namespace Habitual.Droid.Presenters.Impl
         public void OnInteractorError(string message)
         {
             OnError(message);
+        }
+
+        public void OnUserRetrieved(User user)
+        {
+            view.OnUserRetrieved(user);
         }
     }
 }

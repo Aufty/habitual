@@ -13,6 +13,12 @@ using Android.Views;
 using Habitual.Droid.Util;
 using Android.Support.V4.View;
 using Android.Support.Design.Widget;
+using Habitual.Storage.Local;
+using Habitual.Core.UseCases;
+using Habitual.Core.UseCases.Impl;
+using Habitual.Core.Entities;
+using Android.Graphics;
+using Habitual.Droid.Helpers;
 
 namespace Habitual.Droid.UI
 {
@@ -21,13 +27,15 @@ namespace Habitual.Droid.UI
     {
         private MainPresenter mainPresenter;
         private MainThread mainThread;
-        private EditText username;
-        private EditText password;
-        private Button testButton;
+        private IMenuItem refreshItem;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            //TODO: get rid of this
+            Storage.Local.LocalData.Username = "";
+            Storage.Local.LocalData.Password = "password";
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -35,6 +43,26 @@ namespace Habitual.Droid.UI
             SetSupportActionBar(toolbar);
             SetupTabControl();
             Init();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (!string.IsNullOrEmpty(LocalData.Username.Trim()))
+            {
+                mainPresenter.GetUser(LocalData.Username, LocalData.Password);
+            } else
+            {
+                PromptLoginOrRegister();
+            }
+        }
+
+        private void PromptLoginOrRegister()
+        {
+            TextDialogBuilder builder = new TextDialogBuilder();
+            var dialog = builder.BuildLoginDialog(this, mainPresenter.GetUser, mainPresenter.GetUser);
+            dialog.Show();
         }
 
         private void SetupTabControl()
@@ -49,6 +77,24 @@ namespace Habitual.Droid.UI
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.mainMenu, menu);
+
+            refreshItem = menu.FindItem(Resource.Id.refresh);
+            refreshItem.SetIcon(Resource.Drawable.refresh);
+            refreshItem.SetShowAsAction(ShowAsAction.Always);
+            
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            base.OnOptionsItemSelected(item);
+            if (item == refreshItem)
+            {
+                // refresh
+            } else
+            {
+                // open settings
+            }
             return true;
         }
 
@@ -61,11 +107,11 @@ namespace Habitual.Droid.UI
         }
 
 
-        private void OnSubmitButtonClicked(object sender, EventArgs e)
-        {
-            PasswordHasher hasher = new PasswordHasher();
-            mainPresenter.CreateUser(username.Text, hasher.HashPassword(password.Text));
-        }
+        //private void OnSubmitButtonClicked(object sender, EventArgs e)
+        //{
+        //    PasswordHasher hasher = new PasswordHasher();
+        //    mainPresenter.CreateUser(username.Text, hasher.HashPassword(password.Text));
+        //}
 
         public void HideProgress()
         {
@@ -85,6 +131,14 @@ namespace Habitual.Droid.UI
         public void ShowProgress()
         {
             throw new NotImplementedException();
+        }
+
+        public void OnUserRetrieved(User user)
+        {
+            FindViewById<TextView>(Resource.Id.userNameText).Text = user.Username;
+            FindViewById<TextView>(Resource.Id.pointsText).Text = user.Points.ToString();
+            var imageBitmap = BitmapFactory.DecodeByteArray(user.Avatar, 0, user.Avatar.Length);
+            RunOnUiThread(() => FindViewById<ImageView>(Resource.Id.avatar).SetImageBitmap(imageBitmap));
         }
     }
 }
