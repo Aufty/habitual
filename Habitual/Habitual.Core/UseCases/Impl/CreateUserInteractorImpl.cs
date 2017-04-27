@@ -37,9 +37,15 @@ namespace Habitual.Core.UseCases.Impl
             }
 
             User user = new User(username, password);
-            userRepository.Create(user);
+            var alreadyExistingUser = userRepository.GetUser(username, password);
 
-            mainThread.Post(callback.OnUserCreated);
+            if (alreadyExistingUser == null)
+            {
+                userRepository.Create(user);
+
+                mainThread.Post(() => { callback.OnUserCreated(user); });
+            }
+            
         }
     }
 }

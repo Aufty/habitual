@@ -15,6 +15,11 @@ namespace Habitual.Droid.UI
 {
     public class ManageFragment : Fragment
     {
+        private MainApplicationCallback callback;
+        public ManageFragment(MainApplicationCallback callback)
+        {
+            this.callback = callback;
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

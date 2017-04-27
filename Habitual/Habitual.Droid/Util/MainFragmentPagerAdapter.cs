@@ -21,10 +21,15 @@ namespace Habitual.Droid.Util
         private static int PAGE_COUNT = 3;
         private JavaString[] tabTitles = new JavaString[] { new JavaString("Overview"), new JavaString("Manage"), new JavaString("Rewards") };
         private Context context;
+        private OverviewFragment overview;
+        private ManageFragment manage;
+        private RewardsFragment rewards;
+        private MainApplicationCallback callback;
 
         public MainFragmentPagerAdapter(Android.Support.V4.App.FragmentManager fm, Context context) : base(fm)
         {
             this.context = context;
+            this.callback = (MainApplicationCallback)context;
         }
 
         public override int Count
@@ -39,17 +44,20 @@ namespace Habitual.Droid.Util
         {
             if (position == 0)
             {
-                return new OverviewFragment();
+                if (overview == null) overview = new OverviewFragment(callback);
+                return overview;
             }
 
             if (position == 1)
             {
-                return new ManageFragment();
+                if (manage == null) manage = new ManageFragment(callback);
+                return manage;
             }
 
             if (position == 2)
             {
-                return new RewardsFragment();
+                if (rewards == null) rewards = new RewardsFragment(callback);
+                return rewards;
             }
             throw new IndexOutOfRangeException();
         }
@@ -57,6 +65,11 @@ namespace Habitual.Droid.Util
         public override ICharSequence GetPageTitleFormatted(int position)
         {
             return tabTitles[position];
+        }
+
+        public void UpdateFragments()
+        {
+            overview.Update();
         }
     }
 }

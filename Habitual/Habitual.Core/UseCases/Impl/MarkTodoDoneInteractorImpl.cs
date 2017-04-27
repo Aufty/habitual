@@ -18,8 +18,8 @@ namespace Habitual.Core.UseCases.Impl
         private Todo todo;
 
         public MarkTodoDoneInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        MarkTodoDoneInteractorCallback callback, UserRepository userRepository, 
-                                        TodoRepository todoRepository, Todo todo) : base(taskExecutor, mainThread)
+                                        MarkTodoDoneInteractorCallback callback, TodoRepository todoRepository,
+                                        UserRepository userRepository, Todo todo) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.todoRepository = todoRepository;
@@ -43,9 +43,15 @@ namespace Habitual.Core.UseCases.Impl
                 return;
             }
 
-            var newPoints = userRepository.GetPoints(doneTodo.Username);
+            var pointsAdded = 0;
+            if (doneTodo.Difficulty == Difficulty.Easy) pointsAdded = 10;
+            if (doneTodo.Difficulty == Difficulty.Medium) pointsAdded = 20;
+            if (doneTodo.Difficulty == Difficulty.Hard) pointsAdded = 30;
+            if (doneTodo.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
 
-            mainThread.Post(() => callback.OnTodoMarkedDone(doneTodo, newPoints));
+            userRepository.IncrementPoints(pointsAdded);
+
+            mainThread.Post(() => callback.OnTodoMarkedDone(pointsAdded));
         }
     }
 }

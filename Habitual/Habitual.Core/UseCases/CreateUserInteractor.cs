@@ -5,7 +5,7 @@ namespace Habitual.Core.UseCases
 {
     public interface CreateUserInteractorCallback : InteractorCallback
     {
-        void OnUserCreated();
+        void OnUserCreated(User user);
     }
     public interface CreateUserInteractor : Interactor
     {

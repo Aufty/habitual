@@ -11,5 +11,6 @@ namespace Habitual.Core.Repositories
     {
         int IncrementHabit(Habit habit); // returns new count
         int GetPointValue(Difficulty difficulty);
+        List<HabitLog> GetLogs(DateTime date, string username);
     }
 }

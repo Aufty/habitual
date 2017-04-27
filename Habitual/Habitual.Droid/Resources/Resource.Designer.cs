@@ -2216,8 +2216,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0043
 			public const int action_mode_close_button = 2131361859;
 			
-			// aapt resource value: 0x7f0a00a9
-			public const int action_settings = 2131361961;
+			// aapt resource value: 0x7f0a00aa
+			public const int action_settings = 2131361962;
 			
 			// aapt resource value: 0x7f0a0086
 			public const int action_text = 2131361926;
@@ -2243,8 +2243,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0014
 			public const int auto = 2131361812;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int avatar = 2131361953;
+			// aapt resource value: 0x7f0a00a2
+			public const int avatar = 2131361954;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int beginning = 2131361850;
@@ -2354,6 +2354,9 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0029
 			public const int @fixed = 2131361833;
 			
+			// aapt resource value: 0x7f0a009f
+			public const int habitCount = 2131361951;
+			
 			// aapt resource value: 0x7f0a000a
 			public const int home = 2131361802;
 			
@@ -2405,8 +2408,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a009e
 			public const int markDoneCheckbox = 2131361950;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int masked = 2131361959;
+			// aapt resource value: 0x7f0a00a8
+			public const int masked = 2131361960;
 			
 			// aapt resource value: 0x7f0a008a
 			public const int media_actions = 2131361930;
@@ -2453,14 +2456,14 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0021
 			public const int pin = 2131361825;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int pointsContainer = 2131361955;
-			
 			// aapt resource value: 0x7f0a00a4
-			public const int pointsIcon = 2131361956;
+			public const int pointsContainer = 2131361956;
 			
 			// aapt resource value: 0x7f0a00a5
-			public const int pointsText = 2131361957;
+			public const int pointsIcon = 2131361957;
+			
+			// aapt resource value: 0x7f0a00a6
+			public const int pointsText = 2131361958;
 			
 			// aapt resource value: 0x7f0a000b
 			public const int progress_circular = 2131361803;
@@ -2471,11 +2474,11 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a005d
 			public const int radio = 2131361885;
 			
-			// aapt resource value: 0x7f0a00a8
-			public const int refresh = 2131361960;
+			// aapt resource value: 0x7f0a00a9
+			public const int refresh = 2131361961;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int relativeLayout1 = 2131361951;
+			// aapt resource value: 0x7f0a00a0
+			public const int relativeLayout1 = 2131361952;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int right = 2131361820;
@@ -2657,17 +2660,17 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0037
 			public const int useLogo = 2131361847;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int userContainer = 2131361952;
+			// aapt resource value: 0x7f0a00a1
+			public const int userContainer = 2131361953;
 			
-			// aapt resource value: 0x7f0a00a2
-			public const int userNameText = 2131361954;
+			// aapt resource value: 0x7f0a00a3
+			public const int userNameText = 2131361955;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int view_offset_helper = 2131361794;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int visible = 2131361958;
+			// aapt resource value: 0x7f0a00a7
+			public const int visible = 2131361959;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int withText = 2131361856;

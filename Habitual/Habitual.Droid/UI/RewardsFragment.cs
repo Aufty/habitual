@@ -15,6 +15,12 @@ namespace Habitual.Droid.UI
 {
     public class RewardsFragment : Fragment
     {
+        private MainApplicationCallback callback;
+        public RewardsFragment(MainApplicationCallback callback)
+        {
+            this.callback = callback;
+        }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

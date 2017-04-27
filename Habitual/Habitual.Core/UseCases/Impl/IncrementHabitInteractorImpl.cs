@@ -29,10 +29,17 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            var newCount = habitRepository.IncrementHabit(habit);
-            var newPoints = userRepository.GetPoints(habit.Username);
+            habitRepository.IncrementHabit(habit);
 
-            mainThread.Post(() => callback.OnHabitIncremented(newCount, newPoints));
+            var pointsAdded = 0;
+            if (habit.Difficulty == Difficulty.Easy) pointsAdded = 5;
+            if (habit.Difficulty == Difficulty.Medium) pointsAdded = 10;
+            if (habit.Difficulty == Difficulty.Hard) pointsAdded = 15;
+            if (habit.Difficulty == Difficulty.VeryHard) pointsAdded = 20;
+
+            userRepository.IncrementPoints(pointsAdded);
+
+            mainThread.Post(() => callback.OnHabitIncremented(pointsAdded));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Habitual.Core.UseCases
 {
 	public interface MarkTodoDoneInteractorCallback : InteractorCallback
 	{
-        void OnTodoMarkedDone(Todo todo, int newPoints);
+        void OnTodoMarkedDone(int pointsAdded);
 	}
     public interface MarkTodoDoneInteractor : Interactor
     {

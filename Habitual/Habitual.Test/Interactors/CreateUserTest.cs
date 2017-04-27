@@ -35,7 +35,7 @@ namespace Habitual.Test.Interactors
             interactor.Run();
 
             mockRepository.Verify(r => r.Create(It.Is<User>(u => u.Username == username && u.Password == password)), Times.Once());
-            mockCallback.Verify(c => c.OnUserCreated(), Times.Once);
+            mockCallback.Verify(c => c.OnUserCreated(It.Is<User>(u => u.Username == username && u.Password == password)), Times.Once);
         }
 
         [TestCase("", "Password")]

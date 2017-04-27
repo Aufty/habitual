@@ -4,8 +4,8 @@ namespace Habitual.Core.Entities
 {
     public class RoutineLog
     {
-        public int ID { get; set; }
-        public int RoutineID { get; set; }
+        public Guid ID { get; set; }
+        public Guid RoutineID { get; set; }
         public DateTime TimestampUTC { get; set; }
     }
 }

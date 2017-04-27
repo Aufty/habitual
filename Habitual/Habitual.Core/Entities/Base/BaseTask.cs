@@ -8,7 +8,7 @@ namespace Habitual.Core.Entities.Base
 {
     public abstract class BaseTask
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         public string Username { get; set; }
         public string Description { get; set; }
         public Difficulty Difficulty { get; set; }

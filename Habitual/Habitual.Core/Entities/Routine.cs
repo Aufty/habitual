@@ -1,5 +1,6 @@
 ﻿using Habitual.Core.Entities.Base;
 using System.Collections.Generic;
+using System;
 
 namespace Habitual.Core.Entities
 {
@@ -12,6 +13,29 @@ namespace Habitual.Core.Entities
         public bool IsActiveThursday { get; set; }
         public bool IsActiveFriday { get; set; }
         public bool IsActiveSaturday { get; set; }
-        public List<RoutineLog> Logs;
+
+        public List<DayOfWeek> DaysActive()
+        {
+            var daysOfWeek = new List<DayOfWeek>();
+            if (IsActiveSunday) daysOfWeek.Add(DayOfWeek.Sunday);
+            if (IsActiveMonday) daysOfWeek.Add(DayOfWeek.Monday);
+            if (IsActiveTuesday) daysOfWeek.Add(DayOfWeek.Tuesday);
+            if (IsActiveWednesday) daysOfWeek.Add(DayOfWeek.Wednesday);
+            if (IsActiveThursday) daysOfWeek.Add(DayOfWeek.Thursday);
+            if (IsActiveFriday) daysOfWeek.Add(DayOfWeek.Friday);
+            if (IsActiveSaturday) daysOfWeek.Add(DayOfWeek.Sunday);
+            return daysOfWeek;
+        }
+        public bool IsActiveThisDay(DayOfWeek day)
+        {
+            if (IsActiveSunday && day == DayOfWeek.Sunday) return true;
+            if (IsActiveMonday && day == DayOfWeek.Monday) return true;
+            if (IsActiveTuesday && day == DayOfWeek.Tuesday) return true;
+            if (IsActiveWednesday && day == DayOfWeek.Wednesday) return true;
+            if (IsActiveThursday && day == DayOfWeek.Thursday) return true;
+            if (IsActiveFriday && day == DayOfWeek.Friday) return true;
+            if (IsActiveSaturday && day == DayOfWeek.Friday) return true;
+            return false;
+        }
     }
 }

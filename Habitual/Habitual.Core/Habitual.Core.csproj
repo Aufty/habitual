@@ -41,6 +41,7 @@
     <Compile Include="Entities\Reward.cs" />
     <Compile Include="Entities\Routine.cs" />
     <Compile Include="Entities\RoutineLog.cs" />
+    <Compile Include="Entities\TaskContainer.cs" />
     <Compile Include="Entities\Todo.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Executors\Executor.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="UseCases\GetPointsInteractor.cs" />
     <Compile Include="UseCases\Base\Interactor.cs" />
     <Compile Include="UseCases\CreateUserInteractor.cs" />
+    <Compile Include="UseCases\GetTaskContainerInteractor.cs" />
     <Compile Include="UseCases\GetUserInteractor.cs" />
     <Compile Include="UseCases\Impl\BuyRewardInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\CreateHabitInteractorImpl.cs" />
@@ -86,10 +88,12 @@
     <Compile Include="UseCases\Impl\GetAllRoutinesInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetAllTodosInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetPointsInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\GetTaskContainerInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetUserInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\IncrementHabitInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\MarkRoutineDoneImpl.cs" />
     <Compile Include="UseCases\Impl\MarkTodoDoneInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\StoreUserLocalInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateHabitInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateRewardInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateRoutineInteractorImpl.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="UseCases\IncrementHabitInteractor.cs" />
     <Compile Include="UseCases\MarkRoutineDoneInteractor.cs" />
     <Compile Include="UseCases\MarkTodoDoneInteractor.cs" />
+    <Compile Include="UseCases\StoreUserLocalInteractor.cs" />
     <Compile Include="UseCases\UpdateHabitInteractor.cs" />
     <Compile Include="UseCases\UpdateRewardInteractor.cs" />
     <Compile Include="UseCases\UpdateRoutineInteractor.cs" />

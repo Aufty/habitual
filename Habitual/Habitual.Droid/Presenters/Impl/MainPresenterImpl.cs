@@ -17,7 +17,7 @@ using Habitual.Core.UseCases.Impl;
 
 namespace Habitual.Droid.Presenters.Impl
 {
-    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback, GetUserInteractorCallback
+    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback, GetUserInteractorCallback, StoreUserLocalCallback, GetPointsInteractorCallback
     {
         private MainView view;
         private UserRepository userRepository;
@@ -41,9 +41,15 @@ namespace Habitual.Droid.Presenters.Impl
             createUserInteractor.Execute();
         }
 
+        public void StoreUserLocal(User user)
+        {
+            StoreUserLocalInteractor storeUserInteractor = new StoreUserLocalInteractorImpl(executor, mainThread, this, userRepository, user);
+            storeUserInteractor.Execute();
+        }
+
         public void Destroy()
         {
-
+            
         }
 
         public void OnError(string message)
@@ -66,9 +72,9 @@ namespace Habitual.Droid.Presenters.Impl
             
         }
 
-        public void OnUserCreated()
+        public void OnUserCreated(User user)
         {
-            view.OnUserCreated();
+            view.OnUserCreated(user);
         }
 
         public void OnInteractorError(string message)
@@ -79,6 +85,22 @@ namespace Habitual.Droid.Presenters.Impl
         public void OnUserRetrieved(User user)
         {
             view.OnUserRetrieved(user);
+        }
+
+        public void OnUserStored(User user)
+        {
+            view.OnUserStored(user);
+        }
+
+        public void GetPoints(string username, string password)
+        {
+            GetPointsInteractor interactor = new GetPointsInteractorImpl(executor, mainThread, this, userRepository, username, password);
+            interactor.Execute();
+        }
+
+        public void OnPointsRetrieved(int points)
+        {
+            view.OnPointsRetrieved(points);
         }
     }
 }

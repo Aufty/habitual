@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\TextDialogBuilder.cs" />
+    <Compile Include="Presenters\Impl\OverviewPresenterImpl.cs" />
     <Compile Include="Presenters\OverviewPresenter.cs" />
     <Compile Include="UI\ManageFragment.cs" />
     <Compile Include="UI\OverviewFragment.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="UI\BaseView.cs" />
     <Compile Include="UI\RewardsFragment.cs" />
     <Compile Include="Util\MainFragmentPagerAdapter.cs" />
+    <Compile Include="Util\OverviewListAdapter.cs" />
     <Compile Include="Util\PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>

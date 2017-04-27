@@ -41,10 +41,10 @@ namespace Habitual.Test.Interactors
             yesterday = today.AddDays(-1);
 
 
-            mockRoutine.Object.Logs = new List<RoutineLog>() { CreateFakeRoutineLog(yesterday)};
-            mockUpdatedRoutine.Object.Logs = new List<RoutineLog>();
-            mockUpdatedRoutine.Object.Logs.AddRange(mockRoutine.Object.Logs);
-            mockUpdatedRoutine.Object.Logs.Add(CreateFakeRoutineLog(today));
+            //mockRoutine.Object.Logs = new List<RoutineLog>() { CreateFakeRoutineLog(yesterday)};
+            //mockUpdatedRoutine.Object.Logs = new List<RoutineLog>();
+            //mockUpdatedRoutine.Object.Logs.AddRange(mockRoutine.Object.Logs);
+            //mockUpdatedRoutine.Object.Logs.Add(CreateFakeRoutineLog(today));
         }
 
         private RoutineLog CreateFakeRoutineLog(DateTime day)
@@ -54,29 +54,29 @@ namespace Habitual.Test.Interactors
             return log;
         }
 
-        [TestCase(100)]
-        public void MarkRoutineDone_ValidUndoneRoutine_CallRepoAndCallbackTodo(int newPoints)
-        {
-            mockRoutineRepository.Setup(rr => rr.MarkDone(mockRoutine.Object)).Returns(mockUpdatedRoutine.Object);
-            mockUserRepository.Setup(ur => ur.GetPoints(mockRoutine.Object.Username)).Returns(newPoints);
+        //[TestCase(100)]
+        //public void MarkRoutineDone_ValidUndoneRoutine_CallRepoAndCallbackTodo(int newPoints)
+        //{
+        //    mockRoutineRepository.Setup(rr => rr.MarkDone(mockRoutine.Object)).Returns(mockUpdatedRoutine.Object);
+        //    mockUserRepository.Setup(ur => ur.GetPoints(mockRoutine.Object.Username)).Returns(newPoints);
 
-            MarkRoutineDoneInteractorImpl interactor = new MarkRoutineDoneInteractorImpl(mockExecutor.Object, mainThread, mockCallback.Object, mockUserRepository.Object, mockRoutineRepository.Object, mockRoutine.Object);
-            interactor.Run();
+        //    MarkRoutineDoneInteractorImpl interactor = new MarkRoutineDoneInteractorImpl(mockExecutor.Object, mainThread, mockCallback.Object, mockUserRepository.Object, mockRoutineRepository.Object, mockRoutine.Object);
+        //    interactor.Run();
 
-            mockRoutineRepository.Verify(rr => rr.MarkDone(mockRoutine.Object), Times.Once);
-            mockUserRepository.Verify(ur => ur.GetPoints(mockRoutine.Object.Username), Times.Once);
+        //    mockRoutineRepository.Verify(rr => rr.MarkDone(mockRoutine.Object), Times.Once);
+        //    mockUserRepository.Verify(ur => ur.GetPoints(mockRoutine.Object.Username), Times.Once);
 
-            mockCallback.Verify(c => c.OnRoutineMarkedDoneForToday(mockUpdatedRoutine.Object, newPoints));
-        }
+        //    mockCallback.Verify(c => c.OnRoutineMarkedDoneForToday(mockUpdatedRoutine.Object, newPoints));
+        //}
 
-        public void MarkRoutineDone_RoutineLogNotAdded_CallbackError()
-        {
-            mockRoutineRepository.Setup(rr => rr.MarkDone(mockRoutine.Object)).Returns(mockRoutine.Object);
+        //public void MarkRoutineDone_RoutineLogNotAdded_CallbackError()
+        //{
+        //    mockRoutineRepository.Setup(rr => rr.MarkDone(mockRoutine.Object)).Returns(mockRoutine.Object);
 
-            MarkRoutineDoneInteractorImpl interactor = new MarkRoutineDoneInteractorImpl(mockExecutor.Object, mainThread, mockCallback.Object, mockUserRepository.Object, mockRoutineRepository.Object, mockRoutine.Object);
-            interactor.Run();
+        //    MarkRoutineDoneInteractorImpl interactor = new MarkRoutineDoneInteractorImpl(mockExecutor.Object, mainThread, mockCallback.Object, mockUserRepository.Object, mockRoutineRepository.Object, mockRoutine.Object);
+        //    interactor.Run();
 
-            mockCallback.Verify(c => c.OnError(It.Is<string>(s => true)));
-        }
+        //    mockCallback.Verify(c => c.OnError(It.Is<string>(s => true)));
+        //}
     }
 }

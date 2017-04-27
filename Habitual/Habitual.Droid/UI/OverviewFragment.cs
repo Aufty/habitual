@@ -1,32 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.Support.V4.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Habitual.Core.Entities.Base;
 using Habitual.Core.Entities;
-using Android.App;
+using Habitual.Core.Entities.Base;
+using Habitual.Core.Executors;
+using Habitual.Core.Executors.Impl;
+using Habitual.Droid.Presenters;
+using Habitual.Droid.Presenters.Impl;
+using Habitual.Droid.Threading;
+using Habitual.Droid.Util;
+using Habitual.Storage;
+using Habitual.Storage.Local;
 
 namespace Habitual.Droid.UI
 {
-    public class OverviewFragment : Android.Support.V4.App.Fragment
+    public class OverviewFragment : Android.Support.V4.App.Fragment, OverviewView
     {
         private ListView overviewList;
         private List<BaseTask> items;
+        private List<HabitLog> habitLogs;
+        private List<RoutineLog> routineLogs;
         private OverviewListAdapter adapter;
+        private OverviewPresenter presenter;
+        private MainThread mainThread;
+        private MainApplicationCallback callback;
 
+        public OverviewFragment(MainApplicationCallback callback)
+        {
+            this.callback = callback;
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
+            Init();
+        }
 
+        private void Init()
+        {
+            mainThread = new MainThreadImpl(this.Activity);
+            presenter = new OverviewPresenterImpl(TaskExecutor.GetInstance(), mainThread, this, new HabitRepositoryImpl(), new RoutineRepositoryImpl(), new TodoRepositoryImpl(), new UserRepositoryImpl(), LocalData.Username, LocalData.Password);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -35,6 +50,7 @@ namespace Habitual.Droid.UI
             
             var view = inflater.Inflate(Resource.Layout.Overview, container, false);
             InitializeElements(view);
+            
             return view;
         }
 
@@ -42,115 +58,100 @@ namespace Habitual.Droid.UI
         {
             if (items == null) items = new List<BaseTask>();
             overviewList = view.FindViewById<ListView>(Resource.Id.overviewList);
-            adapter = new OverviewListAdapter(Activity, items);
+            adapter = new OverviewListAdapter(Activity, items, callback);
+            overviewList.ItemClick += TaskClicked;
             overviewList.Adapter = adapter;
-            /**************************************
-             * TEST CODE - Remove once actual logic in place
-             **************************************/
-            var habit = new Habit();
-            habit.Description = "Test Habit";
-            items.Add(habit);
-            adapter.Update(items);
-            /**************************************/
-        }
-    }
-
-    public class OverviewListAdapter : BaseAdapter<BaseTask>
-    {
-        private Activity context;
-        private List<BaseTask> items;
-
-        public OverviewListAdapter(Activity context, List<BaseTask> items)
-        {
-            this.context = context;
-            this.items = items;
+            Update();
         }
 
-        public override BaseTask this[int position]
+        private void TaskClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
-            get
-            {
-                return items[position];
-            }
-        }
-
-        public override int Count
-        {
-            get
-            {
-                return items.Count;
-            }
-        }
-
-        public override long GetItemId(int position)
-        {
-            return position;
-        }
-
-        public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            var item = items[position];
-            return GenerateItemViewBasedOnType(item, convertView, parent);
-        }
-
-        private View GenerateItemViewBasedOnType(BaseTask item, View convertView, ViewGroup parent)
-        {
+            var item = items[e.Position];
             var habit = item as Habit;
             var routine = item as Routine;
             var todo = item as Todo;
-
-            View view = convertView;
-            if (view == null) // no view to re-use, create new
-                view = context.LayoutInflater.Inflate(Resource.Layout.TaskCell, null);
-
             if (habit != null)
             {
-                return GenerateHabitCell(habit, view);
+                presenter.MarkHabitDone(habit);
             }
-
-            else if (routine != null)
+            if (routine != null)
             {
-                return GenerateRoutineCell(routine, view);
+                presenter.MarkRoutineDone(routine);
             }
-
-            else if (todo != null)
+            if (todo != null)
             {
-                return GenerateTodoCell(todo, view);
-            }
-
-            else
-            {
-                throw new InvalidCastException();
+                presenter.MarkTodoDone(todo);
             }
         }
 
-        private View GenerateTodoCell(Todo todo, View view)
+        public void Update()
+        {
+            presenter.GetTasks(LocalData.Username, LocalData.Password);
+        }
+
+        public void UpdateTasks(List<BaseTask> tasks)
+        {
+            this.items = tasks;
+            adapter.Update(items);
+        }
+
+        public void OnTasksRetrieved(TaskContainer tasks)
+        {
+            try
+            {
+                items.Clear();
+                items.AddRange(tasks.Habits);
+                items.AddRange(tasks.Routines);
+                items.AddRange(tasks.Todos);
+
+                habitLogs = tasks.HabitLogs;
+                routineLogs = tasks.RoutineLogs;
+
+                adapter.UpdateLogs(habitLogs, routineLogs);
+                UpdateTasks(items);
+            }
+            catch (Exception ex) { }
+        }
+
+        public void ShowProgress()
         {
             throw new NotImplementedException();
         }
 
-        private View GenerateRoutineCell(Routine routine, View view)
+        public void HideProgress()
         {
             throw new NotImplementedException();
         }
 
-        private View GenerateHabitCell(Habit habit, View view)
+        public void ShowError()
         {
-            view.FindViewById<TextView>(Resource.Id.taskDescription).Text = string.Format("{0}", habit.Description);
-            view.FindViewById<CheckBox>(Resource.Id.markDoneCheckbox).Checked = true; // TODO: Check if habit is finished
-            var image = view.FindViewById<ImageView>(Resource.Id.taskIcon);
-            image.SetImageResource(Resource.Drawable.habit);
-
-            return view;
+            throw new NotImplementedException();
         }
 
-        public void Update(List<BaseTask> items)
+        public void OnHabitMarkedDone(int pointsAdded)
         {
-            if (items != null)
-            {
-                this.items = items;
-                context.RunOnUiThread(() => NotifyDataSetChanged());
-            }
+            NotifyPoints(pointsAdded);
+            Update();
         }
+
+        public void OnRoutineMarkedDone(int pointsAdded)
+        {
+            NotifyPoints(pointsAdded);
+            Update();
+        }
+
+        private void NotifyPoints(int pointsAdded)
+        {
+            Toast.MakeText(Activity, string.Format("{0} points earned!", pointsAdded), ToastLength.Short).Show();
+        }
+
+        public void OnTodoMarkedDone(int pointsAdded)
+        {
+            NotifyPoints(pointsAdded);
+            Update();
+        }
+
     }
+
+   
 }
