@@ -2128,11 +2128,11 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f020066
 			public const int notification_icon_background = 2130837606;
 			
-			// aapt resource value: 0x7f02006d
-			public const int notification_template_icon_bg = 2130837613;
+			// aapt resource value: 0x7f02006f
+			public const int notification_template_icon_bg = 2130837615;
 			
-			// aapt resource value: 0x7f02006e
-			public const int notification_template_icon_low_bg = 2130837614;
+			// aapt resource value: 0x7f020070
+			public const int notification_template_icon_low_bg = 2130837616;
 			
 			// aapt resource value: 0x7f020067
 			public const int notification_tile_bg = 2130837607;
@@ -2141,16 +2141,22 @@ namespace Habitual.Droid
 			public const int notify_panel_notification_icon_bg = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int points = 2130837609;
+			public const int plus = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int refresh = 2130837610;
+			public const int points = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int routine = 2130837611;
+			public const int refresh = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int todo = 2130837612;
+			public const int reward = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int routine = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int todo = 2130837614;
 			
 			static Drawable()
 			{
@@ -2165,8 +2171,8 @@ namespace Habitual.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0a0087
-			public const int action0 = 2131361927;
+			// aapt resource value: 0x7f0a00b3
+			public const int action0 = 2131361971;
 			
 			// aapt resource value: 0x7f0a0064
 			public const int action_bar = 2131361892;
@@ -2189,17 +2195,17 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0041
 			public const int action_bar_title = 2131361857;
 			
-			// aapt resource value: 0x7f0a0084
-			public const int action_container = 2131361924;
+			// aapt resource value: 0x7f0a00b0
+			public const int action_container = 2131361968;
 			
 			// aapt resource value: 0x7f0a0065
 			public const int action_context_bar = 2131361893;
 			
-			// aapt resource value: 0x7f0a008b
-			public const int action_divider = 2131361931;
+			// aapt resource value: 0x7f0a00b7
+			public const int action_divider = 2131361975;
 			
-			// aapt resource value: 0x7f0a0085
-			public const int action_image = 2131361925;
+			// aapt resource value: 0x7f0a00b1
+			public const int action_image = 2131361969;
 			
 			// aapt resource value: 0x7f0a0008
 			public const int action_menu_divider = 2131361800;
@@ -2216,20 +2222,26 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0043
 			public const int action_mode_close_button = 2131361859;
 			
-			// aapt resource value: 0x7f0a00aa
-			public const int action_settings = 2131361962;
+			// aapt resource value: 0x7f0a00da
+			public const int action_settings = 2131362010;
 			
-			// aapt resource value: 0x7f0a0086
-			public const int action_text = 2131361926;
+			// aapt resource value: 0x7f0a00b2
+			public const int action_text = 2131361970;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int actions = 2131361940;
+			// aapt resource value: 0x7f0a00c0
+			public const int actions = 2131361984;
 			
 			// aapt resource value: 0x7f0a0044
 			public const int activity_chooser_view_content = 2131361860;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int add = 2131361848;
+			
+			// aapt resource value: 0x7f0a00ca
+			public const int addRewardButton = 2131361994;
+			
+			// aapt resource value: 0x7f0a0086
+			public const int addTaskButton = 2131361926;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int alertTitle = 2131361880;
@@ -2243,8 +2255,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0014
 			public const int auto = 2131361812;
 			
-			// aapt resource value: 0x7f0a00a2
-			public const int avatar = 2131361954;
+			// aapt resource value: 0x7f0a00d2
+			public const int avatar = 2131362002;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int beginning = 2131361850;
@@ -2255,8 +2267,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a004b
 			public const int buttonPanel = 2131361867;
 			
-			// aapt resource value: 0x7f0a0088
-			public const int cancel_action = 2131361928;
+			// aapt resource value: 0x7f0a00b4
+			public const int cancel_action = 2131361972;
 			
 			// aapt resource value: 0x7f0a0016
 			public const int center = 2131361814;
@@ -2270,8 +2282,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a005b
 			public const int checkbox = 2131361883;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int chronometer = 2131361936;
+			// aapt resource value: 0x7f0a00bc
+			public const int chronometer = 2131361980;
 			
 			// aapt resource value: 0x7f0a0022
 			public const int clip_horizontal = 2131361826;
@@ -2284,6 +2296,9 @@ namespace Habitual.Droid
 			
 			// aapt resource value: 0x7f0a004e
 			public const int contentPanel = 2131361870;
+			
+			// aapt resource value: 0x7f0a008d
+			public const int costNewRewardEntry = 2131361933;
 			
 			// aapt resource value: 0x7f0a0083
 			public const int currentFragmentViewPager = 2131361923;
@@ -2300,6 +2315,15 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0047
 			public const int default_activity_button = 2131361863;
 			
+			// aapt resource value: 0x7f0a008a
+			public const int descriptionManageText = 2131361930;
+			
+			// aapt resource value: 0x7f0a008c
+			public const int descriptionNewRewardEntry = 2131361932;
+			
+			// aapt resource value: 0x7f0a008e
+			public const int descriptionNewTaskEntry = 2131361934;
+			
 			// aapt resource value: 0x7f0a0076
 			public const int design_bottom_sheet = 2131361910;
 			
@@ -2315,8 +2339,17 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a007a
 			public const int design_navigation_view = 2131361914;
 			
+			// aapt resource value: 0x7f0a00cb
+			public const int dialogText = 2131361995;
+			
+			// aapt resource value: 0x7f0a0089
+			public const int difficultyManageText = 2131361929;
+			
 			// aapt resource value: 0x7f0a0032
 			public const int disableHome = 2131361842;
+			
+			// aapt resource value: 0x7f0a0095
+			public const int easyRadioSelection = 2131361941;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int edit_query = 2131361894;
@@ -2324,8 +2357,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0019
 			public const int end = 2131361817;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int end_padder = 2131361946;
+			// aapt resource value: 0x7f0a00c6
+			public const int end_padder = 2131361990;
 			
 			// aapt resource value: 0x7f0a000f
 			public const int enterAlways = 2131361807;
@@ -2354,8 +2387,23 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0029
 			public const int @fixed = 2131361833;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int habitCount = 2131361951;
+			// aapt resource value: 0x7f0a00ac
+			public const int frSelectionText = 2131361964;
+			
+			// aapt resource value: 0x7f0a00ab
+			public const int fridayCheckBox = 2131361963;
+			
+			// aapt resource value: 0x7f0a00aa
+			public const int fridayStack = 2131361962;
+			
+			// aapt resource value: 0x7f0a00cf
+			public const int habitCount = 2131361999;
+			
+			// aapt resource value: 0x7f0a0090
+			public const int habitRadioSelection = 2131361936;
+			
+			// aapt resource value: 0x7f0a0097
+			public const int hardRadioSelection = 2131361943;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int home = 2131361802;
@@ -2366,8 +2414,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0049
 			public const int icon = 2131361865;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int icon_group = 2131361941;
+			// aapt resource value: 0x7f0a00c1
+			public const int icon_group = 2131361985;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int ifRoom = 2131361854;
@@ -2375,8 +2423,8 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0046
 			public const int image = 2131361862;
 			
-			// aapt resource value: 0x7f0a0091
-			public const int info = 2131361937;
+			// aapt resource value: 0x7f0a00bd
+			public const int info = 2131361981;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int item_touch_helper_previous_elevation = 2131361795;
@@ -2387,11 +2435,11 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a001b
 			public const int left = 2131361819;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int line1 = 2131361942;
+			// aapt resource value: 0x7f0a00c2
+			public const int line1 = 2131361986;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int line3 = 2131361944;
+			// aapt resource value: 0x7f0a00c4
+			public const int line3 = 2131361988;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int listMode = 2131361840;
@@ -2405,20 +2453,41 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a007f
 			public const int login_username = 2131361919;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int markDoneCheckbox = 2131361950;
+			// aapt resource value: 0x7f0a0087
+			public const int manageCellLayout = 2131361927;
 			
-			// aapt resource value: 0x7f0a00a8
-			public const int masked = 2131361960;
+			// aapt resource value: 0x7f0a0084
+			public const int manageLayout = 2131361924;
 			
-			// aapt resource value: 0x7f0a008a
-			public const int media_actions = 2131361930;
+			// aapt resource value: 0x7f0a0085
+			public const int manageList = 2131361925;
+			
+			// aapt resource value: 0x7f0a00ce
+			public const int markDoneCheckbox = 2131361998;
+			
+			// aapt resource value: 0x7f0a00d8
+			public const int masked = 2131362008;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int media_actions = 2131361974;
+			
+			// aapt resource value: 0x7f0a0096
+			public const int mediumRadioSelection = 2131361942;
 			
 			// aapt resource value: 0x7f0a003b
 			public const int middle = 2131361851;
 			
 			// aapt resource value: 0x7f0a0027
 			public const int mini = 2131361831;
+			
+			// aapt resource value: 0x7f0a00a0
+			public const int moSelectionText = 2131361952;
+			
+			// aapt resource value: 0x7f0a009f
+			public const int mondayCheckBox = 2131361951;
+			
+			// aapt resource value: 0x7f0a009e
+			public const int mondayStack = 2131361950;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int multiply = 2131361835;
@@ -2435,17 +2504,17 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0028
 			public const int normal = 2131361832;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int notification_background = 2131361939;
+			// aapt resource value: 0x7f0a00bf
+			public const int notification_background = 2131361983;
 			
-			// aapt resource value: 0x7f0a008d
-			public const int notification_main_column = 2131361933;
+			// aapt resource value: 0x7f0a00b9
+			public const int notification_main_column = 2131361977;
 			
-			// aapt resource value: 0x7f0a008c
-			public const int notification_main_column_container = 2131361932;
+			// aapt resource value: 0x7f0a00b8
+			public const int notification_main_column_container = 2131361976;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int overviewList = 2131361947;
+			// aapt resource value: 0x7f0a00c7
+			public const int overviewList = 2131361991;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int parallax = 2131361824;
@@ -2456,14 +2525,14 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0021
 			public const int pin = 2131361825;
 			
-			// aapt resource value: 0x7f0a00a4
-			public const int pointsContainer = 2131361956;
+			// aapt resource value: 0x7f0a00d4
+			public const int pointsContainer = 2131362004;
 			
-			// aapt resource value: 0x7f0a00a5
-			public const int pointsIcon = 2131361957;
+			// aapt resource value: 0x7f0a00d5
+			public const int pointsIcon = 2131362005;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int pointsText = 2131361958;
+			// aapt resource value: 0x7f0a00d6
+			public const int pointsText = 2131362006;
 			
 			// aapt resource value: 0x7f0a000b
 			public const int progress_circular = 2131361803;
@@ -2474,20 +2543,50 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a005d
 			public const int radio = 2131361885;
 			
-			// aapt resource value: 0x7f0a00a9
-			public const int refresh = 2131361961;
+			// aapt resource value: 0x7f0a0094
+			public const int radioGroup1 = 2131361940;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int relativeLayout1 = 2131361952;
+			// aapt resource value: 0x7f0a00d9
+			public const int refresh = 2131362009;
+			
+			// aapt resource value: 0x7f0a00d0
+			public const int relativeLayout1 = 2131362000;
+			
+			// aapt resource value: 0x7f0a00c8
+			public const int rewardsLayout = 2131361992;
+			
+			// aapt resource value: 0x7f0a00c9
+			public const int rewardsList = 2131361993;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int right = 2131361820;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int right_icon = 2131361938;
+			// aapt resource value: 0x7f0a00be
+			public const int right_icon = 2131361982;
 			
-			// aapt resource value: 0x7f0a008e
-			public const int right_side = 2131361934;
+			// aapt resource value: 0x7f0a00ba
+			public const int right_side = 2131361978;
+			
+			// aapt resource value: 0x7f0a0099
+			public const int routineDaysActiveText = 2131361945;
+			
+			// aapt resource value: 0x7f0a008b
+			public const int routineManageText = 2131361931;
+			
+			// aapt resource value: 0x7f0a0091
+			public const int routineRadioSelection = 2131361937;
+			
+			// aapt resource value: 0x7f0a009a
+			public const int routineTimingLayout = 2131361946;
+			
+			// aapt resource value: 0x7f0a00af
+			public const int saSelectionText = 2131361967;
+			
+			// aapt resource value: 0x7f0a00ae
+			public const int saturdayCheckBox = 2131361966;
+			
+			// aapt resource value: 0x7f0a00ad
+			public const int saturdayStack = 2131361965;
 			
 			// aapt resource value: 0x7f0a002c
 			public const int screen = 2131361836;
@@ -2582,8 +2681,11 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a001d
 			public const int start = 2131361821;
 			
-			// aapt resource value: 0x7f0a0089
-			public const int status_bar_latest_event_content = 2131361929;
+			// aapt resource value: 0x7f0a00b5
+			public const int status_bar_latest_event_content = 2131361973;
+			
+			// aapt resource value: 0x7f0a009d
+			public const int suSelectionText = 2131361949;
 			
 			// aapt resource value: 0x7f0a005e
 			public const int submenuarrow = 2131361886;
@@ -2591,29 +2693,44 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a006f
 			public const int submit_area = 2131361903;
 			
+			// aapt resource value: 0x7f0a009c
+			public const int sundayCheckBox = 2131361948;
+			
+			// aapt resource value: 0x7f0a009b
+			public const int sundayStack = 2131361947;
+			
 			// aapt resource value: 0x7f0a0082
 			public const int tabControl = 2131361922;
 			
 			// aapt resource value: 0x7f0a0031
 			public const int tabMode = 2131361841;
 			
-			// aapt resource value: 0x7f0a009d
-			public const int taskDescription = 2131361949;
+			// aapt resource value: 0x7f0a00cd
+			public const int taskDescription = 2131361997;
 			
-			// aapt resource value: 0x7f0a009c
-			public const int taskIcon = 2131361948;
+			// aapt resource value: 0x7f0a00cc
+			public const int taskIcon = 2131361996;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int text = 2131361945;
+			// aapt resource value: 0x7f0a008f
+			public const int taskTypeGroup = 2131361935;
 			
-			// aapt resource value: 0x7f0a0097
-			public const int text2 = 2131361943;
+			// aapt resource value: 0x7f0a0088
+			public const int taskTypeManageText = 2131361928;
+			
+			// aapt resource value: 0x7f0a00c5
+			public const int text = 2131361989;
+			
+			// aapt resource value: 0x7f0a00c3
+			public const int text2 = 2131361987;
 			
 			// aapt resource value: 0x7f0a0052
 			public const int textSpacerNoButtons = 2131361874;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int textSpacerNoTitle = 2131361873;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int textView2 = 2131361939;
 			
 			// aapt resource value: 0x7f0a007e
 			public const int text_input_password_toggle = 2131361918;
@@ -2624,8 +2741,17 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0001
 			public const int textinput_error = 2131361793;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int time = 2131361935;
+			// aapt resource value: 0x7f0a00a9
+			public const int thSelectionText = 2131361961;
+			
+			// aapt resource value: 0x7f0a00a8
+			public const int thursdayCheckBox = 2131361960;
+			
+			// aapt resource value: 0x7f0a00a7
+			public const int thursdayStack = 2131361959;
+			
+			// aapt resource value: 0x7f0a00bb
+			public const int time = 2131361979;
 			
 			// aapt resource value: 0x7f0a004a
 			public const int title = 2131361866;
@@ -2635,6 +2761,9 @@ namespace Habitual.Droid
 			
 			// aapt resource value: 0x7f0a0057
 			public const int title_template = 2131361879;
+			
+			// aapt resource value: 0x7f0a0092
+			public const int todoRadioSelection = 2131361938;
 			
 			// aapt resource value: 0x7f0a0081
 			public const int toolbar = 2131361921;
@@ -2654,23 +2783,44 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0005
 			public const int transition_scene_layoutid_cache = 2131361797;
 			
+			// aapt resource value: 0x7f0a00a3
+			public const int tuSelectionText = 2131361955;
+			
+			// aapt resource value: 0x7f0a00a2
+			public const int tuesdayCheckBox = 2131361954;
+			
+			// aapt resource value: 0x7f0a00a1
+			public const int tuesdayStack = 2131361953;
+			
 			// aapt resource value: 0x7f0a000e
 			public const int up = 2131361806;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int useLogo = 2131361847;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int userContainer = 2131361953;
+			// aapt resource value: 0x7f0a00d1
+			public const int userContainer = 2131362001;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int userNameText = 2131361955;
+			// aapt resource value: 0x7f0a00d3
+			public const int userNameText = 2131362003;
+			
+			// aapt resource value: 0x7f0a0098
+			public const int veryHardRadioSelection = 2131361944;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int view_offset_helper = 2131361794;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int visible = 2131361959;
+			// aapt resource value: 0x7f0a00d7
+			public const int visible = 2131362007;
+			
+			// aapt resource value: 0x7f0a00a6
+			public const int weSelectionText = 2131361958;
+			
+			// aapt resource value: 0x7f0a00a5
+			public const int wednesdayCheckBox = 2131361957;
+			
+			// aapt resource value: 0x7f0a00a4
+			public const int wednesdayStack = 2131361956;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int withText = 2131361856;
@@ -2864,73 +3014,85 @@ namespace Habitual.Droid
 			public const int Manage = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int notification_action = 2130903084;
+			public const int ManageCell = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int notification_action_tombstone = 2130903085;
+			public const int NewRewardDialog = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int notification_media_action = 2130903086;
+			public const int NewTaskDialog = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int notification_media_cancel_action = 2130903087;
+			public const int notification_action = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_template_big_media = 2130903088;
+			public const int notification_action_tombstone = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_template_big_media_custom = 2130903089;
+			public const int notification_media_action = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_big_media_narrow = 2130903090;
+			public const int notification_media_cancel_action = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_big_media_narrow_custom = 2130903091;
+			public const int notification_template_big_media = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_custom_big = 2130903092;
+			public const int notification_template_big_media_custom = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_icon_group = 2130903093;
+			public const int notification_template_big_media_narrow = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_lines_media = 2130903094;
+			public const int notification_template_big_media_narrow_custom = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_media = 2130903095;
+			public const int notification_template_custom_big = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_media_custom = 2130903096;
+			public const int notification_template_icon_group = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_part_chronometer = 2130903097;
+			public const int notification_template_lines_media = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_part_time = 2130903098;
+			public const int notification_template_media = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int Overview = 2130903099;
+			public const int notification_template_media_custom = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int Rewards = 2130903100;
+			public const int notification_template_part_chronometer = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_item_material = 2130903101;
+			public const int notification_template_part_time = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_multichoice_material = 2130903102;
+			public const int Overview = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int select_dialog_singlechoice_material = 2130903103;
+			public const int Rewards = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int support_simple_spinner_dropdown_item = 2130903104;
+			public const int select_dialog_item_material = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int TaskCell = 2130903105;
+			public const int select_dialog_multichoice_material = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int toolbar = 2130903106;
+			public const int select_dialog_singlechoice_material = 2130903106;
+			
+			// aapt resource value: 0x7f030043
+			public const int StandardDialog = 2130903107;
+			
+			// aapt resource value: 0x7f030044
+			public const int support_simple_spinner_dropdown_item = 2130903108;
+			
+			// aapt resource value: 0x7f030045
+			public const int TaskCell = 2130903109;
+			
+			// aapt resource value: 0x7f030046
+			public const int toolbar = 2130903110;
 			
 			static Layout()
 			{

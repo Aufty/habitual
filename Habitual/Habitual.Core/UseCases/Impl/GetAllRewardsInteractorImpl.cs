@@ -14,20 +14,20 @@ namespace Habitual.Core.UseCases.Impl
     {
         private GetAllRewardsInteractorCallback callback;
         private RewardRepository rewardRepository;
-        private User user;
+        private string username;
 
         public GetAllRewardsInteractorImpl(Executor taskExecutor, MainThread mainThread,
                                         GetAllRewardsInteractorCallback callback, RewardRepository rewardRepository,
-                                        User user) : base(taskExecutor, mainThread)
+                                        string username) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.rewardRepository = rewardRepository;
-            this.user = user;
+            this.username = username;
         }
 
         public override void Run()
         {
-            var rewards = rewardRepository.GetAllForUser(user.Username);
+            var rewards = rewardRepository.GetAllForUser(username);
             mainThread.Post(() => callback.OnRewardsRetrieved(rewards));
         }
     }

@@ -15,27 +15,23 @@ namespace Habitual.Core.UseCases.Impl
         private CreateHabitInteractorCallback callback;
         private HabitRepository habitRepository;
 
-        private string description;
-        private User user;
-        private Difficulty difficulty;
+        private string username;
+        private Habit habit;
 
         public CreateHabitInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        CreateHabitInteractorCallback callback, HabitRepository habitRepository, User user,
-                                        string description, Difficulty difficulty) : base(taskExecutor, mainThread)
+                                        CreateHabitInteractorCallback callback, HabitRepository habitRepository, string username,
+                                        Habit habit) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.habitRepository = habitRepository;
-            this.description = description;
-            this.difficulty = difficulty;
-            this.user = user;
+            this.habit = habit;
+            this.username = username;
         }
 
         public override void Run()
         {
-            var habit = new Habit();
-            habit.Description = description;
-            habit.Difficulty = difficulty;
-            habit.Username = user.Username;
+            habit.Username = username;
+            habit.ID = Guid.NewGuid();
             habitRepository.Create(habit);
 
             mainThread.Post(() => callback.OnHabitCreated(habit));

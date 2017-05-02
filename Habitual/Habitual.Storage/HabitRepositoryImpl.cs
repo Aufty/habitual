@@ -14,12 +14,19 @@ namespace Habitual.Storage
     {
         public void Create(Habit entity)
         {
-            throw new NotImplementedException();
+            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            taskContainer.Habits.Add(entity);
+            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            var matchingItem = taskContainer.Habits.First(h => h.ID == id);
+            taskContainer.Habits.Remove(matchingItem);
+            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
         }
 
         public List<Habit> GetAllForUser(string username)

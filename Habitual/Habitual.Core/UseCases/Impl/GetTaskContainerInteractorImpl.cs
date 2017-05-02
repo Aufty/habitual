@@ -19,8 +19,10 @@ namespace Habitual.Core.UseCases.Impl
         private DateTime date;
         private string username;
         private string password;
+        private DayOfWeek dayOfWeek;
+        private bool includeAllRoutines;
 
-        public GetTaskContainerInteractorImpl(Executor taskExecutor, MainThread mainThread, GetTaskContainerCallback callback, HabitRepository habitRepository, RoutineRepository routineRepository, TodoRepository todoRepository, string username, string password) : base(taskExecutor, mainThread)
+        public GetTaskContainerInteractorImpl(Executor taskExecutor, MainThread mainThread, GetTaskContainerCallback callback, HabitRepository habitRepository, RoutineRepository routineRepository, TodoRepository todoRepository, string username, string password, DayOfWeek dayOfWeek, bool includeAllRoutines = false) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.habitRepository = habitRepository;
@@ -28,14 +30,16 @@ namespace Habitual.Core.UseCases.Impl
             this.todoRepository = todoRepository;
             this.username = username;
             this.password = password;
-            this.date = DateTime.UtcNow;
+            this.dayOfWeek = dayOfWeek;
+            this.date = date;
+            this.includeAllRoutines = includeAllRoutines;
         }
 
         public override void Run()
         {
             var newTaskContainer = new TaskContainer();
             newTaskContainer.Habits = habitRepository.GetAllForUser(username);
-            newTaskContainer.Routines = routineRepository.GetAllForUser(username);
+            newTaskContainer.Routines = includeAllRoutines ? routineRepository.GetAllRoutinesIncludingOtherDays(username) : routineRepository.GetAllForUser(username, dayOfWeek);
             newTaskContainer.Todos = todoRepository.GetAllForUser(username);
             newTaskContainer.HabitLogs = habitRepository.GetLogs(date, username);
             newTaskContainer.RoutineLogs = routineRepository.GetLogs(date, username);

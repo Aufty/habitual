@@ -31,6 +31,7 @@ namespace Habitual.Droid.UI
         {
             this.callback = callback;
         }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases.Impl
 {
@@ -14,21 +15,21 @@ namespace Habitual.Core.UseCases.Impl
         private DeleteTodoInteractorCallback callback;
         private TodoRepository todoRepository;
 
-        private int todoID;
+        private Todo todo;
 
         public DeleteTodoInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        DeleteTodoInteractorCallback callback, TodoRepository TodoRepository, int TodoID) : base(taskExecutor, mainThread)
+                                        DeleteTodoInteractorCallback callback, TodoRepository TodoRepository, Todo todo) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.todoRepository = TodoRepository;
-            this.todoID = TodoID;
+            this.todo = todo;
         }
 
         public override void Run()
         {
-            todoRepository.Delete(todoID);
+            todoRepository.Delete(todo.ID);
 
-            mainThread.Post(() => callback.OnTodoDeleted(todoID));
+            mainThread.Post(() => callback.OnTodoDeleted(todo.ID));
         }
     }
 }

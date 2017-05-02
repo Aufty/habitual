@@ -15,27 +15,23 @@ namespace Habitual.Core.UseCases.Impl
         private CreateRoutineInteractorCallback callback;
         private RoutineRepository routineRepository;
 
-        private string description;
-        private User user;
-        private Difficulty difficulty;
+        private string username;
+        private Routine routine;
 
         public CreateRoutineInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        CreateRoutineInteractorCallback callback, RoutineRepository routineRepository, User user,
-                                        string description, Difficulty difficulty) : base(taskExecutor, mainThread)
+                                        CreateRoutineInteractorCallback callback, RoutineRepository routineRepository,
+                                        string username, Routine routine) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.routineRepository = routineRepository;
-            this.description = description;
-            this.difficulty = difficulty;
-            this.user = user;
+            this.username = username;
+            this.routine = routine;
         }
 
         public override void Run()
         {
-            var routine = new Routine();
-            routine.Description = description;
-            routine.Difficulty = difficulty;
-            routine.Username = user.Username;
+            routine.Username = username;
+            routine.ID = Guid.NewGuid();
             routineRepository.Create(routine);
 
             mainThread.Post(() => callback.OnRoutineCreated(routine));

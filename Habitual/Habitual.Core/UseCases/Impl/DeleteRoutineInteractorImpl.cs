@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases.Impl
 {
@@ -14,21 +15,21 @@ namespace Habitual.Core.UseCases.Impl
         private DeleteRoutineInteractorCallback callback;
         private RoutineRepository routineRepository;
 
-        private int routineID;
+        private Routine routine;
 
         public DeleteRoutineInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        DeleteRoutineInteractorCallback callback, RoutineRepository routineRepository, int RoutineID) : base(taskExecutor, mainThread)
+                                        DeleteRoutineInteractorCallback callback, RoutineRepository routineRepository, Routine routine) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.routineRepository = routineRepository;
-            this.routineID = RoutineID;
+            this.routine = routine;
         }
 
         public override void Run()
         {
-            routineRepository.Delete(routineID);
+            routineRepository.Delete(routine.ID);
 
-            mainThread.Post(() => callback.OnRoutineDeleted(routineID));
+            mainThread.Post(() => callback.OnRoutineDeleted(routine.ID));
         }
     }
 }

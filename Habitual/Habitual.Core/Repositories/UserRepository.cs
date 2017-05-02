@@ -14,5 +14,6 @@ namespace Habitual.Core.Repositories
         int GetPoints(string username);
         int IncrementPoints(int pointsToIncrement);
         void StoreLocally(User user);
+        bool BuyReward(Reward reward);
     }
 }

@@ -31,7 +31,7 @@ namespace Habitual.Core.UseCases.Impl
         {
             var points = userRepository.GetPoints(username);
 
-            callback.OnPointsRetrieved(points);
+            mainThread.Post(() => callback.OnPointsRetrieved(points));
         }
     }
 }

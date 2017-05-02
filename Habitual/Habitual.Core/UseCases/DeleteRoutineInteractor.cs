@@ -9,7 +9,7 @@ namespace Habitual.Core.UseCases
 {
     public interface DeleteRoutineInteractorCallback : InteractorCallback
     {
-        void OnRoutineDeleted(int routineID);
+        void OnRoutineDeleted(Guid routineID);
     }
     public interface DeleteRoutineInteractor : Interactor
     {

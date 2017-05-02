@@ -16,12 +16,19 @@ namespace Habitual.Storage
 
         public void Create(Todo entity)
         {
-            throw new NotImplementedException();
+            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            taskContainer.Todos.Add(entity);
+            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            var matchingItem = taskContainer.Todos.First(t => t.ID == id);
+            taskContainer.Todos.Remove(matchingItem);
+            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
         }
 
         public List<Todo> GetAllForUser(string username)

@@ -9,7 +9,7 @@ namespace Habitual.Core.Repositories
     public interface Repository<T>
     {
         void Create(T entity);
-        void Delete(int id);
+        void Delete(Guid id);
         void Update(T entity);
         T GetById(int id);
         List<T> GetAllForUser(string username);

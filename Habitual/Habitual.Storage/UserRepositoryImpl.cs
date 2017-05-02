@@ -22,7 +22,7 @@ namespace Habitual.Storage
             return;
         }
 
-        public void Delete(User user)
+        public void Delete(Guid userID)
         {
             throw new NotImplementedException();
         }
@@ -40,11 +40,7 @@ namespace Habitual.Storage
         public User GetUser(string username, string password)
         {
             TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            if (username.ToLower() == "admin")
-            {
                 return JsonConvert.DeserializeObject<User>(LocalData.User);
-            }
-            else return null;
         }
 
         public int GetPoints(string username)
@@ -80,6 +76,20 @@ namespace Habitual.Storage
         {
             LocalData.Username = user.Username;
             LocalData.Password = user.Password;
+        }
+
+        public bool BuyReward(Reward reward)
+        {
+            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
+            if (user.Points >= reward.Cost)
+            {
+                user.Points -= reward.Cost;
+                LocalData.User = JsonConvert.SerializeObject(user);
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }

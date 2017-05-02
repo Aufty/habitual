@@ -1,14 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Habitual.Core.Entities;
 using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
@@ -40,7 +30,7 @@ namespace Habitual.Droid.Presenters.Impl
 
         public void GetTasks(string username, string password)
         {
-            GetTaskContainerInteractor getTaskInteractor = new GetTaskContainerInteractorImpl(executor, mainThread, this, habitRepository, routineRepository, todoRepository, username, password);
+            GetTaskContainerInteractor getTaskInteractor = new GetTaskContainerInteractorImpl(executor, mainThread, this, habitRepository, routineRepository, todoRepository, username, password, DateTime.Today.DayOfWeek);
             getTaskInteractor.Execute();
         }
 

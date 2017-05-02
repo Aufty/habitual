@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases.Impl
 {
@@ -14,21 +15,21 @@ namespace Habitual.Core.UseCases.Impl
         private DeleteRewardInteractorCallback callback;
         private RewardRepository rewardRepository;
 
-        private int rewardID;
+        private Reward reward;
 
         public DeleteRewardInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        DeleteRewardInteractorCallback callback, RewardRepository rewardRepository, int RewardID) : base(taskExecutor, mainThread)
+                                        DeleteRewardInteractorCallback callback, RewardRepository rewardRepository, Reward reward) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.rewardRepository = rewardRepository;
-            this.rewardID = RewardID;
+            this.reward = reward;
         }
 
         public override void Run()
         {
-            rewardRepository.Delete(rewardID);
+            rewardRepository.Delete(reward.ID);
 
-            mainThread.Post(() => callback.OnRewardDeleted(rewardID));
+            mainThread.Post(() => callback.OnRewardDeleted(reward.ID));
         }
     }
 }

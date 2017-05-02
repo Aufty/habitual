@@ -70,6 +70,7 @@ namespace Habitual.Droid.Util
         public void UpdateFragments()
         {
             overview.Update();
+            manage.Update();
         }
     }
 }

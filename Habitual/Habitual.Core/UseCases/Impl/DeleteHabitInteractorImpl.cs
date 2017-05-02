@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases.Impl
 {
@@ -14,21 +15,22 @@ namespace Habitual.Core.UseCases.Impl
         private DeleteHabitInteractorCallback callback;
         private HabitRepository habitRepository;
 
-        private int habitID;
+
+        private Habit habit;
 
         public DeleteHabitInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        DeleteHabitInteractorCallback callback, HabitRepository habitRepository, int habitID) : base(taskExecutor, mainThread)
+                                        DeleteHabitInteractorCallback callback, HabitRepository habitRepository, Habit habit) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.habitRepository = habitRepository;
-            this.habitID = habitID;
+            this.habit = habit;
         }
 
         public override void Run()
         {
-            habitRepository.Delete(habitID);
+            habitRepository.Delete(habit.ID);
 
-            mainThread.Post(() => callback.OnHabitDeleted(habitID));
+            mainThread.Post(() => callback.OnHabitDeleted(habit.ID));
         }
     }
 }

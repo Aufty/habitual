@@ -25,6 +25,7 @@ namespace Habitual.Droid.UI
     public interface MainApplicationCallback
     {
         void UserUpdateRequested();
+        void UpdateAllRequested();
     }
 
     [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme")]
@@ -38,8 +39,6 @@ namespace Habitual.Droid.UI
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            LocalData.TaskContainer = null;
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -175,6 +174,11 @@ namespace Habitual.Droid.UI
         public void OnPointsRetrieved(int points)
         {
             FindViewById<TextView>(Resource.Id.pointsText).Text = points.ToString();
+        }
+
+        public void UpdateAllRequested()
+        {
+            adapter.UpdateFragments();
         }
     }
 }

@@ -29,6 +29,9 @@ namespace Habitual.Storage.Local
 
         private const string UserKey = "user_key";
         private static readonly string UserValue = string.Empty;
+
+        private const string RewardsKey = "rewards_key";
+        private static readonly string RewardsValue = string.Empty;
         #endregion
 
         public static string Username
@@ -54,6 +57,12 @@ namespace Habitual.Storage.Local
         {
             get { return AppSettings.GetValueOrDefault<string>(UserKey, UserValue); }
             set { AppSettings.AddOrUpdateValue<string>(UserKey, value); }
+        }
+
+        public static string Rewards
+        {
+            get { return AppSettings.GetValueOrDefault<string>(RewardsKey, RewardsValue); }
+            set { AppSettings.AddOrUpdateValue<string>(RewardsKey, value); }
         }
     }
 }
