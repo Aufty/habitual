@@ -114,24 +114,16 @@ namespace Habitual.Storage
         public List<Routine> GetAllRoutinesIncludingOtherDays(string username)
         {
             TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            if (username.ToLower() == "admin")
-            {
-                var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-                return taskContainer.Routines;
-            }
-            return new List<Routine>();
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            return taskContainer.Routines;
         }
 
         public List<Routine> GetAllForUser(string username, DayOfWeek dayOfWeek)
         {
             TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            if (username.ToLower() == "admin")
-            {
-                var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-                return RoutinesMatchingDay(taskContainer.Routines, dayOfWeek);
-            }
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            return RoutinesMatchingDay(taskContainer.Routines, dayOfWeek);
 
-            return new List<Routine>();
         }
     }
 }

@@ -17,8 +17,7 @@ namespace Habitual.Storage
     {
         public void Create(User user)
         {
-            var test = user.Username;
-            var test2 = user.Password;
+            TemporaryStorageGenerator.CreateUser(user.Username, user.Password);
             return;
         }
 
@@ -40,7 +39,11 @@ namespace Habitual.Storage
         public User GetUser(string username, string password)
         {
             TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            if (JsonConvert.DeserializeObject<User>(LocalData.User).Username == username)
+            {
                 return JsonConvert.DeserializeObject<User>(LocalData.User);
+            }
+            return null;
         }
 
         public int GetPoints(string username)
@@ -90,6 +93,13 @@ namespace Habitual.Storage
             {
                 return false;
             }
+        }
+
+        public void SetAvatar(string username, string imageString)
+        {
+            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
+            user.Avatar = Convert.FromBase64String(imageString);
+            LocalData.User = JsonConvert.SerializeObject(user);
         }
     }
 }

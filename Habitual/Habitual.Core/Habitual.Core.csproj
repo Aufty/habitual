@@ -93,6 +93,7 @@
     <Compile Include="UseCases\Impl\IncrementHabitInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\MarkRoutineDoneImpl.cs" />
     <Compile Include="UseCases\Impl\MarkTodoDoneInteractorImpl.cs" />
+    <Compile Include="UseCases\Impl\SetAvatarInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\StoreUserLocalInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateHabitInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\UpdateRewardInteractorImpl.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="UseCases\IncrementHabitInteractor.cs" />
     <Compile Include="UseCases\MarkRoutineDoneInteractor.cs" />
     <Compile Include="UseCases\MarkTodoDoneInteractor.cs" />
+    <Compile Include="UseCases\SetAvatarInteractor.cs" />
     <Compile Include="UseCases\StoreUserLocalInteractor.cs" />
     <Compile Include="UseCases\UpdateHabitInteractor.cs" />
     <Compile Include="UseCases\UpdateRewardInteractor.cs" />

@@ -1,24 +1,25 @@
-﻿using Android.App;
-using Android.Widget;
+﻿using System;
+using System.IO;
+using Android.App;
+using Android.Content;
+using Android.Graphics;
 using Android.OS;
-using System;
-using Habitual.Droid.Presenters;
-using Habitual.Droid.Presenters.Impl;
-using Habitual.Core.Executors.Impl;
-using Habitual.Core.Executors;
-using Habitual.Droid.Threading;
-using Habitual.Storage;
+using Android.Provider;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
-using Habitual.Droid.Util;
-using Android.Support.V4.View;
-using Android.Support.Design.Widget;
-using Habitual.Storage.Local;
-using Habitual.Core.UseCases;
-using Habitual.Core.UseCases.Impl;
+using Android.Widget;
 using Habitual.Core.Entities;
-using Android.Graphics;
+using Habitual.Core.Executors;
+using Habitual.Core.Executors.Impl;
 using Habitual.Droid.Helpers;
+using Habitual.Droid.Presenters;
+using Habitual.Droid.Presenters.Impl;
+using Habitual.Droid.Threading;
+using Habitual.Droid.Util;
+using Habitual.Storage;
+using Habitual.Storage.Local;
 
 namespace Habitual.Droid.UI
 {
@@ -43,6 +44,7 @@ namespace Habitual.Droid.UI
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SetupTabControl();
+            SetupAvatarEdit();
             Init();
         }
 
@@ -58,6 +60,45 @@ namespace Habitual.Droid.UI
             {
                 PromptLoginOrRegister();
             }
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == Result.Ok)
+            {
+                Android.Net.Uri imageUri = data.Data;
+                Bitmap bitmap = MediaStore.Images.Media.GetBitmap(this.ContentResolver, imageUri);
+                using (var stream = new MemoryStream())
+                {
+                    bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+
+                    var bytes = stream.ToArray();
+                    var str = Convert.ToBase64String(bytes);
+                    mainPresenter.SetAvatar(LocalData.Username, str);
+                }
+
+                
+                var imageView =
+                    FindViewById<ImageView>(Resource.Id.avatar);
+                imageView.SetImageURI(data.Data);
+            }
+        }
+
+        private void SetupAvatarEdit()
+        {
+            var avatarImage = FindViewById<ImageView>(Resource.Id.avatar);
+            avatarImage.Click += OpenAvatarSelectionScreen;
+        }
+
+        private void OpenAvatarSelectionScreen(object sender, EventArgs e)
+        {
+            var imageIntent = new Intent();
+            imageIntent.SetType("image/*");
+            imageIntent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(
+                Intent.CreateChooser(imageIntent, "Select photo"), 0);
         }
 
         private void PromptLoginOrRegister()
@@ -93,11 +134,14 @@ namespace Habitual.Droid.UI
             base.OnOptionsItemSelected(item);
             if (item == refreshItem)
             {
-                // refresh
+                mainPresenter.GetUser(LocalData.User, LocalData.Password);
             }
             else
             {
-                // open settings
+                LocalData.Username = "";
+                LocalData.Password = "";
+                UpdateAllRequested();
+                PromptLoginOrRegister();
             }
             return true;
         }
@@ -150,12 +194,16 @@ namespace Habitual.Droid.UI
 
         private void UpdateInterfaceWithUser(User user)
         {
-            var imageBitmap = BitmapFactory.DecodeByteArray(user.Avatar, 0, user.Avatar.Length);
             RunOnUiThread(() =>
             {
                 FindViewById<TextView>(Resource.Id.userNameText).Text = user.Username;
                 FindViewById<TextView>(Resource.Id.pointsText).Text = user.Points.ToString();
-                FindViewById<ImageView>(Resource.Id.avatar).SetImageBitmap(imageBitmap);
+                if (user.Avatar != null)
+                {
+                    var imageBitmap = BitmapFactory.DecodeByteArray(user.Avatar, 0, user.Avatar.Length);
+                    FindViewById<ImageView>(Resource.Id.avatar).SetImageBitmap(imageBitmap);
+                }
+
             });
 
             adapter.UpdateFragments();
@@ -179,6 +227,21 @@ namespace Habitual.Droid.UI
         public void UpdateAllRequested()
         {
             adapter.UpdateFragments();
+        }
+
+        public void OnAvatarSet(string imageString)
+        {
+            var imageBytes = Convert.FromBase64String(imageString);
+            var imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+            FindViewById<ImageView>(Resource.Id.avatar).SetImageBitmap(imageBitmap);
+        }
+
+        public void OnError(string message)
+        {
+            if (string.IsNullOrEmpty(LocalData.Username) || string.IsNullOrEmpty(LocalData.Username))
+            {
+                PromptLoginOrRegister();
+            }
         }
     }
 }

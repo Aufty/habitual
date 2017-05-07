@@ -14,5 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_password"
-        android:hint="Password" />
+        android:hint="Password"
+        android:inputType="textPassword" />
 </LinearLayout>

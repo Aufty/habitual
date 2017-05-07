@@ -2222,9 +2222,6 @@ namespace Habitual.Droid
 			// aapt resource value: 0x7f0a0043
 			public const int action_mode_close_button = 2131361859;
 			
-			// aapt resource value: 0x7f0a00da
-			public const int action_settings = 2131362010;
-			
 			// aapt resource value: 0x7f0a00b2
 			public const int action_text = 2131361970;
 			
@@ -2446,6 +2443,9 @@ namespace Habitual.Droid
 			
 			// aapt resource value: 0x7f0a0048
 			public const int list_item = 2131361864;
+			
+			// aapt resource value: 0x7f0a00da
+			public const int log_out = 2131362010;
 			
 			// aapt resource value: 0x7f0a0080
 			public const int login_password = 2131361920;

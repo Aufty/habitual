@@ -32,12 +32,9 @@ namespace Habitual.Storage
         public List<Habit> GetAllForUser(string username)
         {
             TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            if (username.ToLower() == "admin")
-            {
-                var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-                return taskContainer.Habits;
-            }
-            return new List<Habit>();
+
+            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
+            return taskContainer.Habits;
         }
 
         public Habit GetById(int id)
@@ -54,7 +51,8 @@ namespace Habitual.Storage
                 var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
                 var list = taskContainer.HabitLogs.Where(h => h.TimestampUTC.Date == DateTime.UtcNow.Date);
                 habitLogList.AddRange(list);
-            } catch (Exception)
+            }
+            catch (Exception)
             {
 
             }

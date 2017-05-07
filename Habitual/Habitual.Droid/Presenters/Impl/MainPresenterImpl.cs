@@ -17,7 +17,7 @@ using Habitual.Core.UseCases.Impl;
 
 namespace Habitual.Droid.Presenters.Impl
 {
-    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback, GetUserInteractorCallback, StoreUserLocalCallback, GetPointsInteractorCallback
+    public class MainPresenterImpl : AbstractPresenter, MainPresenter, CreateUserInteractorCallback, GetUserInteractorCallback, StoreUserLocalCallback, GetPointsInteractorCallback, SetAvatarInteractorCallback
     {
         private MainView view;
         private UserRepository userRepository;
@@ -54,7 +54,7 @@ namespace Habitual.Droid.Presenters.Impl
 
         public void OnError(string message)
         {
-            
+            view.OnError(message); 
         }
 
         public void Pause()
@@ -101,6 +101,17 @@ namespace Habitual.Droid.Presenters.Impl
         public void OnPointsRetrieved(int points)
         {
             view.OnPointsRetrieved(points);
+        }
+
+        public void SetAvatar(string username, string imageString)
+        {
+            SetAvatarInteractor interactor = new SetAvatarInteractorImpl(executor, mainThread, this, userRepository, username, imageString);
+            interactor.Execute();
+        }
+
+        public void OnAvatarSet(string imageString)
+        {
+            view.OnAvatarSet(imageString);
         }
     }
 }
