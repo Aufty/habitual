@@ -28,9 +28,9 @@ namespace Habitual.Core.UseCases.Impl
             this.password = password;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var user = userRepository.GetUser(username, password);
+            var user = await userRepository.GetUser(username, password);
 
             callback.OnUserRetrieved(user);
         }

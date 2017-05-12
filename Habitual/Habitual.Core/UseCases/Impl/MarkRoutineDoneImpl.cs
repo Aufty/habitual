@@ -42,7 +42,7 @@ namespace Habitual.Core.UseCases.Impl
             if (routine.Difficulty == Difficulty.Medium) pointsAdded = 20;
             if (routine.Difficulty == Difficulty.Hard) pointsAdded = 30;
             if (routine.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
-            userRepository.IncrementPoints(pointsAdded);
+            userRepository.IncrementPoints(routine.Username, pointsAdded);
 
             mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(pointsAdded));
         }

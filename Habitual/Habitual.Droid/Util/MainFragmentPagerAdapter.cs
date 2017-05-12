@@ -72,5 +72,11 @@ namespace Habitual.Droid.Util
             overview.Update();
             manage.Update();
         }
+
+        internal void ResetAllFrags()
+        {
+            overview.Reset();
+            manage.Reset();
+        }
     }
 }

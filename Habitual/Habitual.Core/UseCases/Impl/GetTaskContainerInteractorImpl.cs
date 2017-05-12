@@ -21,8 +21,9 @@ namespace Habitual.Core.UseCases.Impl
         private string password;
         private DayOfWeek dayOfWeek;
         private bool includeAllRoutines;
+        private bool includeLogs;
 
-        public GetTaskContainerInteractorImpl(Executor taskExecutor, MainThread mainThread, GetTaskContainerCallback callback, HabitRepository habitRepository, RoutineRepository routineRepository, TodoRepository todoRepository, string username, string password, DayOfWeek dayOfWeek, bool includeAllRoutines = false) : base(taskExecutor, mainThread)
+        public GetTaskContainerInteractorImpl(Executor taskExecutor, MainThread mainThread, GetTaskContainerCallback callback, HabitRepository habitRepository, RoutineRepository routineRepository, TodoRepository todoRepository, string username, string password, DayOfWeek dayOfWeek, bool includeAllRoutines = false, bool includeLogs = false) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.habitRepository = habitRepository;
@@ -31,18 +32,28 @@ namespace Habitual.Core.UseCases.Impl
             this.username = username;
             this.password = password;
             this.dayOfWeek = dayOfWeek;
-            this.date = date;
             this.includeAllRoutines = includeAllRoutines;
+            this.includeLogs = includeLogs;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var newTaskContainer = new TaskContainer();
-            newTaskContainer.Habits = habitRepository.GetAllForUser(username);
-            newTaskContainer.Routines = includeAllRoutines ? routineRepository.GetAllRoutinesIncludingOtherDays(username) : routineRepository.GetAllForUser(username, dayOfWeek);
-            newTaskContainer.Todos = todoRepository.GetAllForUser(username);
-            newTaskContainer.HabitLogs = habitRepository.GetLogs(date, username);
-            newTaskContainer.RoutineLogs = routineRepository.GetLogs(date, username);
+            var newTaskContainer = TaskContainer.GetTaskContainer();
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                callback.OnTaskContainerFilled(newTaskContainer);
+                return;
+            }
+            
+            //newTaskContainer.HabitLogs = new List<HabitLog>();
+            newTaskContainer.Habits = await habitRepository.GetAll(username);
+            //newTaskContainer.Routines = includeAllRoutines ? routineRepository.GetAllRoutinesIncludingOtherDays(username) : routineRepository.GetAllForUser(username, dayOfWeek);
+            //newTaskContainer.Todos = todoRepository.GetAllForUser(username);
+            if (includeLogs)
+            {
+                if (newTaskContainer.Habits != null && newTaskContainer.Habits.Count > 0) newTaskContainer.HabitLogs = await habitRepository.GetLogs(DateTime.Today, username);
+                //newTaskContainer.RoutineLogs = routineRepository.GetLogs(date, username);
+            }
 
             mainThread.Post(() => { callback.OnTaskContainerFilled(newTaskContainer); });
         }

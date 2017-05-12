@@ -49,7 +49,7 @@ namespace Habitual.Core.UseCases.Impl
             if (doneTodo.Difficulty == Difficulty.Hard) pointsAdded = 30;
             if (doneTodo.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
 
-            userRepository.IncrementPoints(pointsAdded);
+            userRepository.IncrementPoints(todo.Username, pointsAdded);
 
             mainThread.Post(() => callback.OnTodoMarkedDone(pointsAdded));
         }

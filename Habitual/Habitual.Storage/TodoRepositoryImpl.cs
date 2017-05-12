@@ -31,6 +31,11 @@ namespace Habitual.Storage
             LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
         }
 
+        public Task<List<Todo>> GetAll(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Todo> GetAllForUser(string username)
         {
             var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);

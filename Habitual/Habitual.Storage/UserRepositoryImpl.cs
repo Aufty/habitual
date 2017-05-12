@@ -7,6 +7,8 @@ using Habitual.Core.Entities;
 using Android.Content;
 using Habitual.Storage.Local;
 using Newtonsoft.Json;
+using Habitual.Storage.DB;
+using System.Threading.Tasks;
 
 namespace Habitual.Storage
 {
@@ -15,9 +17,10 @@ namespace Habitual.Storage
     /// </summary>
     public class UserRepositoryImpl : UserRepository
     {
-        public void Create(User user)
+        public async void Create(User user)
         {
-            TemporaryStorageGenerator.CreateUser(user.Username, user.Password);
+            UserDB userManager = new UserDB();
+            await userManager.CreateUser(user);
             return;
         }
 
@@ -36,14 +39,11 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public User GetUser(string username, string password)
+        public async Task<User> GetUser(string username, string password)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            if (JsonConvert.DeserializeObject<User>(LocalData.User).Username == username)
-            {
-                return JsonConvert.DeserializeObject<User>(LocalData.User);
-            }
-            return null;
+            UserDB userManager = new UserDB();
+            var user = await userManager.GetUser(username, password);
+            return user;
         }
 
         public int GetPoints(string username)
@@ -52,12 +52,11 @@ namespace Habitual.Storage
             return user.Points;
         }
 
-        public int IncrementPoints(int pointsToIncrement)
+        public async void IncrementPoints(string username, int pointsToIncrement)
         {
-            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
-            user.Points += pointsToIncrement;
-            LocalData.User = JsonConvert.SerializeObject(user);
-            return user.Points;
+            UserDB userManager = new UserDB();
+            await userManager.IncrementPoints(username, pointsToIncrement);
+            return;
         }
 
         public void Delete(int id)
@@ -66,11 +65,6 @@ namespace Habitual.Storage
         }
 
         public void Update(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> GetAllForUser(string username)
         {
             throw new NotImplementedException();
         }
@@ -100,6 +94,16 @@ namespace Habitual.Storage
             var user = JsonConvert.DeserializeObject<User>(LocalData.User);
             user.Avatar = Convert.FromBase64String(imageString);
             LocalData.User = JsonConvert.SerializeObject(user);
+        }
+
+        List<User> Repository<User>.GetAllForUser(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<User>> GetAll(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

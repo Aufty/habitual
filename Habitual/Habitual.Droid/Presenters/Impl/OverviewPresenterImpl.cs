@@ -30,7 +30,7 @@ namespace Habitual.Droid.Presenters.Impl
 
         public void GetTasks(string username, string password)
         {
-            GetTaskContainerInteractor getTaskInteractor = new GetTaskContainerInteractorImpl(executor, mainThread, this, habitRepository, routineRepository, todoRepository, username, password, DateTime.Today.DayOfWeek);
+            GetTaskContainerInteractor getTaskInteractor = new GetTaskContainerInteractorImpl(executor, mainThread, this, habitRepository, routineRepository, todoRepository, username, password, DateTime.Today.DayOfWeek, false, true);
             getTaskInteractor.Execute();
         }
 

@@ -32,6 +32,11 @@ namespace Habitual.Storage
             LocalData.Rewards = JsonConvert.SerializeObject(rewards);
         }
 
+        public Task<List<Reward>> GetAll(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Reward> GetAllForUser(string username)
         {
             var rewards = JsonConvert.DeserializeObject<List<Reward>>(LocalData.Rewards);

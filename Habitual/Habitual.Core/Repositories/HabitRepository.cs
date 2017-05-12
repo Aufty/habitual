@@ -9,8 +9,8 @@ namespace Habitual.Core.Repositories
 {
     public interface HabitRepository : Repository<Habit>
     {
-        int IncrementHabit(Habit habit); // returns new count
+        void IncrementHabit(HabitLog log); // returns new count
         int GetPointValue(Difficulty difficulty);
-        List<HabitLog> GetLogs(DateTime date, string username);
+        Task<List<HabitLog>> GetLogs(DateTime date, string username);
     }
 }

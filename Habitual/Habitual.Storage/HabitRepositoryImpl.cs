@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Habitual.Core.Entities;
 using Habitual.Core.Repositories;
+using Habitual.Storage.DB;
 using Habitual.Storage.Local;
 using Newtonsoft.Json;
 
@@ -12,29 +13,30 @@ namespace Habitual.Storage
 {
     public class HabitRepositoryImpl : HabitRepository
     {
-        public void Create(Habit entity)
+        public async void Create(Habit habit)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            taskContainer.Habits.Add(entity);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            HabitDB habitManager = new HabitDB();
+            await habitManager.CreateHabit(habit);
+            return;
         }
 
-        public void Delete(Guid id)
+        public async void Delete(Guid id)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            var matchingItem = taskContainer.Habits.First(h => h.ID == id);
-            taskContainer.Habits.Remove(matchingItem);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            HabitDB habitManager = new HabitDB();
+            await habitManager.DeleteHabit(id);
+            return;
         }
 
-        public List<Habit> GetAllForUser(string username)
+        public async Task<List<Habit>> GetAll(string username)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
+            HabitDB habitManager = new HabitDB();
+            var habits = await habitManager.GetAllHabits(username);
+            return habits;
+        }
 
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            return taskContainer.Habits;
+        public async Task<List<Habit>> GetAllForUser(string username)
+        {
+            throw new NotImplementedException();
         }
 
         public Habit GetById(int id)
@@ -42,49 +44,33 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public List<HabitLog> GetLogs(DateTime date, string username)
+        public async Task<List<HabitLog>> GetLogs(DateTime date, string username)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var habitLogList = new List<HabitLog>();
-            try
-            {
-                var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-                var list = taskContainer.HabitLogs.Where(h => h.TimestampUTC.Date == DateTime.UtcNow.Date);
-                habitLogList.AddRange(list);
-            }
-            catch (Exception)
-            {
-
-            }
-            return habitLogList;
-        }
+            HabitDB habitManager = new HabitDB();
+            var logs = await habitManager.GetAllHabitLogs(date, username);
+            return logs;
+        }  
 
         public int GetPointValue(Difficulty difficulty)
         {
             throw new NotImplementedException();
         }
 
-        public int IncrementHabit(Habit habit)
+        public async void IncrementHabit(HabitLog log)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var log = new HabitLog();
-            log.HabitID = habit.ID;
-            log.ID = Guid.NewGuid();
-            log.TimestampUTC = DateTime.UtcNow;
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            taskContainer.HabitLogs.Add(log);
-
-            var logs = taskContainer.HabitLogs.Where(h => h.HabitID == habit.ID);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
-
-            return logs.ToList().Count();
+            HabitDB habitManager = new HabitDB();
+            await habitManager.LogHabit(log);
+            return;
         }
 
         public void Update(Habit entity)
         {
             throw new NotImplementedException();
         }
+
+        List<Habit> Repository<Habit>.GetAllForUser(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
-
-
 }

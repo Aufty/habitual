@@ -6,6 +6,6 @@ namespace Habitual.Core.Entities
     {
         public Guid ID { get; set; }
         public Guid RoutineID { get; set; }
-        public DateTime TimestampUTC { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

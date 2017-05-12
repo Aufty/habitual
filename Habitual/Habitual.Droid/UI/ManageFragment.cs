@@ -172,26 +172,27 @@ namespace Habitual.Droid.UI
 
         public void OnHabitCreated(Habit habit)
         {
-            Update();
             callback.UpdateAllRequested();
         }
 
         public void OnRoutineCreated(Routine routine)
         {
-            Update();
             callback.UpdateAllRequested();
         }
 
         public void OnTodoCreated(Todo todo)
         {
-            Update();
             callback.UpdateAllRequested();
         }
 
         public void OnTaskDeleted()
         {
-            Update();
             callback.UpdateAllRequested();
+        }
+
+        public void Reset()
+        {
+            Init();
         }
     }
 }

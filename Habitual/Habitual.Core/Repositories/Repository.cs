@@ -13,5 +13,6 @@ namespace Habitual.Core.Repositories
         void Update(T entity);
         T GetById(int id);
         List<T> GetAllForUser(string username);
+        Task<List<T>> GetAll(string username);
     }
 }

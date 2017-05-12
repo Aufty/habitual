@@ -99,7 +99,7 @@ namespace Habitual.Storage
             var routineLog = new RoutineLog();
             routineLog.ID = Guid.NewGuid();
             routineLog.RoutineID = routine.ID;
-            routineLog.TimestampUTC = utcTimestamp;
+            routineLog.Timestamp = utcTimestamp;
 
             taskContainer.RoutineLogs.Add(routineLog);
             LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
@@ -124,6 +124,11 @@ namespace Habitual.Storage
             var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
             return RoutinesMatchingDay(taskContainer.Routines, dayOfWeek);
 
+        }
+
+        public Task<List<Routine>> GetAll(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

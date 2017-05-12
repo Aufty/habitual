@@ -15,12 +15,7 @@ namespace Habitual.Storage.Local
             
             if (string.IsNullOrEmpty(LocalData.TaskContainer))
             {
-                var taskContainer = new TaskContainer();
-                taskContainer.Habits = new List<Habit>();
-                taskContainer.Routines = new List<Routine>();
-                taskContainer.Todos = new List<Todo>();
-                taskContainer.HabitLogs = new List<HabitLog>();
-                taskContainer.RoutineLogs = new List<RoutineLog>();
+                var taskContainer = TaskContainer.GetTaskContainer();
                 LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer); 
             }
             

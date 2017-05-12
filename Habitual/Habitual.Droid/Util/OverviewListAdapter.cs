@@ -101,6 +101,12 @@ namespace Habitual.Droid.Util
             return view;
         }
 
+        public void IncrementItem(HabitLog log)
+        {
+            habitLogs.Add(log);
+            context.RunOnUiThread(() => NotifyDataSetChanged());
+        }
+
         private View GenerateRoutineCell(Routine routine, View view)
         {
             var checkBox = view.FindViewById<CheckBox>(Resource.Id.markDoneCheckbox); // TODO: Check if habit is finished
@@ -124,7 +130,7 @@ namespace Habitual.Droid.Util
             var today = DateTime.UtcNow.Date;
             foreach (RoutineLog log in logs)
             {
-                if (routine.ID == log.RoutineID && log.TimestampUTC.Date == today)
+                if (routine.ID == log.RoutineID && log.Timestamp.Date == today)
                 {
                     return true;
                 }

@@ -27,6 +27,7 @@ namespace Habitual.Droid.UI
     {
         void UserUpdateRequested();
         void UpdateAllRequested();
+        void ShowPointsUpdate(int pointsAdded);
     }
 
     [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme")]
@@ -134,7 +135,10 @@ namespace Habitual.Droid.UI
             base.OnOptionsItemSelected(item);
             if (item == refreshItem)
             {
-                mainPresenter.GetUser(LocalData.User, LocalData.Password);
+                var username = LocalData.Username;
+                var password = LocalData.Password;
+
+                mainPresenter.GetUser(LocalData.Username, LocalData.Password);
             }
             else
             {
@@ -163,8 +167,6 @@ namespace Habitual.Droid.UI
             Toast.MakeText(this, string.Format("User {0} created!", user.Username), ToastLength.Short).Show();
 
             mainPresenter.StoreUserLocal(user);
-
-            UpdateInterfaceWithUser(user);
         }
 
         public void ShowError()
@@ -179,7 +181,7 @@ namespace Habitual.Droid.UI
 
         public void OnUserRetrieved(User user)
         {
-            if (user == null)
+            if (user == null || string.IsNullOrEmpty(user.Username))
             {
                 RunOnUiThread(() =>
                 {
@@ -187,9 +189,14 @@ namespace Habitual.Droid.UI
                 });
                 return;
             }
-            mainPresenter.StoreUserLocal(user);
-
-            UpdateInterfaceWithUser(user);
+            if (user.Username == LocalData.Username)
+            {
+                UpdateInterfaceWithUser(user);
+                adapter.ResetAllFrags();
+            } else
+            {
+                mainPresenter.StoreUserLocal(user);
+            }
         }
 
         private void UpdateInterfaceWithUser(User user)
@@ -212,6 +219,7 @@ namespace Habitual.Droid.UI
         public void OnUserStored(User user)
         {
             Toast.MakeText(this, "User stored locally", ToastLength.Short).Show();
+            UpdateInterfaceWithUser(user);
         }
 
         public void UserUpdateRequested()
@@ -242,6 +250,17 @@ namespace Habitual.Droid.UI
             {
                 PromptLoginOrRegister();
             }
+        }
+
+        public void ShowPointsUpdate(int pointsAdded)
+        {
+            var pointsView = FindViewById<TextView>(Resource.Id.pointsText);
+            var points = Int32.Parse(pointsView.Text);
+            
+            RunOnUiThread(() => {
+                pointsView.Text = (points + pointsAdded).ToString();
+            });
+            
         }
     }
 }

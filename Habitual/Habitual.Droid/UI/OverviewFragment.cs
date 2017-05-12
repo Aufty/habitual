@@ -65,6 +65,11 @@ namespace Habitual.Droid.UI
             Update();
         }
 
+        internal void Reset()
+        {
+            Init();
+        }
+
         private void TaskClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             var item = items[e.Position];
@@ -74,6 +79,10 @@ namespace Habitual.Droid.UI
             if (habit != null)
             {
                 presenter.MarkHabitDone(habit);
+                var log = new HabitLog();
+                log.HabitID = habit.ID;
+                log.Timestamp = DateTime.Today;
+                adapter.IncrementItem(log);
             }
             if (routine != null)
             {
@@ -143,7 +152,7 @@ namespace Habitual.Droid.UI
 
         private void NotifyPoints(int pointsAdded)
         {
-            Toast.MakeText(Activity, string.Format("{0} points earned!", pointsAdded), ToastLength.Short).Show();
+            callback.ShowPointsUpdate(pointsAdded);
         }
 
         public void OnTodoMarkedDone(int pointsAdded)
@@ -151,7 +160,6 @@ namespace Habitual.Droid.UI
             NotifyPoints(pointsAdded);
             Update();
         }
-
     }
 
    

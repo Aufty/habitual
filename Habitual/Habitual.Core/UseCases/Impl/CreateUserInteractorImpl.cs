@@ -28,23 +28,30 @@ namespace Habitual.Core.UseCases.Impl
             this.password = password;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
+            try
             {
-                mainThread.Post(() => { callback.OnError("Password cannot be blank"); });
-                return;
-            }
+                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
+                {
+                    mainThread.Post(() => { callback.OnError("Password cannot be blank"); });
+                    return;
+                }
 
-            User user = new User(username, password);
-            var alreadyExistingUser = userRepository.GetUser(username, password);
+                User user = new User(username, password);
+                var alreadyExistingUser = await userRepository.GetUser(username, password);
 
-            if (alreadyExistingUser == null)
+                if (alreadyExistingUser == null || alreadyExistingUser.Username == null)
+                {
+                    userRepository.Create(user);
+
+                    mainThread.Post(() => { callback.OnUserCreated(user); });
+                }
+            } catch (Exception ex)
             {
-                userRepository.Create(user);
-
-                mainThread.Post(() => { callback.OnUserCreated(user); });
+                callback.OnError($"Error creating user: {ex.Message}");
             }
+            
             
         }
     }
