@@ -30,9 +30,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public async override void Run()
         {
-            var user = await userRepository.GetUser(username, password);
+            try
+            {
+                var user = await userRepository.GetUser(username, password);
 
-            callback.OnUserRetrieved(user);
+                callback.OnUserRetrieved(user);
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error gettting user."));
+            }
         }
     }
 }

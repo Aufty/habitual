@@ -14,27 +14,31 @@ namespace Habitual.Core.UseCases.Impl
     {
         private CreateRewardInteractorCallback callback;
         private RewardRepository rewardRepository;
-
-        private string description;
         private string username;
         private Reward reward;
 
         public CreateRewardInteractorImpl(Executor taskExecutor, MainThread mainThread,
-                                        CreateRewardInteractorCallback callback, RewardRepository rewardRepository, string username, Reward reward) : base(taskExecutor, mainThread)
+                                        CreateRewardInteractorCallback callback, RewardRepository rewardRepository, Reward reward) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.rewardRepository = rewardRepository;
             this.reward = reward;
-            this.username = username;
         }
 
         public override void Run()
         {
-            reward.ID = Guid.NewGuid();
-            reward.Username = username;
-            rewardRepository.Create(reward);
+            try
+            {
+                reward.ID = Guid.NewGuid();
+                reward.Username = username;
+                rewardRepository.Create(reward);
 
-            mainThread.Post(() => callback.OnRewardCreated(reward));
+                mainThread.Post(() => callback.OnRewardCreated(reward));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error creating  reward. Try again."));
+            }
         }
     }
 }

@@ -27,9 +27,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            routineRepository.Delete(routine.ID);
+            try
+            {
+                routineRepository.Delete(routine.ID);
 
-            mainThread.Post(() => callback.OnRoutineDeleted(routine.ID));
+                mainThread.Post(() => callback.OnRoutineDeleted(routine.ID));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error deleting routine. Try again."));
+            }
         }
     }
 }

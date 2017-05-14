@@ -29,9 +29,17 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            var points = userRepository.GetPoints(username);
+            try
+            {
+                var points = userRepository.GetPoints(username);
 
-            mainThread.Post(() => callback.OnPointsRetrieved(points));
+                mainThread.Post(() => callback.OnPointsRetrieved(points));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

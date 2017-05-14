@@ -29,20 +29,27 @@ namespace Habitual.Core.UseCases.Impl
 
         public async override void Run()
         {
-            var log = new RoutineLog();
-            log.ID = Guid.NewGuid();
-            log.RoutineID = routine.ID;
-            log.Timestamp = DateTime.Today;
-            await routineRepository.MarkDone(log);
+            try
+            {
+                var log = new RoutineLog();
+                log.ID = Guid.NewGuid();
+                log.RoutineID = routine.ID;
+                log.Timestamp = DateTime.Today;
+                await routineRepository.MarkDone(log);
 
-            var pointsAdded = 0;
-            if (routine.Difficulty == Difficulty.Easy) pointsAdded = 10;
-            if (routine.Difficulty == Difficulty.Medium) pointsAdded = 20;
-            if (routine.Difficulty == Difficulty.Hard) pointsAdded = 30;
-            if (routine.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
-            userRepository.IncrementPoints(routine.Username, pointsAdded);
+                var pointsAdded = 0;
+                if (routine.Difficulty == Difficulty.Easy) pointsAdded = 10;
+                if (routine.Difficulty == Difficulty.Medium) pointsAdded = 20;
+                if (routine.Difficulty == Difficulty.Hard) pointsAdded = 30;
+                if (routine.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
+                await userRepository.IncrementPoints(routine.Username, pointsAdded);
 
-            mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(routine, pointsAdded));
+                mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(routine, pointsAdded));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error logging routine. Try again."));
+            }
         }
     }
 }

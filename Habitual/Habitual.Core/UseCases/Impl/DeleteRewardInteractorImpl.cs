@@ -27,9 +27,17 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            rewardRepository.Delete(reward.ID);
+            try
+            {
+                rewardRepository.Delete(reward.ID);
 
-            mainThread.Post(() => callback.OnRewardDeleted(reward.ID));
+                mainThread.Post(() => callback.OnRewardDeleted(reward.ID));
+            }
+            catch (Exception)
+            {
+
+                mainThread.Post(() => callback.OnError("Error deleting reward. Try again."));
+            }
         }
     }
 }

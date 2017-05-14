@@ -43,13 +43,13 @@ namespace Habitual.Core.UseCases.Impl
 
                 if (alreadyExistingUser == null || alreadyExistingUser.Username == null)
                 {
-                    userRepository.Create(user);
+                    await userRepository.Create(user);
 
                     mainThread.Post(() => { callback.OnUserCreated(user); });
                 }
-            } catch (Exception ex)
+            } catch (Exception)
             {
-                callback.OnError($"Error creating user: {ex.Message}");
+                callback.OnError("Error creating user. Try again.");
             }
             
             

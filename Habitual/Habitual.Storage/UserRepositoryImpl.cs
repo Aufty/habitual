@@ -34,9 +34,10 @@ namespace Habitual.Storage
             return user;
         }
 
-        public int GetPoints(string username)
+        public async Task<int> GetPoints(string username, string password)
         {
-            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
+            UserDB userManager = new UserDB();
+            var user = await userManager.GetUser(username, password);
             return user.Points;
         }
 

@@ -41,12 +41,12 @@ namespace Habitual.Core.UseCases.Impl
                 if (todo.Difficulty == Difficulty.Hard) pointsAdded = todo.IsDone ? 30 : -30;
                 if (todo.Difficulty == Difficulty.VeryHard) pointsAdded = todo.IsDone ? 40 : -40;
 
-                userRepository.IncrementPoints(todo.Username, pointsAdded);
+                await userRepository.IncrementPoints(todo.Username, pointsAdded);
 
                 mainThread.Post(() => callback.OnTodoMarkedDone(todo, pointsAdded));
             } catch (Exception ex)
             {
-                mainThread.Post(() => callback.OnError($"Error marking todo done. Try again. Error: {ex.Message}"));
+                mainThread.Post(() => callback.OnError("Error marking todo done. Try again."));
             }
             
         }

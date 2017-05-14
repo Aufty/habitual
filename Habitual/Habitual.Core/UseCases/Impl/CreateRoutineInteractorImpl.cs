@@ -30,11 +30,18 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            routine.Username = username;
-            routine.ID = Guid.NewGuid();
-            routineRepository.Create(routine);
+            try
+            {
+                routine.Username = username;
+                routine.ID = Guid.NewGuid();
+                routineRepository.Create(routine);
 
-            mainThread.Post(() => callback.OnRoutineCreated(routine));
+                mainThread.Post(() => callback.OnRoutineCreated(routine));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error creating routine. Try again."));
+            }
         }
     }
 }

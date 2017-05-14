@@ -27,9 +27,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            todoRepository.Delete(todo.ID);
+            try
+            {
+                todoRepository.Delete(todo.ID);
 
-            mainThread.Post(() => callback.OnTodoDeleted(todo.ID));
+                mainThread.Post(() => callback.OnTodoDeleted(todo.ID));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error deleting todo. Try again."));
+            }
         }
     }
 }

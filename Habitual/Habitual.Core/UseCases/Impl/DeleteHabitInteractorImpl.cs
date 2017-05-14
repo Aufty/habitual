@@ -28,9 +28,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            habitRepository.Delete(habit.ID);
+            try
+            {
+                habitRepository.Delete(habit.ID);
 
-            mainThread.Post(() => callback.OnHabitDeleted(habit.ID));
+                mainThread.Post(() => callback.OnHabitDeleted(habit.ID));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error deleting habit. Try again."));
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Habitual.Core.UseCases.Impl
                 mainThread.Post(() => callback.OnTodoCreated(todo));
             } catch (Exception ex)
             {
-                mainThread.Post(() => callback.OnError($"Error creating todo \"{todo.Description}\". Error: {ex.Message}"));
+                mainThread.Post(() => callback.OnError("Error creating todo. Try again."));
             } 
         }
     }

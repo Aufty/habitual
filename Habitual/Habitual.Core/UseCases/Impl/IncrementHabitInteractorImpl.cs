@@ -29,21 +29,28 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            var habitLog = new HabitLog();
-            habitLog.ID = Guid.NewGuid();
-            habitLog.HabitID = habit.ID;
-            habitLog.Timestamp = DateTime.Today;
-            habitRepository.IncrementHabit(habitLog);
+            try
+            {
+                var habitLog = new HabitLog();
+                habitLog.ID = Guid.NewGuid();
+                habitLog.HabitID = habit.ID;
+                habitLog.Timestamp = DateTime.Today;
+                habitRepository.IncrementHabit(habitLog);
 
-            var pointsAdded = 0;
-            if (habit.Difficulty == Difficulty.Easy) pointsAdded = 5;
-            if (habit.Difficulty == Difficulty.Medium) pointsAdded = 10;
-            if (habit.Difficulty == Difficulty.Hard) pointsAdded = 15;
-            if (habit.Difficulty == Difficulty.VeryHard) pointsAdded = 20;
+                var pointsAdded = 0;
+                if (habit.Difficulty == Difficulty.Easy) pointsAdded = 5;
+                if (habit.Difficulty == Difficulty.Medium) pointsAdded = 10;
+                if (habit.Difficulty == Difficulty.Hard) pointsAdded = 15;
+                if (habit.Difficulty == Difficulty.VeryHard) pointsAdded = 20;
 
-            userRepository.IncrementPoints(habit.Username, pointsAdded);
+                userRepository.IncrementPoints(habit.Username, pointsAdded);
 
-            mainThread.Post(() => callback.OnHabitIncremented(habit, pointsAdded));
+                mainThread.Post(() => callback.OnHabitIncremented(habit, pointsAdded));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error incrementing habit count. Try again."));
+            }
         }
     }
 }

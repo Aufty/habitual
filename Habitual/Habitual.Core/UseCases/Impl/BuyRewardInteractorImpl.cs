@@ -29,15 +29,23 @@ namespace Habitual.Core.UseCases.Impl
 
         public async override void Run()
         {
-            var result = await userRepository.BuyReward(reward);
+            try
+            {
+                var result = await userRepository.BuyReward(reward);
 
-            if (result)
+                if (result)
+                {
+                    mainThread.Post(() => callback.OnRewardPurchased(reward, reward.Cost));
+                }
+                else
+                {
+                    mainThread.Post(() => callback.OnError("Not enough points to purchase this reward."));
+                }
+            } catch (Exception ex)
             {
-                mainThread.Post(() => callback.OnRewardPurchased(reward, reward.Cost));
-            } else
-            {
-                mainThread.Post(() => callback.OnError("Not enough points to purchase this reward."));
+                mainThread.Post(() => callback.OnError("Error purchasing reward. Try again."));
             }
+            
             
         }
     }

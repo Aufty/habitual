@@ -28,15 +28,22 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            if (user == null)
+            try
             {
-                mainThread.Post(() => { callback.OnError("User cannot be empty"); });
-                return;
+                if (user == null)
+                {
+                    mainThread.Post(() => { callback.OnError("User cannot be empty"); });
+                    return;
+                }
+
+                userRepository.StoreLocally(user);
+
+                mainThread.Post(() => { callback.OnUserStored(user); });
             }
-
-            userRepository.StoreLocally(user);
-
-            mainThread.Post(() => { callback.OnUserStored(user); });
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error storing user."));
+            }
         }
     }
 }

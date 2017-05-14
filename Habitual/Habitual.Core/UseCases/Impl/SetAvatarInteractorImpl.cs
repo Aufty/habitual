@@ -29,9 +29,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            userRepository.SetAvatar(username, imageString);
+            try
+            {
+                userRepository.SetAvatar(username, imageString);
 
-            mainThread.Post(() => callback.OnAvatarSet(imageString));
+                mainThread.Post(() => callback.OnAvatarSet(imageString));
+            }
+            catch (Exception)
+            {
+                mainThread.Post(() => callback.OnError("Error setting avatar. Try again."));
+            }
         }
     }
 }

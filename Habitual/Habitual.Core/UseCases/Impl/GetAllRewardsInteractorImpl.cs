@@ -31,9 +31,9 @@ namespace Habitual.Core.UseCases.Impl
             {
                 var rewards = await rewardRepository.GetAll(username);
                 mainThread.Post(() => callback.OnRewardsRetrieved(rewards));
-            } catch (Exception ex)
+            } catch (Exception)
             {
-                mainThread.Post(() => callback.OnError($"Error getting rewards. Error: {ex.Message}"));
+                mainThread.Post(() => callback.OnError("Error getting rewards."));
             }
             
         }

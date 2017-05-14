@@ -72,7 +72,7 @@ namespace Habitual.Droid.Presenters.Impl
 
         public void CreateReward(Reward reward)
         {
-            CreateRewardInteractor interactor = new CreateRewardInteractorImpl(executor, mainThread, this, rewardRepository, username, reward);
+            CreateRewardInteractor interactor = new CreateRewardInteractorImpl(executor, mainThread, this, rewardRepository, reward);
             interactor.Execute();
         }
 
