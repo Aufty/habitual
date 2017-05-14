@@ -12,9 +12,6 @@ using System.Threading.Tasks;
 
 namespace Habitual.Storage
 {
-    /// <summary>
-    /// Web API calls from here. Temporary code to build app before web API
-    /// </summary>
     public class UserRepositoryImpl : UserRepository
     {
         public async Task Create(User user)
@@ -24,12 +21,8 @@ namespace Habitual.Storage
             return;
         }
 
+        //Not used for User
         public Task Delete(Guid userID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public byte[] GetAvatar(string username)
         {
             throw new NotImplementedException();
         }
@@ -54,11 +47,6 @@ namespace Habitual.Storage
             return;
         }
 
-        public void Update(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public void StoreLocally(User user)
         {
             LocalData.Username = user.Username;
@@ -79,6 +67,7 @@ namespace Habitual.Storage
             LocalData.User = JsonConvert.SerializeObject(user);
         }
 
+        //Not used for User
         public Task<List<User>> GetAll(string username)
         {
             throw new NotImplementedException();

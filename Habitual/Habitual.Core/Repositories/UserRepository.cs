@@ -9,7 +9,6 @@ namespace Habitual.Core.Repositories
 {
     public interface UserRepository : Repository<User>
     {
-        byte[] GetAvatar(string username);
         Task<User> GetUser(string username, string password);
         int GetPoints(string username);
         Task IncrementPoints(string username, int pointsToIncrement);

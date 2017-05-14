@@ -18,8 +18,6 @@ namespace Habitual.Storage.Local
                 var taskContainer = TaskContainer.GetTaskContainer();
                 LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer); 
             }
-            
-
         }
 
         public static void CreateUser(string username, string password)

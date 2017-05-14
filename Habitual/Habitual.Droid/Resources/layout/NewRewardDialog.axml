@@ -8,12 +8,16 @@
         android:hint="Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:imeOptions="actionNext"
+        android:singleLine="true" />
     <EditText
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/costNewRewardEntry"
         android:layout_margin="10dp"
-        android:hint="Cost" />
+        android:hint="Cost"
+        android:singleLine="true"
+        android:imeOptions="actionDone" />
 </LinearLayout>

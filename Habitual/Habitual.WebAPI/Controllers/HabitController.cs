@@ -157,7 +157,7 @@ namespace Habitual.WebAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpDelete]
         [Route("delete/{id}")]
         public HttpResponseMessage DeleteHabit(string id)
         {

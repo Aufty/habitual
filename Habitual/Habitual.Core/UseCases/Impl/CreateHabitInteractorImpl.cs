@@ -1,12 +1,8 @@
-﻿using Habitual.Core.Entities;
+﻿using System;
+using Habitual.Core.Entities;
 using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
 using Habitual.Core.UseCases.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Habitual.Core.UseCases.Impl
 {
@@ -30,11 +26,18 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            habit.Username = username;
-            habit.ID = Guid.NewGuid();
-            habitRepository.Create(habit);
+            try
+            {
+                habit.Username = username;
+                habit.ID = Guid.NewGuid();
+                habitRepository.Create(habit);
 
-            mainThread.Post(() => callback.OnHabitCreated(habit));
+                mainThread.Post(() => callback.OnHabitCreated(habit));
+            } catch (Exception ex)
+            {
+                mainThread.Post(() => callback.OnError("Error creating habit. Try again."));
+            }
+            
         }
     }
 }

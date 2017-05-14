@@ -27,7 +27,7 @@ namespace Habitual.Storage.DB
 
         public async Task DeleteHabit(Guid id)
         {
-            var jsonResult = await GetDataAsync($"api/habit/delete/{id.ToString()}");
+            var jsonResult = await DeleteDataAsync($"api/habit/delete/{id.ToString()}");
             return;
         }
 

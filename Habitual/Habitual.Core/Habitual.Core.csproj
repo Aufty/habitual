@@ -64,10 +64,7 @@
     <Compile Include="UseCases\CreateRoutineInteractor.cs" />
     <Compile Include="UseCases\DeleteHabitInteractor.cs" />
     <Compile Include="UseCases\DeleteTodoInteractor.cs" />
-    <Compile Include="UseCases\GetAllHabitsInteractor.cs" />
     <Compile Include="UseCases\GetAllRewardsInteractor.cs" />
-    <Compile Include="UseCases\GetAllRoutinesInteractor.cs" />
-    <Compile Include="UseCases\GetAllTodosInteractor.cs" />
     <Compile Include="UseCases\GetPointsInteractor.cs" />
     <Compile Include="UseCases\Base\Interactor.cs" />
     <Compile Include="UseCases\CreateUserInteractor.cs" />
@@ -83,10 +80,7 @@
     <Compile Include="UseCases\Impl\DeleteRewardInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\DeleteRoutineInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\DeleteTodoInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\GetAllHabitsInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetAllRewardsInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\GetAllRoutinesInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\GetAllTodosInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetPointsInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetTaskContainerInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\GetUserInteractorImpl.cs" />
@@ -95,19 +89,11 @@
     <Compile Include="UseCases\Impl\MarkTodoDoneInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\SetAvatarInteractorImpl.cs" />
     <Compile Include="UseCases\Impl\StoreUserLocalInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\UpdateHabitInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\UpdateRewardInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\UpdateRoutineInteractorImpl.cs" />
-    <Compile Include="UseCases\Impl\UpdateTodoInteractorImpl.cs" />
     <Compile Include="UseCases\IncrementHabitInteractor.cs" />
     <Compile Include="UseCases\MarkRoutineDoneInteractor.cs" />
     <Compile Include="UseCases\MarkTodoDoneInteractor.cs" />
     <Compile Include="UseCases\SetAvatarInteractor.cs" />
     <Compile Include="UseCases\StoreUserLocalInteractor.cs" />
-    <Compile Include="UseCases\UpdateHabitInteractor.cs" />
-    <Compile Include="UseCases\UpdateRewardInteractor.cs" />
-    <Compile Include="UseCases\UpdateRoutineInteractor.cs" />
-    <Compile Include="UseCases\UpdateTodoInteractor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
