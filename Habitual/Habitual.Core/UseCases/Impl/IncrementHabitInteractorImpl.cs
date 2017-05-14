@@ -43,7 +43,7 @@ namespace Habitual.Core.UseCases.Impl
 
             userRepository.IncrementPoints(habit.Username, pointsAdded);
 
-            mainThread.Post(() => callback.OnHabitIncremented(pointsAdded));
+            mainThread.Post(() => callback.OnHabitIncremented(habit, pointsAdded));
         }
     }
 }

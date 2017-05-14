@@ -27,8 +27,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            rewardRepository.Update(reward);
-            mainThread.Post(() => callback.OnRewardUpdated(reward));
+            //rewardRepository.Update(reward);
+            //mainThread.Post(() => callback.OnRewardUpdated(reward));
         }
     }
 }

@@ -30,11 +30,16 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            todo.Username = username;
-            todo.ID = Guid.NewGuid();
-            todoRepository.Create(todo);
-
-            mainThread.Post(() => callback.OnTodoCreated(todo));
+            try
+            {
+                todo.Username = username;
+                todo.ID = Guid.NewGuid();
+                todoRepository.Create(todo);
+                mainThread.Post(() => callback.OnTodoCreated(todo));
+            } catch (Exception ex)
+            {
+                mainThread.Post(() => callback.OnError($"Error creating todo \"{todo.Description}\". Error: {ex.Message}"));
+            } 
         }
     }
 }

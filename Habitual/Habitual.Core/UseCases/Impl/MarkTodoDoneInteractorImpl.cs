@@ -27,31 +27,28 @@ namespace Habitual.Core.UseCases.Impl
             this.todo = todo;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            if (todo.IsDone)
+            try
             {
-                callback.OnError("This todo is already marked done.");
-                return;
-            }
+                todo.IsDone = !todo.IsDone; 
+                await todoRepository.MarkDone(todo);
 
-            var doneTodo = todoRepository.MarkDone(todo);
+                
+                var pointsAdded = 0;
+                if (todo.Difficulty == Difficulty.Easy) pointsAdded = todo.IsDone ? 10 : -10;
+                if (todo.Difficulty == Difficulty.Medium) pointsAdded = todo.IsDone ? 20 : -20;
+                if (todo.Difficulty == Difficulty.Hard) pointsAdded = todo.IsDone ? 30 : -30;
+                if (todo.Difficulty == Difficulty.VeryHard) pointsAdded = todo.IsDone ? 40 : -40;
 
-            if (!doneTodo.IsDone)
+                userRepository.IncrementPoints(todo.Username, pointsAdded);
+
+                mainThread.Post(() => callback.OnTodoMarkedDone(todo, pointsAdded));
+            } catch (Exception ex)
             {
-                callback.OnError("Todo was not marked done. Try again");
-                return;
+                mainThread.Post(() => callback.OnError($"Error marking todo done. Try again. Error: {ex.Message}"));
             }
-
-            var pointsAdded = 0;
-            if (doneTodo.Difficulty == Difficulty.Easy) pointsAdded = 10;
-            if (doneTodo.Difficulty == Difficulty.Medium) pointsAdded = 20;
-            if (doneTodo.Difficulty == Difficulty.Hard) pointsAdded = 30;
-            if (doneTodo.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
-
-            userRepository.IncrementPoints(todo.Username, pointsAdded);
-
-            mainThread.Post(() => callback.OnTodoMarkedDone(pointsAdded));
+            
         }
     }
 }

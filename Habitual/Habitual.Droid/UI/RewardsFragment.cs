@@ -73,6 +73,11 @@ namespace Habitual.Droid.UI
             Update();
         }
 
+        internal void Reset()
+        {
+            Init();
+        }
+
         private void RewardTapped(object sender, AdapterView.ItemClickEventArgs e)
         {
             TextDialogBuilder builder = new TextDialogBuilder();
@@ -153,6 +158,7 @@ namespace Habitual.Droid.UI
 
         public void OnRewardBought(Reward reward)
         {
+            callback.ShowPointsUpdate(reward.Cost * -1);
             callback.UserUpdateRequested();
             Toast.MakeText(this.Activity, $"{reward.Description} purchased for {reward.Cost}!", ToastLength.Short).Show();
         }

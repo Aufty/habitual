@@ -8,11 +8,8 @@ namespace Habitual.Core.Repositories
 {
     public interface Repository<T>
     {
-        void Create(T entity);
-        void Delete(Guid id);
-        void Update(T entity);
-        T GetById(int id);
-        List<T> GetAllForUser(string username);
+        Task Create(T entity);
+        Task Delete(Guid id);
         Task<List<T>> GetAll(string username);
     }
 }

@@ -17,24 +17,19 @@ namespace Habitual.Storage
     /// </summary>
     public class UserRepositoryImpl : UserRepository
     {
-        public async void Create(User user)
+        public async Task Create(User user)
         {
             UserDB userManager = new UserDB();
             await userManager.CreateUser(user);
             return;
         }
 
-        public void Delete(Guid userID)
+        public Task Delete(Guid userID)
         {
             throw new NotImplementedException();
         }
 
         public byte[] GetAvatar(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -52,16 +47,11 @@ namespace Habitual.Storage
             return user.Points;
         }
 
-        public async void IncrementPoints(string username, int pointsToIncrement)
+        public async Task IncrementPoints(string username, int pointsToIncrement)
         {
             UserDB userManager = new UserDB();
             await userManager.IncrementPoints(username, pointsToIncrement);
             return;
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(User entity)
@@ -75,18 +65,11 @@ namespace Habitual.Storage
             LocalData.Password = user.Password;
         }
 
-        public bool BuyReward(Reward reward)
+        public async Task<bool> BuyReward(Reward reward)
         {
-            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
-            if (user.Points >= reward.Cost)
-            {
-                user.Points -= reward.Cost;
-                LocalData.User = JsonConvert.SerializeObject(user);
-                return true;
-            } else
-            {
-                return false;
-            }
+            RewardDB rewardManager = new RewardDB();
+            var result = await rewardManager.BuyReward(reward);
+            return result;
         }
 
         public void SetAvatar(string username, string imageString)
@@ -94,11 +77,6 @@ namespace Habitual.Storage
             var user = JsonConvert.DeserializeObject<User>(LocalData.User);
             user.Avatar = Convert.FromBase64String(imageString);
             LocalData.User = JsonConvert.SerializeObject(user);
-        }
-
-        List<User> Repository<User>.GetAllForUser(string username)
-        {
-            throw new NotImplementedException();
         }
 
         public Task<List<User>> GetAll(string username)

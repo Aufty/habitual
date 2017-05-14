@@ -25,10 +25,17 @@ namespace Habitual.Core.UseCases.Impl
             this.username = username;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var rewards = rewardRepository.GetAllForUser(username);
-            mainThread.Post(() => callback.OnRewardsRetrieved(rewards));
+            try
+            {
+                var rewards = await rewardRepository.GetAll(username);
+                mainThread.Post(() => callback.OnRewardsRetrieved(rewards));
+            } catch (Exception ex)
+            {
+                mainThread.Post(() => callback.OnError($"Error getting rewards. Error: {ex.Message}"));
+            }
+            
         }
     }
 }

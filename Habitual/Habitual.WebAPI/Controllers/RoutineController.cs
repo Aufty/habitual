@@ -17,9 +17,8 @@ namespace Habitual.WebAPI.Controllers
     {
         [HttpPost]
         [Route("create")]
-        public HttpResponseMessage CreateRoutine(string routineJson)
+        public HttpResponseMessage CreateRoutine(Routine routine)
         {
-            var routine = JsonConvert.DeserializeObject<Routine>(routineJson);
             MySqlConnection conn = new MySqlConnection(CONNECTION_STRING);
             try
             {
@@ -29,7 +28,14 @@ namespace Habitual.WebAPI.Controllers
                 MySqlCommand cmd = new MySqlCommand(rtn, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", routine.ID);
+                cmd.Parameters.AddWithValue("@id", routine.ID.ToString());
+                cmd.Parameters.AddWithValue("@activeSunday", routine.IsActiveSunday);
+                cmd.Parameters.AddWithValue("@activeMonday", routine.IsActiveMonday);
+                cmd.Parameters.AddWithValue("@activeTuesday", routine.IsActiveTuesday);
+                cmd.Parameters.AddWithValue("@activeWednesday", routine.IsActiveWednesday);
+                cmd.Parameters.AddWithValue("@activeThursday", routine.IsActiveThursday);
+                cmd.Parameters.AddWithValue("@activeFriday", routine.IsActiveFriday);
+                cmd.Parameters.AddWithValue("@activeSaturday", routine.IsActiveSaturday);
                 cmd.Parameters.AddWithValue("@description", routine.Description);
                 cmd.Parameters.AddWithValue("@difficulty", routine.Difficulty.ToString());
                 cmd.Parameters.AddWithValue("@username", routine.Username);
@@ -95,17 +101,22 @@ namespace Habitual.WebAPI.Controllers
                 while (reader.Read())
                 {
                     var routine = new Routine();
-                    //routine.ID = Guid.Parse(reader.GetChar("id").ToString());
-                    routine.ID = Guid.NewGuid();
+                    routine.ID = Guid.Parse(reader.GetString("id"));
                     routine.Description = reader.GetString("description");
                     routine.Difficulty = (Difficulty)Enum.Parse(typeof(Difficulty), reader.GetString("difficulty"));
                     routine.Username = reader.GetString("username");
+                    routine.IsActiveSunday = reader.GetBoolean("is_active_sunday");
+                    routine.IsActiveMonday = reader.GetBoolean("is_active_monday");
+                    routine.IsActiveTuesday = reader.GetBoolean("is_active_tuesday");
+                    routine.IsActiveWednesday = reader.GetBoolean("is_active_wednesday");
+                    routine.IsActiveThursday = reader.GetBoolean("is_active_thursday");
+                    routine.IsActiveFriday = reader.GetBoolean("is_active_friday");
+                    routine.IsActiveSaturday = reader.GetBoolean("is_active_saturday");
                     routineList.Add(routine);
-                    Console.Write("Got to here");
                 }
                 reader.Close();
-                var json = JsonConvert.SerializeObject(routineList);
-                return base.BuildSuccessResult(HttpStatusCode.OK, json);
+
+                return base.BuildSuccessResultList(HttpStatusCode.OK, routineList);
             }
             catch (Exception ex)
             {
@@ -118,9 +129,9 @@ namespace Habitual.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getalllogs/{id}/{dateString}")]
-        public HttpResponseMessage GetAllRoutineLogs(string id, string dateString)
-        { 
+        [Route("getalllogs/{username}/{dateString}")]
+        public HttpResponseMessage GetAllRoutineLogs(string username, string dateString)
+        {
             var routineLogList = new List<RoutineLog>();
             MySqlConnection conn = new MySqlConnection(CONNECTION_STRING);
             try
@@ -131,24 +142,21 @@ namespace Habitual.WebAPI.Controllers
                 MySqlCommand cmd = new MySqlCommand(rtn, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@dateRequested", dateString);
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     var routineLog = new RoutineLog();
-                    //routineLog.ID = Guid.Parse(reader.GetChar("id").ToString());
-                    routineLog.ID = Guid.NewGuid();
+                    routineLog.ID = Guid.Parse(reader.GetString("log_id"));
                     routineLog.Timestamp = reader.GetDateTime("time_stamp");
-                    //routineLog.RoutineID = Guid.Parse(reader.GetChar("routine_id").ToString());
-                    routineLog.RoutineID = Guid.NewGuid();
+                    routineLog.RoutineID = Guid.Parse(reader.GetString("routine_id"));
                     routineLogList.Add(routineLog);
-                    Console.Write("Got to here");
                 }
                 reader.Close();
-                var json = JsonConvert.SerializeObject(routineLogList);
-                return base.BuildSuccessResult(HttpStatusCode.OK, json);
+
+                return base.BuildSuccessResultList(HttpStatusCode.OK, routineLogList);
             }
             catch (Exception ex)
             {
@@ -162,7 +170,7 @@ namespace Habitual.WebAPI.Controllers
 
         [HttpPost]
         [Route("log")]
-        public HttpResponseMessage Logroutine(RoutineLog routineLog)
+        public HttpResponseMessage LogRoutine(RoutineLog routineLog)
         {
             MySqlConnection conn = new MySqlConnection(CONNECTION_STRING);
             try
@@ -173,8 +181,8 @@ namespace Habitual.WebAPI.Controllers
                 MySqlCommand cmd = new MySqlCommand(rtn, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", routineLog.ID);
-                cmd.Parameters.AddWithValue("@routineId", routineLog.RoutineID);
+                cmd.Parameters.AddWithValue("@id", routineLog.ID.ToString());
+                cmd.Parameters.AddWithValue("@routineId", routineLog.RoutineID.ToString());
                 cmd.Parameters.AddWithValue("@routineTimeStamp", routineLog.Timestamp);
 
 

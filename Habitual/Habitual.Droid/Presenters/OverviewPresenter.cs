@@ -7,9 +7,9 @@ namespace Habitual.Droid.Presenters
     public interface OverviewView : BaseView
     {
         void OnTasksRetrieved(TaskContainer tasks);
-        void OnHabitMarkedDone(int pointsAdded);
-        void OnRoutineMarkedDone(int pointsAdded);
-        void OnTodoMarkedDone(int pointsAdded);
+        void OnHabitMarkedDone(Habit habit, int pointsAdded);
+        void OnRoutineMarkedDone(Routine routine, int pointsAdded);
+        void OnTodoMarkedDone(Todo todo, int pointsAdded);
     }
 
     public interface OverviewPresenter : BasePresenter

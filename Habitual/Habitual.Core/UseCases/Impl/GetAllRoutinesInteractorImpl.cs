@@ -25,9 +25,9 @@ namespace Habitual.Core.UseCases.Impl
             this.user = user;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var routines = routineRepository.GetAllForUser(user.Username);
+            var routines = await routineRepository.GetAll(user.Username);
             mainThread.Post(() => callback.OnRoutinesRetrieved(routines));
         }
     }

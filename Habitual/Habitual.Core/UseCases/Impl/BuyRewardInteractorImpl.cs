@@ -27,13 +27,13 @@ namespace Habitual.Core.UseCases.Impl
             this.reward = reward;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var result = userRepository.BuyReward(reward);
+            var result = await userRepository.BuyReward(reward);
 
             if (result)
             {
-                mainThread.Post(() => callback.OnRewardPurchased(reward, 0));
+                mainThread.Post(() => callback.OnRewardPurchased(reward, reward.Cost));
             } else
             {
                 mainThread.Post(() => callback.OnError("Not enough points to purchase this reward."));

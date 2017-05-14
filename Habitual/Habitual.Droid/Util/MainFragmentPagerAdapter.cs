@@ -69,14 +69,16 @@ namespace Habitual.Droid.Util
 
         public void UpdateFragments()
         {
-            overview.Update();
-            manage.Update();
+            if (overview != null ) overview.Update();
+            if (manage != null) manage.Update();
+            if (rewards != null) rewards.Update();
         }
 
         internal void ResetAllFrags()
         {
             overview.Reset();
             manage.Reset();
+            if (rewards != null) rewards.Reset();
         }
     }
 }

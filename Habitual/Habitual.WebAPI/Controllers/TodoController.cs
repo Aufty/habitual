@@ -16,9 +16,8 @@ namespace Habitual.WebAPI.Controllers
     {
         [HttpPost]
         [Route("create")]
-        public HttpResponseMessage CreateTodo(string todoJson)
+        public HttpResponseMessage CreateTodo(Todo todo)
         {
-            var todo = JsonConvert.DeserializeObject<Todo>(todoJson);
             MySqlConnection conn = new MySqlConnection(CONNECTION_STRING);
             try
             {
@@ -28,10 +27,11 @@ namespace Habitual.WebAPI.Controllers
                 MySqlCommand cmd = new MySqlCommand(rtn, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", todo.ID);
+                cmd.Parameters.AddWithValue("@id", todo.ID.ToString());
                 cmd.Parameters.AddWithValue("@description", todo.Description);
                 cmd.Parameters.AddWithValue("@difficulty", todo.Difficulty.ToString());
                 cmd.Parameters.AddWithValue("@username", todo.Username);
+                cmd.Parameters.AddWithValue("@isDone", false);
 
                 cmd.ExecuteNonQuery();
                 return base.BuildSuccessResult(HttpStatusCode.OK);
@@ -94,17 +94,16 @@ namespace Habitual.WebAPI.Controllers
                 while (reader.Read())
                 {
                     var todo = new Todo();
-                    //todo.ID = Guid.Parse(reader.GetChar("id").ToString());
-                    todo.ID = Guid.NewGuid();
+                    todo.ID = Guid.Parse(reader.GetString("id"));
                     todo.Description = reader.GetString("description");
                     todo.Difficulty = (Difficulty)Enum.Parse(typeof(Difficulty), reader.GetString("difficulty"));
                     todo.Username = reader.GetString("username");
+                    todo.IsDone = reader.GetBoolean("is_done");
                     todoList.Add(todo);
-                    Console.Write("Got to here");
                 }
                 reader.Close();
-                var json = JsonConvert.SerializeObject(todoList);
-                return base.BuildSuccessResult(HttpStatusCode.OK, json);
+                
+                return base.BuildSuccessResultList(HttpStatusCode.OK, todoList);
             }
             catch (Exception ex)
             {
@@ -129,7 +128,7 @@ namespace Habitual.WebAPI.Controllers
                 MySqlCommand cmd = new MySqlCommand(rtn, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", todo.ID);
+                cmd.Parameters.AddWithValue("@id", todo.ID.ToString());
                 cmd.Parameters.AddWithValue("@done", todo.IsDone);
                
                 cmd.ExecuteNonQuery();

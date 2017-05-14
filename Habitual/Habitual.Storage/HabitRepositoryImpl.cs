@@ -13,14 +13,14 @@ namespace Habitual.Storage
 {
     public class HabitRepositoryImpl : HabitRepository
     {
-        public async void Create(Habit habit)
+        public async Task Create(Habit habit)
         {
             HabitDB habitManager = new HabitDB();
             await habitManager.CreateHabit(habit);
             return;
         }
 
-        public async void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             HabitDB habitManager = new HabitDB();
             await habitManager.DeleteHabit(id);
@@ -34,16 +34,6 @@ namespace Habitual.Storage
             return habits;
         }
 
-        public async Task<List<Habit>> GetAllForUser(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Habit GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<HabitLog>> GetLogs(DateTime date, string username)
         {
             HabitDB habitManager = new HabitDB();
@@ -51,26 +41,11 @@ namespace Habitual.Storage
             return logs;
         }  
 
-        public int GetPointValue(Difficulty difficulty)
-        {
-            throw new NotImplementedException();
-        }
-
         public async void IncrementHabit(HabitLog log)
         {
             HabitDB habitManager = new HabitDB();
             await habitManager.LogHabit(log);
             return;
-        }
-
-        public void Update(Habit entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Habit> Repository<Habit>.GetAllForUser(string username)
-        {
-            throw new NotImplementedException();
         }
     }
 }

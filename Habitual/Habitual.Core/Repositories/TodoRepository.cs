@@ -9,6 +9,6 @@ namespace Habitual.Core.Repositories
 {
     public interface TodoRepository : Repository<Todo>
     {
-        Todo MarkDone(Todo todo);
+        Task MarkDone(Todo todo);
     }
 }

@@ -64,7 +64,7 @@ namespace Habitual.Droid.Helpers
             task.Description = view.FindViewById<TextView>(Resource.Id.descriptionNewTaskEntry).Text;
             task.Difficulty = GetDifficultyFromView(view);
 
-            if (string.IsNullOrEmpty(task.Description)) return null; // null is handled by fragment
+            if (string.IsNullOrEmpty(task.Description)) task.Description = "Unnamed Task";
 
             return task;
         }

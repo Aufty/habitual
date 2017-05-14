@@ -70,20 +70,20 @@ namespace Habitual.Droid.Presenters.Impl
             interactor.Execute();
         }
 
-        public void OnHabitIncremented(int pointsAdded)
+        public void OnHabitIncremented(Habit habit, int pointsAdded)
         {
-            view.OnHabitMarkedDone(pointsAdded);
+            view.OnHabitMarkedDone(habit, pointsAdded);
         }
 
         public void MarkRoutineDone(Routine routine)
         {
-            MarkRoutineDoneInteractor interactor = new MarkRoutineDoneInteractorImpl(executor, mainThread, this, routineRepository, userRepository, routine, DateTime.UtcNow);
+            MarkRoutineDoneInteractor interactor = new MarkRoutineDoneInteractorImpl(executor, mainThread, this, routineRepository, userRepository, routine);
             interactor.Execute();
         }
 
-        public void OnRoutineMarkedDoneForToday(int pointsAdded)
+        public void OnRoutineMarkedDoneForToday(Routine routine, int pointsAdded)
         {
-            view.OnRoutineMarkedDone(pointsAdded);
+            view.OnRoutineMarkedDone(routine, pointsAdded);
         }
 
         public void MarkTodoDone(Todo todo)
@@ -92,9 +92,9 @@ namespace Habitual.Droid.Presenters.Impl
             interactor.Execute();
         }
 
-        public void OnTodoMarkedDone(int pointsAdded)
+        public void OnTodoMarkedDone(Todo todo, int pointsAdded)
         {
-            view.OnTodoMarkedDone(pointsAdded);
+            view.OnTodoMarkedDone(todo, pointsAdded);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Android.Content;
 using Habitual.Core.Entities;
 using Habitual.Core.Repositories;
+using Habitual.Storage.DB;
 using Habitual.Storage.Local;
 using Newtonsoft.Json;
 
@@ -14,26 +15,25 @@ namespace Habitual.Storage
     public class TodoRepositoryImpl : TodoRepository
     {
 
-        public void Create(Todo entity)
+        public async Task Create(Todo entity)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            taskContainer.Todos.Add(entity);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            TodoDB todoManager = new TodoDB();
+            await todoManager.CreateTodo(entity);
+            return;
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            var matchingItem = taskContainer.Todos.First(t => t.ID == id);
-            taskContainer.Todos.Remove(matchingItem);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            TodoDB todoManager = new TodoDB();
+            await todoManager.DeleteTodo(id);
+            return;
         }
 
-        public Task<List<Todo>> GetAll(string username)
+        public async Task<List<Todo>> GetAll(string username)
         {
-            throw new NotImplementedException();
+            TodoDB todoManager = new TodoDB();
+            var todos = await todoManager.GetAllTodos(username);
+            return todos;
         }
 
         public List<Todo> GetAllForUser(string username)
@@ -43,21 +43,11 @@ namespace Habitual.Storage
             return unDoneTodos.ToList();
         }
 
-        public Todo GetById(int id)
+        public async Task MarkDone(Todo todo)
         {
-            throw new NotImplementedException();
-        }
-
-        public Todo MarkDone(Todo todo)
-        {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            var matchingTodo = taskContainer.Todos.First(t => t.ID == todo.ID);
-            var index = taskContainer.Todos.IndexOf(matchingTodo);
-            taskContainer.Todos[index].IsDone = true;
-            
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
-            return taskContainer.Todos[index];
+            TodoDB todoManager = new TodoDB();
+            await todoManager.LogTodo(todo);
+            return;
         }
 
         public void Update(Todo entity)

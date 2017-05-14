@@ -27,8 +27,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            habitRepository.Update(habit);
-            mainThread.Post(() => callback.OnHabitUpdated(habit));
+            //habitRepository.Update(habit);
+            //mainThread.Post(() => callback.OnHabitUpdated(habit));
         }
     }
 }

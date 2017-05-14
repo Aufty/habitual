@@ -121,6 +121,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HabitController.cs" />
+    <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\RoutineController.cs" />
     <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="Controllers\UserController.cs" />

@@ -45,14 +45,13 @@ namespace Habitual.Core.UseCases.Impl
                 return;
             }
             
-            //newTaskContainer.HabitLogs = new List<HabitLog>();
             newTaskContainer.Habits = await habitRepository.GetAll(username);
-            //newTaskContainer.Routines = includeAllRoutines ? routineRepository.GetAllRoutinesIncludingOtherDays(username) : routineRepository.GetAllForUser(username, dayOfWeek);
-            //newTaskContainer.Todos = todoRepository.GetAllForUser(username);
+            newTaskContainer.Routines = includeAllRoutines ? await routineRepository.GetAll(username) : await routineRepository.GetAllRoutinesForToday(username);
+            newTaskContainer.Todos = await todoRepository.GetAll(username);
             if (includeLogs)
             {
                 if (newTaskContainer.Habits != null && newTaskContainer.Habits.Count > 0) newTaskContainer.HabitLogs = await habitRepository.GetLogs(DateTime.Today, username);
-                //newTaskContainer.RoutineLogs = routineRepository.GetLogs(date, username);
+                if (newTaskContainer.Routines != null && newTaskContainer.Routines.Count > 0) newTaskContainer.RoutineLogs = await routineRepository.GetLogs(DateTime.Today, username);
             }
 
             mainThread.Post(() => { callback.OnTaskContainerFilled(newTaskContainer); });

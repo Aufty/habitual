@@ -15,28 +15,26 @@ namespace Habitual.Core.UseCases.Impl
         private MarkRoutineDoneInteractorCallback callback;
         private RoutineRepository routineRepository;
         private UserRepository userRepository;
-        private DateTime utcTimeStamp;
         private Routine routine;
 
         public MarkRoutineDoneInteractorImpl(Executor taskExecutor, MainThread mainThread,
                                         MarkRoutineDoneInteractorCallback callback, RoutineRepository routineRepository,
-                                        UserRepository userRepository, Routine routine, DateTime utcTimeStamp) : base(taskExecutor, mainThread)
+                                        UserRepository userRepository, Routine routine) : base(taskExecutor, mainThread)
         {
             this.callback = callback;
             this.routineRepository = routineRepository;
             this.userRepository = userRepository;
             this.routine = routine;
-            this.utcTimeStamp = utcTimeStamp;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var updatedRoutine = routineRepository.MarkDone(routine, utcTimeStamp);
-            //if (updatedRoutine.Logs.Count <= routine.Logs.Count)
-            //{
-            //    callback.OnError("Unable to mark routine done.");
-            //    return;
-            //}
+            var log = new RoutineLog();
+            log.ID = Guid.NewGuid();
+            log.RoutineID = routine.ID;
+            log.Timestamp = DateTime.Today;
+            await routineRepository.MarkDone(log);
+
             var pointsAdded = 0;
             if (routine.Difficulty == Difficulty.Easy) pointsAdded = 10;
             if (routine.Difficulty == Difficulty.Medium) pointsAdded = 20;
@@ -44,7 +42,7 @@ namespace Habitual.Core.UseCases.Impl
             if (routine.Difficulty == Difficulty.VeryHard) pointsAdded = 40;
             userRepository.IncrementPoints(routine.Username, pointsAdded);
 
-            mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(pointsAdded));
+            mainThread.Post(() => callback.OnRoutineMarkedDoneForToday(routine, pointsAdded));
         }
     }
 }

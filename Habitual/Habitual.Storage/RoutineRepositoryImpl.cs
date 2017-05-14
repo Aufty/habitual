@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Habitual.Core.Entities;
 using Habitual.Core.Repositories;
+using Habitual.Storage.DB;
 using Habitual.Storage.Local;
 using Newtonsoft.Json;
 
@@ -12,21 +13,18 @@ namespace Habitual.Storage
 {
     public class RoutineRepositoryImpl : RoutineRepository
     {
-        public void Create(Routine entity)
+        public async Task Create(Routine entity)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            taskContainer.Routines.Add(entity);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            RoutineDB routineManager = new RoutineDB();
+            await routineManager.CreateRoutine(entity);
+            return;
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            var matchingItem = taskContainer.Routines.First(r => r.ID == id);
-            taskContainer.Routines.Remove(matchingItem);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
+            RoutineDB routineManager = new RoutineDB();
+            await routineManager.DeleteRoutine(id);
+            return;
         }
 
         public List<Routine> GetAllForUser(string username)
@@ -80,30 +78,18 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public List<RoutineLog> GetLogs(DateTime date, string username)
+        public async Task<List<RoutineLog>> GetLogs(DateTime date, string username)
         {
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            return taskContainer.RoutineLogs;
+            RoutineDB routineManager = new RoutineDB();
+            var logs = await routineManager.GetAllRoutineLogs(date, username);
+            return logs;
         }
 
-        public int GetPointValue(Difficulty difficulty)
+        public async Task MarkDone(RoutineLog log)
         {
-            throw new NotImplementedException();
-        }
-
-        public Routine MarkDone(Routine routine, DateTime utcTimestamp)
-        {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-
-            var routineLog = new RoutineLog();
-            routineLog.ID = Guid.NewGuid();
-            routineLog.RoutineID = routine.ID;
-            routineLog.Timestamp = utcTimestamp;
-
-            taskContainer.RoutineLogs.Add(routineLog);
-            LocalData.TaskContainer = JsonConvert.SerializeObject(taskContainer);
-            return routine;
+            RoutineDB routineManager = new RoutineDB();
+            await routineManager.LogRoutine(log);
+            return;
         }
 
         public void Update(Routine entity)
@@ -111,11 +97,10 @@ namespace Habitual.Storage
             throw new NotImplementedException();
         }
 
-        public List<Routine> GetAllRoutinesIncludingOtherDays(string username)
+        public async Task<List<Routine>> GetAllRoutinesForToday(string username)
         {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            return taskContainer.Routines;
+            var routines = await GetAll(username);
+            return RoutinesMatchingDay(routines, DateTime.Today.DayOfWeek);
         }
 
         public List<Routine> GetAllForUser(string username, DayOfWeek dayOfWeek)
@@ -126,9 +111,11 @@ namespace Habitual.Storage
 
         }
 
-        public Task<List<Routine>> GetAll(string username)
+        public async Task<List<Routine>> GetAll(string username)
         {
-            throw new NotImplementedException();
+            RoutineDB routineManager = new RoutineDB();
+            var routines = await routineManager.GetAllRoutines(username);
+            return routines;
         }
     }
 }

@@ -9,6 +9,5 @@ namespace Habitual.Core.Repositories
 {
     public interface RewardRepository : Repository<Reward>
     {
-        bool BuyReward(Reward reward); //returns true on successful purchase
     }
 }

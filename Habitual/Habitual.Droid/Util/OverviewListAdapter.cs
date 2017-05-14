@@ -12,25 +12,26 @@ using Android.Widget;
 using Habitual.Core.Entities;
 using Habitual.Core.Entities.Base;
 using Habitual.Droid.UI;
+using Habitual.Droid.UI.ViewModels;
 
 namespace Habitual.Droid.Util
 {
-    public class OverviewListAdapter : BaseAdapter<BaseTask>
+    public class OverviewListAdapter : BaseAdapter<OverviewItem>
     {
         private Activity context;
-        private List<BaseTask> items;
+        private List<OverviewItem> items;
         private List<HabitLog> habitLogs;
         private List<RoutineLog> routineLogs;
         private MainApplicationCallback callback;
 
-        public OverviewListAdapter(Activity context, List<BaseTask> items, MainApplicationCallback callback)
+        public OverviewListAdapter(Activity context, List<OverviewItem> items, MainApplicationCallback callback)
         {
             this.context = context;
             this.items = items;
             this.callback = callback;
         }
 
-        public override BaseTask this[int position]
+        public override OverviewItem this[int position]
         {
             get
             {
@@ -54,7 +55,7 @@ namespace Habitual.Droid.Util
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var item = items[position];
-            return GenerateItemViewBasedOnType(item, convertView, parent);
+            return GenerateItemViewBasedOnType(item.Task, convertView, parent);
         }
 
         private View GenerateItemViewBasedOnType(BaseTask item, View convertView, ViewGroup parent)
@@ -125,9 +126,29 @@ namespace Habitual.Droid.Util
             return view;
         }
 
-        private bool WasTodayLogged(Routine routine, IEnumerable<RoutineLog> logs)
+        public void MarkDone(Todo todo)
         {
-            var today = DateTime.UtcNow.Date;
+            try
+            {
+                var matchingTodo = items.First(t => t.Task.ID == todo.ID);
+                var indexOfTodo = items.IndexOf(matchingTodo);
+                var newTodo = new Todo();
+                newTodo.ID = matchingTodo.Task.ID;
+                newTodo.Description = matchingTodo.Task.Description;
+                newTodo.Difficulty = matchingTodo.Task.Difficulty;
+                newTodo.IsDone = !((Todo)matchingTodo.Task).IsDone;
+                items[indexOfTodo] = new OverviewItem(newTodo);
+                context.RunOnUiThread(() => NotifyDataSetChanged());
+            } catch
+            {
+                Toast.MakeText(context, "Update error.", ToastLength.Short);
+            }
+            
+        }
+
+        public bool WasTodayLogged(Routine routine, IEnumerable<RoutineLog> logs)
+        {
+            var today = DateTime.Today.Date;
             foreach (RoutineLog log in logs)
             {
                 if (routine.ID == log.RoutineID && log.Timestamp.Date == today)
@@ -148,6 +169,13 @@ namespace Habitual.Droid.Util
             image.SetImageResource(Resource.Drawable.habit);
 
             return view;
+        }
+
+        internal void MakeTouchableAgain(BaseTask task)
+        {
+            var matchingTask = items.First(t => t.Task.ID == task.ID);
+            var matchingIndex = items.IndexOf(matchingTask);
+            items[matchingIndex].IsUntouchable = false;
         }
 
         private View GetGenericView(BaseTask task, View view)
@@ -177,7 +205,7 @@ namespace Habitual.Droid.Util
             return logs.ToList().Count.ToString();
         }
 
-        public void Update(List<BaseTask> items)
+        public void Update(OverviewItemList items)
         {
             if (items != null)
             {

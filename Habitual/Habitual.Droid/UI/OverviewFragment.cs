@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -10,6 +11,7 @@ using Habitual.Core.Executors.Impl;
 using Habitual.Droid.Presenters;
 using Habitual.Droid.Presenters.Impl;
 using Habitual.Droid.Threading;
+using Habitual.Droid.UI.ViewModels;
 using Habitual.Droid.Util;
 using Habitual.Storage;
 using Habitual.Storage.Local;
@@ -19,7 +21,7 @@ namespace Habitual.Droid.UI
     public class OverviewFragment : Android.Support.V4.App.Fragment, OverviewView
     {
         private ListView overviewList;
-        private List<BaseTask> items;
+        private OverviewItemList items;
         private List<HabitLog> habitLogs;
         private List<RoutineLog> routineLogs;
         private OverviewListAdapter adapter;
@@ -57,7 +59,7 @@ namespace Habitual.Droid.UI
 
         private void InitializeElements(View view)
         {
-            if (items == null) items = new List<BaseTask>();
+            if (items == null) items = new OverviewItemList();
             overviewList = view.FindViewById<ListView>(Resource.Id.overviewList);
             adapter = new OverviewListAdapter(Activity, items, callback);
             overviewList.ItemClick += TaskClicked;
@@ -73,9 +75,9 @@ namespace Habitual.Droid.UI
         private void TaskClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             var item = items[e.Position];
-            var habit = item as Habit;
-            var routine = item as Routine;
-            var todo = item as Todo;
+            var habit = item.Task as Habit;
+            var routine = item.Task as Routine;
+            var todo = item.Task as Todo;
             if (habit != null)
             {
                 presenter.MarkHabitDone(habit);
@@ -86,11 +88,16 @@ namespace Habitual.Droid.UI
             }
             if (routine != null)
             {
+                if (adapter.WasTodayLogged(routine, routineLogs))
+                    return;
                 presenter.MarkRoutineDone(routine);
             }
             if (todo != null)
             {
+                if (todo.IsDone)
+                    return;
                 presenter.MarkTodoDone(todo);
+                adapter.MarkDone(todo);
             }
         }
 
@@ -99,7 +106,7 @@ namespace Habitual.Droid.UI
             presenter.GetTasks(LocalData.Username, LocalData.Password);
         }
 
-        public void UpdateTasks(List<BaseTask> tasks)
+        public void UpdateTasks(OverviewItemList tasks)
         {
             this.items = tasks;
             adapter.Update(items);
@@ -110,9 +117,12 @@ namespace Habitual.Droid.UI
             try
             {
                 items.Clear();
-                items.AddRange(tasks.Habits);
-                items.AddRange(tasks.Routines);
-                items.AddRange(tasks.Todos);
+                var taskList = new List<BaseTask>();
+                taskList.AddRange(tasks.Habits);
+                taskList.AddRange(tasks.Routines);
+                taskList.AddRange(tasks.Todos);
+                
+                items.AddTasks(taskList);
 
                 habitLogs = tasks.HabitLogs;
                 routineLogs = tasks.RoutineLogs;
@@ -138,14 +148,16 @@ namespace Habitual.Droid.UI
             throw new NotImplementedException();
         }
 
-        public void OnHabitMarkedDone(int pointsAdded)
+        public void OnHabitMarkedDone(Habit habit, int pointsAdded)
         {
+            adapter.MakeTouchableAgain(habit);
             NotifyPoints(pointsAdded);
             Update();
         }
 
-        public void OnRoutineMarkedDone(int pointsAdded)
+        public void OnRoutineMarkedDone(Routine routine, int pointsAdded)
         {
+            adapter.MakeTouchableAgain(routine);
             NotifyPoints(pointsAdded);
             Update();
         }
@@ -155,8 +167,9 @@ namespace Habitual.Droid.UI
             callback.ShowPointsUpdate(pointsAdded);
         }
 
-        public void OnTodoMarkedDone(int pointsAdded)
+        public void OnTodoMarkedDone(Todo todo, int pointsAdded)
         {
+            adapter.MakeTouchableAgain(todo);
             NotifyPoints(pointsAdded);
             Update();
         }

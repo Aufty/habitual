@@ -12,9 +12,9 @@ namespace Habitual.Core.Repositories
         byte[] GetAvatar(string username);
         Task<User> GetUser(string username, string password);
         int GetPoints(string username);
-        void IncrementPoints(string username, int pointsToIncrement);
+        Task IncrementPoints(string username, int pointsToIncrement);
         void StoreLocally(User user);
-        bool BuyReward(Reward reward);
+        Task<bool> BuyReward(Reward reward);
         void SetAvatar(string username, string imageString);
     }
 }

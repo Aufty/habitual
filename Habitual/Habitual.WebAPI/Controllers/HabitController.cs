@@ -46,34 +46,6 @@ namespace Habitual.WebAPI.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[Route("delete/{habitId}")]
-        //public HttpResponseMessage DeleteHabit(string habitId)
-        //{
-        //    MySqlConnection conn = new MySqlConnection(CONNECTION_STRING);
-        //    try
-        //    {
-        //        conn.Open();
-
-        //        string rtn = "delete_habit_procedure";
-        //        MySqlCommand cmd = new MySqlCommand(rtn, conn);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-
-        //        cmd.Parameters.AddWithValue("@id", habitId);
-
-        //        cmd.ExecuteNonQuery();
-        //        return base.BuildSuccessResult(HttpStatusCode.OK);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error deleting habit!");
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-        //}
-
         [HttpGet]
         [Route("getall/{username}")]
         public HttpResponseMessage GetAllHabits(string username)

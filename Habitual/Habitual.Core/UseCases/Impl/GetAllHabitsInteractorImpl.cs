@@ -27,8 +27,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            var habits = habitRepository.GetAllForUser(user.Username);
-            mainThread.Post(() => callback.OnHabitsRetrieved(habits));
+            //var habits = habitRepository.GetAllForUser(user.Username);
+            //mainThread.Post(() => callback.OnHabitsRetrieved(habits));
         }
     }
 }

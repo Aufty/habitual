@@ -9,10 +9,8 @@ namespace Habitual.Core.Repositories
 {
     public interface RoutineRepository : Repository<Routine>
     {
-        Routine MarkDone(Routine routine, DateTime utcTimestamp);
-        int GetPointValue(Difficulty difficulty);
-        List<RoutineLog> GetLogs(DateTime date, string username);
-        List<Routine> GetAllForUser(string username, DayOfWeek dayOfWeek);
-        List<Routine> GetAllRoutinesIncludingOtherDays(string username);
+        Task MarkDone(RoutineLog log);
+        Task<List<RoutineLog>> GetLogs(DateTime date, string username);
+        Task<List<Routine>> GetAllRoutinesForToday(string username);
     }
 }

@@ -27,8 +27,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            routineRepository.Update(rotuine);
-            mainThread.Post(() => callback.OnRoutineUpdated(rotuine));
+            //routineRepository.Update(rotuine);
+            //mainThread.Post(() => callback.OnRoutineUpdated(rotuine));
         }
     }
 }

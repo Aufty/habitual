@@ -25,10 +25,17 @@ namespace Habitual.Core.UseCases.Impl
             this.user = user;
         }
 
-        public override void Run()
+        public async override void Run()
         {
-            var todos = todoRepository.GetAllForUser(user.Username);
-            mainThread.Post(() => callback.OnTodosRetrieved(todos));
+            try
+            {
+                var todos = await todoRepository.GetAll(user.Username);
+                mainThread.Post(() => callback.OnTodosRetrieved(todos));
+            } catch (Exception ex)
+            {
+                mainThread.Post(() => { callback.OnError($"Error retrieving todos. Error: {ex.Message}"); });
+            }
+            
         }
     }
 }

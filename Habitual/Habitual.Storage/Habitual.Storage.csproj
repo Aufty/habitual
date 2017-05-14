@@ -44,6 +44,9 @@
     <Compile Include="DB\Base\BaseDB.cs" />
     <Compile Include="DB\Base\DBClient.cs" />
     <Compile Include="DB\HabitDB.cs" />
+    <Compile Include="DB\RewardDB.cs" />
+    <Compile Include="DB\RoutineDB.cs" />
+    <Compile Include="DB\TodoDB.cs" />
     <Compile Include="DB\UserDB.cs" />
     <Compile Include="HabitRepositoryImpl.cs" />
     <Compile Include="Local\LocalData.cs" />

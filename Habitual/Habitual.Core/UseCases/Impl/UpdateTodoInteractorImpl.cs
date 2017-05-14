@@ -27,8 +27,8 @@ namespace Habitual.Core.UseCases.Impl
 
         public override void Run()
         {
-            todoRepository.Update(todo);
-            mainThread.Post(() => callback.OnTodoUpdated(todo));
+            //todoRepository.Update(todo);
+            //mainThread.Post(() => callback.OnTodoUpdated(todo));
         }
     }
 }
