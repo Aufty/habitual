@@ -49,7 +49,7 @@ namespace Habitual.Core.UseCases.Impl
                 }
             } catch (Exception)
             {
-                callback.OnError("Error creating user. Try again.");
+                callback.OnError("Error creating user. User may already exist.");
             }
             
             

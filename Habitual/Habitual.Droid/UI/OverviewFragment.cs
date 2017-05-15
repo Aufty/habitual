@@ -130,7 +130,7 @@ namespace Habitual.Droid.UI
                 adapter.UpdateLogs(habitLogs, routineLogs);
                 UpdateTasks(items);
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
 
         public void ShowProgress()
@@ -143,10 +143,6 @@ namespace Habitual.Droid.UI
             throw new NotImplementedException();
         }
 
-        public void ShowError()
-        {
-            throw new NotImplementedException();
-        }
 
         public void OnHabitMarkedDone(Habit habit, int pointsAdded)
         {
@@ -172,6 +168,11 @@ namespace Habitual.Droid.UI
             adapter.MakeTouchableAgain(todo);
             NotifyPoints(pointsAdded);
             Update();
+        }
+
+        public void OnError(string message)
+        {
+            Toast.MakeText(Activity, message, ToastLength.Short);
         }
     }
 

@@ -44,7 +44,7 @@ namespace Habitual.Core.UseCases.Impl
                 await userRepository.IncrementPoints(todo.Username, pointsAdded);
 
                 mainThread.Post(() => callback.OnTodoMarkedDone(todo, pointsAdded));
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 mainThread.Post(() => callback.OnError("Error marking todo done. Try again."));
             }

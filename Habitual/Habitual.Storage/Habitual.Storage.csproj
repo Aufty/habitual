@@ -50,7 +50,6 @@
     <Compile Include="DB\UserDB.cs" />
     <Compile Include="HabitRepositoryImpl.cs" />
     <Compile Include="Local\LocalData.cs" />
-    <Compile Include="Local\TemporaryStorageGenerator.cs" />
     <Compile Include="RewardRepositoryImpl.cs" />
     <Compile Include="RoutineRepositoryImpl.cs" />
     <Compile Include="TodoRepositoryImpl.cs" />

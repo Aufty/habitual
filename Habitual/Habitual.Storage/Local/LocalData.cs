@@ -27,8 +27,8 @@ namespace Habitual.Storage.Local
         private const string TaskKey = "task_key";
         private static readonly string TaskValue = string.Empty;
 
-        private const string UserKey = "user_key";
-        private static readonly string UserValue = string.Empty;
+        private const string AvatarKey = "avatar_storage";
+        private static readonly string AvatarValue = string.Empty;
 
         private const string RewardsKey = "rewards_key";
         private static readonly string RewardsValue = string.Empty;
@@ -53,10 +53,10 @@ namespace Habitual.Storage.Local
             set { AppSettings.AddOrUpdateValue<string>(TaskKey, value); }
         }
 
-        public static string User
+        public static string AvatarStorage
         {
-            get { return AppSettings.GetValueOrDefault<string>(UserKey, UserValue); }
-            set { AppSettings.AddOrUpdateValue<string>(UserKey, value); }
+            get { return AppSettings.GetValueOrDefault<string>(AvatarKey, AvatarValue); }
+            set { AppSettings.AddOrUpdateValue<string>(AvatarKey, value); }
         }
 
         public static string Rewards

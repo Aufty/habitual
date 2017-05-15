@@ -36,7 +36,7 @@ namespace Habitual.Core.UseCases.Impl
                 todo.ID = Guid.NewGuid();
                 todoRepository.Create(todo);
                 mainThread.Post(() => callback.OnTodoCreated(todo));
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 mainThread.Post(() => callback.OnError("Error creating todo. Try again."));
             } 

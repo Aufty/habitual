@@ -11,6 +11,7 @@ namespace Habitual.Droid.Presenters
         void OnRoutineCreated(Routine routine);
         void OnTodoCreated(Todo todo);
         void OnTaskDeleted();
+        void OnError(string message);
     }
 
     public interface ManagePresenter : BasePresenter

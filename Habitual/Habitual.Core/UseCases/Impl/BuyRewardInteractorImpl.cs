@@ -41,7 +41,7 @@ namespace Habitual.Core.UseCases.Impl
                 {
                     mainThread.Post(() => callback.OnError("Not enough points to purchase this reward."));
                 }
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 mainThread.Post(() => callback.OnError("Error purchasing reward. Try again."));
             }

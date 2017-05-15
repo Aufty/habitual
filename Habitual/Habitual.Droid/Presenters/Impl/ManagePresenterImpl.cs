@@ -60,7 +60,7 @@ namespace Habitual.Droid.Presenters.Impl
 
         public void OnError(string message)
         {
-            throw new NotImplementedException();
+            view.OnError(message);
         }
 
         public void GetTasks(string username, string password)

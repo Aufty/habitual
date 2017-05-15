@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Jacob Aufderheide
+ * North Central College - Master's Project Application
+ * Primary Reader: Brian Craig
+ * Xamarin Cross-Platform Habit Tracking Application
+ * 5/15/2017
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+using System;
 using System.IO;
 using Android.App;
 using Android.Content;
@@ -37,6 +45,7 @@ namespace Habitual.Droid.UI
         private MainThread mainThread;
         private IMenuItem refreshItem;
         private MainFragmentPagerAdapter adapter;
+        private ProgressDialogForm progressDialog;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -47,6 +56,7 @@ namespace Habitual.Droid.UI
             SetupTabControl();
             SetupAvatarEdit();
             Init();
+            progressDialog = new ProgressDialogForm(this);
         }
 
         protected override void OnResume()
@@ -55,7 +65,16 @@ namespace Habitual.Droid.UI
 
             if (!string.IsNullOrEmpty(LocalData.Username.Trim()))
             {
-                mainPresenter.GetUser(LocalData.Username, LocalData.Password);
+                try
+                {
+                    progressDialog.ShowDialog("", "Checking user...");
+                    mainPresenter.GetUser(LocalData.Username, LocalData.Password);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                
             }
             else
             {
@@ -105,8 +124,20 @@ namespace Habitual.Droid.UI
         private void PromptLoginOrRegister()
         {
             TextDialogBuilder builder = new TextDialogBuilder();
-            var dialog = builder.BuildLoginDialog(this, mainPresenter.GetUser, mainPresenter.CreateUser);
+            var dialog = builder.BuildLoginDialog(this, Login, CreateUser);
             dialog.Show();
+        }
+
+        private void Login(string username, string hashedPassword)
+        {
+            progressDialog.ShowDialog("","Logging in...");
+            mainPresenter.GetUser(username, hashedPassword);
+        }
+
+        private void CreateUser(string username, string hashedPassword)
+        {
+            progressDialog.ShowDialog("", "Creating user...");
+            mainPresenter.CreateUser(username, hashedPassword);
         }
 
         private void SetupTabControl()
@@ -159,28 +190,29 @@ namespace Habitual.Droid.UI
 
         public void HideProgress()
         {
-            throw new NotImplementedException();
+            progressDialog.Dismiss();
         }
 
         public void OnUserCreated(User user)
         {
+            progressDialog.Dismiss();
             Toast.MakeText(this, string.Format("User {0} created!", user.Username), ToastLength.Short).Show();
 
             mainPresenter.StoreUserLocal(user);
         }
 
-        public void ShowError()
-        {
-            throw new NotImplementedException();
-        }
-
         public void ShowProgress()
         {
-            throw new NotImplementedException();
+            progressDialog.ShowDialog("", "Loading...");
         }
 
         public void OnUserRetrieved(User user)
         {
+            RunOnUiThread(() =>
+            {
+                progressDialog.Dismiss();
+            });
+
             if (user == null || string.IsNullOrEmpty(user.Username))
             {
                 RunOnUiThread(() =>
@@ -209,8 +241,11 @@ namespace Habitual.Droid.UI
                 {
                     var imageBitmap = BitmapFactory.DecodeByteArray(user.Avatar, 0, user.Avatar.Length);
                     FindViewById<ImageView>(Resource.Id.avatar).SetImageBitmap(imageBitmap);
+                } else
+                {
+                    FindViewById<ImageView>(Resource.Id.avatar).SetImageResource(Resource.Drawable.avatar_test);
                 }
-
+                progressDialog.Dismiss();
             });
 
             adapter.UpdateFragments();
@@ -218,6 +253,7 @@ namespace Habitual.Droid.UI
 
         public void OnUserStored(User user)
         {
+            progressDialog.Dismiss();
             Toast.MakeText(this, "User stored locally", ToastLength.Short).Show();
             UpdateInterfaceWithUser(user);
         }
@@ -246,10 +282,13 @@ namespace Habitual.Droid.UI
 
         public void OnError(string message)
         {
-            if (string.IsNullOrEmpty(LocalData.Username) || string.IsNullOrEmpty(LocalData.Username))
-            {
-                PromptLoginOrRegister();
-            }
+            RunOnUiThread(() => {
+                if (string.IsNullOrEmpty(LocalData.Username) || string.IsNullOrEmpty(LocalData.Username))
+                {
+                    PromptLoginOrRegister();
+                }
+                Toast.MakeText(this, message, ToastLength.Short);
+            });
         }
 
         public void ShowPointsUpdate(int pointsAdded)

@@ -74,6 +74,7 @@ namespace Habitual.Droid.Util
             else if (routine != null)
             {
                 view.FindViewById<TextView>(Resource.Id.taskTypeManageText).Text = "ROUTINE";
+                view = GenerateRoutineCell(routine, view);
             }
 
             else if (todo != null)
@@ -98,18 +99,20 @@ namespace Habitual.Droid.Util
             return view;
         }
 
-        private View GenerateTodoCell(Todo todo, View view)
-        {
-            return view;
-        }
-
         private View GenerateRoutineCell(Routine routine, View view)
         {
-            return view;
-        }
+            var daysActiveString = "";
+            if (routine.IsActiveSunday) daysActiveString += "Su ";
+            if (routine.IsActiveMonday) daysActiveString += "Mo ";
+            if (routine.IsActiveTuesday) daysActiveString += "Tu ";
+            if (routine.IsActiveWednesday) daysActiveString += "We ";
+            if (routine.IsActiveThursday) daysActiveString += "Th ";
+            if (routine.IsActiveFriday) daysActiveString += "Fr ";
+            if (routine.IsActiveSaturday) daysActiveString += "Sa ";
+            var routineText = view.FindViewById<TextView>(Resource.Id.routineManageText);
+            routineText.Visibility = ViewStates.Visible;
+            routineText.Text = daysActiveString;
 
-        private View GenerateHabitCell(Habit habit, View view)
-        {
             return view;
         }
 

@@ -83,9 +83,6 @@ namespace Habitual.Droid.Helpers
             var username = view.FindViewById<EditText>(Resource.Id.login_username);
             var password = view.FindViewById<TextView>(Resource.Id.login_password);
 
-            PasswordHasher hasher = new PasswordHasher();
-            var hashedPassword = hasher.HashPassword(password.Text);
-
             builder.SetView(view);
             builder.SetPositiveButton("LOGIN", new EventHandler<DialogClickEventArgs>((s, args) =>
             {
@@ -93,6 +90,8 @@ namespace Habitual.Droid.Helpers
                 {
                     // do nothing
                 }
+                PasswordHasher hasher = new PasswordHasher();
+                var hashedPassword = hasher.HashPassword(password.Text);
                 loginMethod(username.Text, hashedPassword);
             }));
             builder.SetNegativeButton("REGISTER", new EventHandler<DialogClickEventArgs>((s, args) =>
@@ -101,7 +100,9 @@ namespace Habitual.Droid.Helpers
                 {
                     // do nothing
                 }
-                registerMethod(username.Text, hashedPassword);
+                PasswordHasher hasher = new PasswordHasher();
+                var hashedPassword = hasher.HashPassword(password.Text);
+                registerMethod(username.Text, password.Text);
             }));
 
             return builder.Create();

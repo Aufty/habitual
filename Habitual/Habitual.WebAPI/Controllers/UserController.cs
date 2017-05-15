@@ -33,7 +33,7 @@ namespace Habitual.WebAPI.Controllers
                 cmd.ExecuteNonQuery();
                 return base.BuildSuccessResult(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error creating user!");
             }
@@ -66,14 +66,12 @@ namespace Habitual.WebAPI.Controllers
                     updatedUser.Username = reader.GetString("username");
                     updatedUser.Password = reader.GetString("password");
                     updatedUser.Points = reader.GetInt32("points");
-
-                    Console.Write("Got to here");
                 }
                 reader.Close();
 
                 return base.BuildSuccessResult(HttpStatusCode.OK, updatedUser);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error creating user!");
             }
@@ -103,7 +101,7 @@ namespace Habitual.WebAPI.Controllers
 
                 return base.BuildSuccessResult(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error incrementing points!");
             }

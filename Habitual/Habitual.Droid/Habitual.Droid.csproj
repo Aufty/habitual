@@ -132,6 +132,7 @@
     <Compile Include="Util\ManageListAdapter.cs" />
     <Compile Include="Util\OverviewListAdapter.cs" />
     <Compile Include="Util\PasswordHasher.cs" />
+    <Compile Include="Util\ProgressDialog.cs" />
     <Compile Include="Util\RewardListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +201,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\avatar_test.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\reward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\avatar_test.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

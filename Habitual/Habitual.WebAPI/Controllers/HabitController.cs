@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using Habitual.Core.Entities;
 using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
 
 namespace Habitual.WebAPI.Controllers
 {
@@ -36,7 +33,7 @@ namespace Habitual.WebAPI.Controllers
                 cmd.ExecuteNonQuery();
                 return base.BuildSuccessResult(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error creating habit!");
             }
@@ -71,12 +68,11 @@ namespace Habitual.WebAPI.Controllers
                     habit.Difficulty = (Difficulty)Enum.Parse(typeof(Difficulty), reader.GetString("difficulty"));
                     habit.Username = reader.GetString("username");
                     habitList.Add(habit);
-                    Console.Write("Got to here");
                 }
                 reader.Close();
                 return base.BuildSuccessResultList(HttpStatusCode.OK, habitList);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error getting all habits!");
             }
@@ -111,12 +107,11 @@ namespace Habitual.WebAPI.Controllers
                     habitLog.Timestamp = reader.GetDateTime("time_stamp");
                     habitLog.HabitID = Guid.Parse(reader.GetString("habit_id"));
                     habitLogList.Add(habitLog);
-                    Console.Write("Got to here");
                 }
                 reader.Close();
                 return base.BuildSuccessResultList(HttpStatusCode.OK, habitLogList);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error getting all habits!");
             }
@@ -143,11 +138,10 @@ namespace Habitual.WebAPI.Controllers
                 cmd.Parameters.AddWithValue("@habitId", habitLog.HabitID);
                 cmd.Parameters.AddWithValue("@habitTimeStamp", habitLog.Timestamp);
 
-
                 cmd.ExecuteNonQuery();
                 return base.BuildSuccessResult(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error creating habit!");
             }
@@ -176,7 +170,7 @@ namespace Habitual.WebAPI.Controllers
                 cmd.ExecuteNonQuery();
                 return base.BuildSuccessResult(HttpStatusCode.OK);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.BuildErrorResult(HttpStatusCode.BadRequest, "Error deleting habit!");
             }

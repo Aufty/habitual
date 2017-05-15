@@ -27,11 +27,11 @@ namespace Habitual.Core.UseCases.Impl
             this.password = password;
         }
 
-        public override void Run()
+        public async override void Run()
         {
             try
             {
-                var points = userRepository.GetPoints(username);
+                var points = await userRepository.GetPoints(username, password);
 
                 mainThread.Post(() => callback.OnPointsRetrieved(points));
             }

@@ -17,7 +17,5 @@ namespace Habitual.Droid.UI
         void ShowProgress();
 
         void HideProgress();
-
-        void ShowError();
     }
 }

@@ -92,23 +92,10 @@ namespace Habitual.Storage
             return;
         }
 
-        public void Update(Routine entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Routine>> GetAllRoutinesForToday(string username)
         {
             var routines = await GetAll(username);
             return RoutinesMatchingDay(routines, DateTime.Today.DayOfWeek);
-        }
-
-        public List<Routine> GetAllForUser(string username, DayOfWeek dayOfWeek)
-        {
-            TemporaryStorageGenerator.InitializeTaskContainerIfRequired();
-            var taskContainer = JsonConvert.DeserializeObject<TaskContainer>(LocalData.TaskContainer);
-            return RoutinesMatchingDay(taskContainer.Routines, dayOfWeek);
-
         }
 
         public async Task<List<Routine>> GetAll(string username)

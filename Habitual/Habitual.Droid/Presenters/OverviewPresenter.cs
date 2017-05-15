@@ -10,6 +10,7 @@ namespace Habitual.Droid.Presenters
         void OnHabitMarkedDone(Habit habit, int pointsAdded);
         void OnRoutineMarkedDone(Routine routine, int pointsAdded);
         void OnTodoMarkedDone(Todo todo, int pointsAdded);
+        void OnError(string message);
     }
 
     public interface OverviewPresenter : BasePresenter

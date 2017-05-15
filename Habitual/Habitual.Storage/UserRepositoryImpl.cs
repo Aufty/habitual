@@ -31,7 +31,31 @@ namespace Habitual.Storage
         {
             UserDB userManager = new UserDB();
             var user = await userManager.GetUser(username, password);
+            user.Avatar = GetAvatarLocal(username);
             return user;
+        }
+
+        private byte[] GetAvatarLocal(string username)
+        {
+            Dictionary<string, string> avatarStorage;
+            var imageString = "";
+
+            if (string.IsNullOrEmpty(LocalData.AvatarStorage))
+            {
+                avatarStorage = new Dictionary<string, string>();
+            }
+            else
+            {
+                avatarStorage = JsonConvert.DeserializeObject<Dictionary<string, string>>(LocalData.AvatarStorage);
+            }
+
+            if (avatarStorage.ContainsKey(username))
+            {
+                imageString = avatarStorage[username];
+                return Convert.FromBase64String(imageString);
+            }
+
+            return null;
         }
 
         public async Task<int> GetPoints(string username, string password)
@@ -61,11 +85,26 @@ namespace Habitual.Storage
             return result;
         }
 
+        //done locally for sake of example - faster and less likely to use up my trial db space or bandwidth
         public void SetAvatar(string username, string imageString)
         {
-            var user = JsonConvert.DeserializeObject<User>(LocalData.User);
-            user.Avatar = Convert.FromBase64String(imageString);
-            LocalData.User = JsonConvert.SerializeObject(user);
+            Dictionary<string, string> avatarStorage;
+            if (string.IsNullOrEmpty(LocalData.AvatarStorage))
+            {
+                avatarStorage = new Dictionary<string, string>();
+            } else
+            {
+                avatarStorage = JsonConvert.DeserializeObject<Dictionary<string,string>>(LocalData.AvatarStorage);
+            }
+            
+            if (avatarStorage.ContainsKey(username))
+            {
+                avatarStorage[username] = imageString;
+            } else
+            {
+                avatarStorage.Add(username, imageString);
+            }
+            LocalData.AvatarStorage = JsonConvert.SerializeObject(avatarStorage);
         }
 
         //Not used for User

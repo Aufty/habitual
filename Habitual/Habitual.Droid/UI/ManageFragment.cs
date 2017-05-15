@@ -152,7 +152,7 @@ namespace Habitual.Droid.UI
 
                 UpdateTasks(items);
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
 
         public void ShowProgress()
@@ -161,11 +161,6 @@ namespace Habitual.Droid.UI
         }
 
         public void HideProgress()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowError()
         {
             throw new NotImplementedException();
         }
@@ -193,6 +188,11 @@ namespace Habitual.Droid.UI
         public void Reset()
         {
             Init();
+        }
+
+        public void OnError(string message)
+        {
+            Activity.RunOnUiThread(() => Toast.MakeText(Activity, message, ToastLength.Short));
         }
     }
 }

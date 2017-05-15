@@ -33,7 +33,7 @@ namespace Habitual.Core.UseCases.Impl
                 habitRepository.Create(habit);
 
                 mainThread.Post(() => callback.OnHabitCreated(habit));
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 mainThread.Post(() => callback.OnError("Error creating habit. Try again."));
             }

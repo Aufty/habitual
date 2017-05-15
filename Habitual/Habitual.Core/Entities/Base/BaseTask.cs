@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Jacob Aufderheide
+ * North Central College - Master's Project Application
+ * Primary Reader: Brian Craig
+ * Xamarin Cross-Platform Habit Tracking Application
+ * 5/15/2017
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+using System;
 
 namespace Habitual.Core.Entities.Base
 {
