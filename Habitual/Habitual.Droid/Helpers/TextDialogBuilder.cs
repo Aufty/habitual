@@ -82,9 +82,12 @@ namespace Habitual.Droid.Helpers
                 {
                     // do nothing
                 }
-                PasswordHasher hasher = new PasswordHasher();
-                var hashedPassword = hasher.HashPassword(password.Text);
-                loginMethod(username.Text, hashedPassword);
+                else
+                {
+                    PasswordHasher hasher = new PasswordHasher();
+                    var hashedPassword = hasher.HashPassword(password.Text);
+                    loginMethod(username.Text, hashedPassword);
+                }
             }));
             builder.SetNegativeButton("REGISTER", new EventHandler<DialogClickEventArgs>((s, args) =>
             {
@@ -92,9 +95,13 @@ namespace Habitual.Droid.Helpers
                 {
                     // do nothing
                 }
-                PasswordHasher hasher = new PasswordHasher();
-                var hashedPassword = hasher.HashPassword(password.Text);
-                registerMethod(username.Text, password.Text);
+                else
+                {
+                    PasswordHasher hasher = new PasswordHasher();
+                    var hashedPassword = hasher.HashPassword(password.Text);
+                    registerMethod(username.Text, hashedPassword);
+                }
+                
             }));
 
             return builder.Create();
