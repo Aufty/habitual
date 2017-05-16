@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Provider;
@@ -38,7 +39,7 @@ namespace Habitual.Droid.UI
         void ShowPointsUpdate(int pointsAdded);
     }
 
-    [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme")]
+    [Activity(Label = "Habitual.Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity, MainView, MainApplicationCallback
     {
         private MainPresenter mainPresenter;
