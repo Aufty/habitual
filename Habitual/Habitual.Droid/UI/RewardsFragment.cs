@@ -1,26 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.Support.V4.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using Habitual.Droid.Util;
+using Habitual.Core.Entities;
 using Habitual.Core.Executors;
-using Habitual.Droid.Threading;
 using Habitual.Core.Executors.Impl;
+using Habitual.Droid.Helpers;
+using Habitual.Droid.Presenters;
+using Habitual.Droid.Presenters.Impl;
+using Habitual.Droid.Threading;
+using Habitual.Droid.Util;
 using Habitual.Storage;
 using Habitual.Storage.Local;
-using Habitual.Droid.Presenters.Impl;
-using Habitual.Droid.Presenters;
-using Habitual.Core.Entities;
-using Habitual.Droid.Helpers;
-using Android.Support.Design.Widget;
 
 namespace Habitual.Droid.UI
 {

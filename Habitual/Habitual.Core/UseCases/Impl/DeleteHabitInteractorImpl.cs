@@ -1,12 +1,8 @@
-﻿using Habitual.Core.Executors;
+﻿using System;
+using Habitual.Core.Entities;
+using Habitual.Core.Executors;
 using Habitual.Core.Repositories;
 using Habitual.Core.UseCases.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Habitual.Core.Entities;
 
 namespace Habitual.Core.UseCases.Impl
 {

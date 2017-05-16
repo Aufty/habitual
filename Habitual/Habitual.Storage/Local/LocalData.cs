@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Habitual.Core.Entities;
-using Newtonsoft.Json;
-using Plugin.Settings;
+﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace Habitual.Storage.Local

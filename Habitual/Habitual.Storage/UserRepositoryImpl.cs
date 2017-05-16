@@ -1,14 +1,11 @@
-﻿using Habitual.Core.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using Habitual.Core.Entities;
-using Android.Content;
+using Habitual.Core.Repositories;
+using Habitual.Storage.DB;
 using Habitual.Storage.Local;
 using Newtonsoft.Json;
-using Habitual.Storage.DB;
-using System.Threading.Tasks;
 
 namespace Habitual.Storage
 {

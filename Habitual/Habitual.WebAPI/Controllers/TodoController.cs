@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Habitual.Core.Entities;
 using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
 
 namespace Habitual.WebAPI.Controllers
 {

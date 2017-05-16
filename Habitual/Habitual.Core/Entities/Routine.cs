@@ -1,6 +1,6 @@
-﻿using Habitual.Core.Entities.Base;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using Habitual.Core.Entities.Base;
 
 namespace Habitual.Core.Entities
 {

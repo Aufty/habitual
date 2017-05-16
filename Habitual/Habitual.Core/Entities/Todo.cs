@@ -1,5 +1,4 @@
 ﻿using Habitual.Core.Entities.Base;
-using System;
 
 namespace Habitual.Core.Entities
 {

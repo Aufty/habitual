@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Android.Content;
 using Habitual.Core.Entities;
 using Habitual.Core.Repositories;
 using Habitual.Storage.DB;
